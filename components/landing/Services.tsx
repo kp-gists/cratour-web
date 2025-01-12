@@ -1,4 +1,4 @@
-import { services } from '@/utils/constants';
+import { services } from '@/constants/services';
 import Image from 'next/image';
 import React from 'react';
 import RobotoText from '../ui/RobotoText';

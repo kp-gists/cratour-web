@@ -1,5 +1,5 @@
-import { hero } from '@/utils/constants/hero';
-import { images } from '@/utils/constants/images';
+import { hero } from '@/constants/hero';
+import { images } from '@/constants/images';
 import Image from 'next/image';
 import React from 'react';
 import RubikText from '../ui/RubicText';

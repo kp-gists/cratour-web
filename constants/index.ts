@@ -1,48 +1,5 @@
 import { images } from './images';
 
-export const services = [
-	{
-		id: 'service-1',
-		title: 'Tour Packages',
-		slug: 'tour-packages',
-		description: 'Explore curated tours covering the best destinations and experiences.',
-		icon: images.tourGuide,
-		cta: '..more tours',
-	},
-	{
-		id: 'service-2',
-		title: 'Transfer Services',
-		slug: 'city-transfer-services',
-		description: 'Reliable and comfortable city transfers to meet all your travel needs.',
-		icon: images.transfer,
-		cta: '...more transfers',
-	},
-	{
-		id: 'service-3',
-		title: 'Medical Tourism',
-		slug: 'medical-tourism',
-		description: 'Access top healthcare services while exploring new destinations.',
-		icon: images.medicalTourism,
-		cta: '..act now!',
-	},
-	{
-		id: 'service-4',
-		title: 'Hotel Reservation',
-		slug: 'hotel-reservation',
-		description: 'Book your stay at top-rated hotels tailored to your preferences.',
-		icon: images.reservation,
-		cta: '...book now!',
-	},
-	{
-		id: 'service-5',
-		title: 'Rent A Car',
-		slug: 'rent-car',
-		description: 'Convenient and affordable car rental services for your travels.',
-		icon: images.rentalCar,
-		cta: '...rent now!',
-	},
-];
-
 export const tourPackages = [];
 
 export const cityActivities = [

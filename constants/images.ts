@@ -52,4 +52,6 @@ export const images = {
 	starfish: '/png/starfish.png',
 	sunglasses: '/png/sunglasses.png',
 	travel: '/png/travel.png',
+	megaphone: '/png/megaphone.png',
+	app: '/png/app.png',
 };
