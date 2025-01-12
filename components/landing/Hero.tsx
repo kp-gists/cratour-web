@@ -73,7 +73,13 @@ const Hero = () => {
 				className='md:w-[143px] md:h-[135px] absolute left-[40%] -top-4 md:left-[46%] md:top-1'
 			/>
 			<Image src={images.curvedBlue} alt='leaf' width={450} height={311} className='w-[450px] h-[311px] hidden md:block absolute z-10 left-2 top-12' />
-			<Image src={images.curvedAxisBlue} alt='leaf' width={450} height={311} className='w-[450px] h-[311px] hidden md:block absolute z-10 -right-3 top-[100]' />
+			<Image
+				src={images.curvedAxisBlue}
+				alt='leaf'
+				width={450}
+				height={311}
+				className='w-[450px] h-[311px] hidden md:block absolute z-10 -right-3 top-[100px]'
+			/>
 
 			{/*  */}
 			<div className='mt-[130px] md:mt-[180px] w-fit md:w-[500px] h-fit mx-auto flex flex-col justify-center items-center gap-4 relative z-50'>
