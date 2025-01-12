@@ -4,7 +4,7 @@ import Hero from '@/components/landing/Hero';
 
 export default function Home() {
 	return (
-		<div className='w-full flex justify-center items-center gap-4 flex-col bg-cyan-100 h-full overflow-scroll '>
+		<div className='w-full flex justify-center items-center gap-4 flex-col bg-cyan-100 h-full overflow-y-scroll '>
 			{/* TODO landing */}
 
 			{/* HERO section */}

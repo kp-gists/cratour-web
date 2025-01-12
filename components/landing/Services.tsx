@@ -17,11 +17,11 @@ const Services = () => {
 				Uncover the hidden gems of Albania and embark on a treasure hunt like no other.
 			</p>
 
-			<div className='flex flex-col md:flex-row justify-center items-center gap-8'>
+			<div className='flex flex-wrap justify-center items-center gap-8 px-3'>
 				{services.map((service) => (
 					<div
 						key={service.id}
-						className='w-full hover:-translate-y-2  px-3 py-6 border-2 border-dashed  border-cyan-400  rounded-xl flex justify-center items-center flex-col gap-3'
+						className=' hover:-translate-y-2 w-full  md:w-[275px] px-3 py-6 border-2 border-dashed  border-cyan-400  rounded-xl flex justify-center items-center flex-col gap-3'
 					>
 						<Image src={service.icon} width={80} height={80} alt={service.description} />
 
