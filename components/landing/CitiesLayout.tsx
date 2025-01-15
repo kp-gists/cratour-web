@@ -7,7 +7,7 @@ import Link from 'next/link';
 
 const CitiesLayout = () => {
 	return (
-		<div className='w-full h-full bg-primary-500 relative p-4 md:p-6 lg:p-8 min-h-[1300px]  md:min-h-[1000px] overflow-hidden '>
+		<div className='w-full h-full bg-primary-500 relative p-4 md:p-6 lg:p-8 min-h-[1180px]  md:min-h-[1200px] overflow-hidden '>
 			<div className='absolute top-6 left-[40px] p-2 bg-white '>
 				<Image width={120} height={100} src={images.cityBerat} className='bg-cover' alt='berat castle' />
 			</div>
@@ -23,7 +23,9 @@ const CitiesLayout = () => {
 				className='absolute w-[60px] h-[76px] md:w-[121px] md:h-[152px] top-0 left-[55%] md:left-1/2 lg:left-[52%]'
 				alt='line city'
 			/>
-			<SatisfyText className='text-xl md:text-2xl font-bold text-white absolute top-[90px] left-[72%] md:left-[64%] lg:left-[59%]'>BERAT</SatisfyText>
+			<SatisfyText className='text-xl md:text-2xl font-bold text-white absolute top-[45px] md:top-[90px] left-[72%] md:left-[64%] lg:left-[59%]'>
+				BERAT
+			</SatisfyText>
 
 			<Image src={images.dottedCurve1} width={113} height={135} className='absolute top-[130px] md:top-[100px] right-0 ' alt='line city' />
 			<div className='absolute top-[230px] right-[113px] bg-white p-2 hidden md:block'>
@@ -56,7 +58,7 @@ const CitiesLayout = () => {
 				<SatisfyText className='text-xl md:text-3xl font-bold w-fit md:w-[400px] text-center text-wrap  text-white'>
 					Discover Albania: Where Natural Wonders Meet Rich History
 				</SatisfyText>
-				<p className='w-fit md:w-[480px] lg:w-[660px] mx-auto text-sm md:text-[18px] lg:text-xl text-wrap px-4 text-white  text-center'>
+				<p className='w-fit md:w-[480px] lg:w-[660px] mx-auto text-sm md:text-[18px] lg:text-xl text-wrap px-0 md:px-4 text-white  text-center'>
 					Explore the enchanting layouts of Albania, a country where every city offers a unique blend of attractions. From pristine beaches along the Adriatic
 					and Ionian coasts to serene lakes and winding rivers. Discover centuries-old castles, vibrant cultural scenes, and picturesque villages that echo
 					history.{' '}

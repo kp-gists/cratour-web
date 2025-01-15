@@ -64,4 +64,6 @@ export const images = {
 	valbona: '/png/valbona.jpg',
 	ismaili: '/png/ismaili.jpg',
 	frame1: '/png/frame1.png',
+	touch: '/png/touch.png',
+	girafe: '/png/girafe.png',
 };

@@ -6,7 +6,7 @@ import TravelLayout from '@/components/landing/TravelLayout';
 
 export default function Home() {
 	return (
-		<div className='w-full flex justify-center items-center  flex-col  h-full overflow-y-scroll '>
+		<div className='w-full flex justify-center items-center  flex-col pb-10  h-full overflow-y-scroll '>
 			{/* TODO landing */}
 
 			{/* HERO section */}

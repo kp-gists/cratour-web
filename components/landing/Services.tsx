@@ -39,7 +39,7 @@ const Services = () => {
 			</div>
 
 			<Link href={`/visit-albania/services`} className='block my-6'>
-				<SatisfyText className='text-cyan-600 text-lg text-center px-3 md:px-6 md:text-xl'>
+				<SatisfyText className='text-cyan-600 text-lg text-center px-3 md:px-6 md:text-xl lg:text-3xl'>
 					Explore our services to create unforgettable memories in the land of wonders! ...more
 				</SatisfyText>
 			</Link>
