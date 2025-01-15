@@ -8,7 +8,7 @@ import Link from 'next/link';
 
 const Hero = () => {
 	return (
-		<div className='relative w-full h-[80vh] md:h-[500px] overflow-hidden'>
+		<div className='relative w-full h-[80vh] md:h-[500px] overflow-hidden bg-cyan-100'>
 			{/* images absolute */}
 			<Image
 				src={images.leaveLeft}
@@ -37,7 +37,7 @@ const Hero = () => {
 				alt='camera'
 				width={225}
 				height={223}
-				className='w-[225px] h-[223px] hidden md:block z-20 absolute right-[350px] -top-14 animate-fadeIn'
+				className='w-[225px] h-[223px] hidden lg:block z-20 absolute right-[350px] -top-14 animate-fadeIn'
 				style={{ animationDelay: '0.7s' }} // Add a delay
 			/>
 			<Image
@@ -45,7 +45,7 @@ const Hero = () => {
 				alt='busull'
 				width={170}
 				height={170}
-				className='w-[170px] h-[170px] hidden md:block absolute z-20 left-[230px] top-[230px] animate-fadeIn'
+				className='w-[170px] h-[170px] hidden lg:block absolute z-20 left-[230px] top-[230px] animate-fadeIn'
 				style={{ animationDelay: '0.9s' }} // Add a delay
 			/>
 			<Image
@@ -53,7 +53,7 @@ const Hero = () => {
 				alt='shell'
 				width={126}
 				height={139}
-				className='w-[126px] h-[139px] absolute z-20 bottom-0 right-1/3 md:right-[25%] animate-fadeIn'
+				className='w-[126px] h-[139px] absolute z-20 bottom-0 right-1/3 md:-bottom-5 md:right-[20%] lg:right-[15%] animate-fadeIn'
 				style={{ animationDelay: '1.1s' }} // Add a delay
 			/>
 			<Image
@@ -61,7 +61,7 @@ const Hero = () => {
 				alt='travel'
 				width={79}
 				height={79}
-				className='w-[79px] h-[79px] absolute z-20 bottom-[120px] right-[60px] md:right-[20%] animate-fadeIn'
+				className='w-[79px] h-[79px] absolute z-20 bottom-[120px] right-[60px] md:bottom-[80px] md:right-[10%] animate-fadeIn'
 				style={{ animationDelay: '1.3s' }} // Add a delay
 			/>
 

@@ -9,7 +9,7 @@ import React from 'react';
 
 const ServicesPage = () => {
 	return (
-		<div className='max-w-4xl mx-auto px-4 md:px-8 lg:px-16 flex flex-col gap-4 md:gap-6 lg:gap-8 pt-10 md:pt-16 lg:pt-20'>
+		<div className='max-w-4xl mx-auto px-4 md:px-8 lg:px-16 flex flex-col gap-4 md:gap-6 lg:gap-8 pt-4 md:pt-8 lg:pt-20'>
 			<SatisfyText as='h1' className='text-xl md:text-3xl text-center px-2 '>
 				Explore Our Comprehensive Services for an <br /> Unforgettable <b className='text-cyan-600'>Albanian Experience</b>
 			</SatisfyText>
