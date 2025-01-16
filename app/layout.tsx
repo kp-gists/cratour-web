@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { Geist, Geist_Mono, Satisfy } from 'next/font/google';
 import './globals.css';
+import 'react-day-picker/src/style.css';
 
 const satisfy = Satisfy({
 	variable: '--font-satisfy-mono',

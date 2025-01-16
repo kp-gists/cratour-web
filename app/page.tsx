@@ -3,6 +3,7 @@ import Services from '@/components/landing/Services';
 import Hero from '@/components/landing/Hero';
 import CitiesLayout from '@/components/landing/CitiesLayout';
 import TravelLayout from '@/components/landing/TravelLayout';
+import ContactUs from '@/components/landing/ContactUs';
 
 export default function Home() {
 	return (
@@ -23,7 +24,7 @@ export default function Home() {
 
 			{/* Travel features things to do on a tour */}
 
-			{/* Memories and blog sections */}
+			<ContactUs />
 		</div>
 	);
 }
