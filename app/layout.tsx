@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { Geist, Geist_Mono, Satisfy } from 'next/font/google';
 import './globals.css';
 import 'react-day-picker/src/style.css';
+import AllProviders from '@/lib/config/providers';
 
 const satisfy = Satisfy({
 	variable: '--font-satisfy-mono',
@@ -31,7 +32,9 @@ export default function RootLayout({
 }>) {
 	return (
 		<html lang='en'>
-			<body className={`${geistSans.variable} ${geistMono.variable} ${satisfy.variable} `}>{children}</body>
+			<body className={`${geistSans.variable} ${geistMono.variable} ${satisfy.variable} `}>
+				<AllProviders>{children}</AllProviders>
+			</body>
 		</html>
 	);
 }
