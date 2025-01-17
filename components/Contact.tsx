@@ -1,11 +1,11 @@
 'use client';
 
-import React, { FormEvent, useState } from 'react';
+import React, { useState } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
-import { Form, FormField, FormItem, FormLabel, FormControl, FormDescription, FormMessage } from '@/components/ui/form';
+import { Form, FormField, FormItem, FormLabel, FormControl, FormMessage } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Button } from '@/components/ui/button';
@@ -33,8 +33,6 @@ type FormData = z.infer<typeof formSchema>;
 const Contact = () => {
 	const [isLoading, setIsLoading] = useState(false);
 
-	const [formData, setFormData] = useState<FormData | null>();
-
 	const onSubmit = (data: FormData) => {
 		console.log('Form submitted:', data);
 		setIsLoading(true);
@@ -53,7 +51,6 @@ const Contact = () => {
 			.then((d: any) => {
 				console.log('🚀 ~ .then ~ d:', d);
 				toast.success('Message was sent!');
-				setFormData(null);
 			})
 			.catch((error) => {
 				console.log('🚀 ~ handleSubmit ~ error:', error);
