@@ -89,7 +89,10 @@ export default {
 				md: 'calc(var(--radius) - 2px)',
 				sm: 'calc(var(--radius) - 4px)',
 			},
+			clipPath: {
+				'left-bottom': 'polygon(0% 50%, 50% 100%, 0% 100%)',
+			},
 		},
 	},
-	plugins: [require('tailwindcss-animate')],
+	plugins: [require('tailwindcss-animate'), require('tailwind-clip-path')],
 } satisfies Config;

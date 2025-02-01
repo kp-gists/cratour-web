@@ -11,10 +11,10 @@ import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover
 export function DatePickerDemo({ selected, onChange }: { selected?: Date; onChange: any }) {
 	const formatDate = (date: Date) => {
 		return date.toLocaleDateString(undefined, {
-			weekday: 'long', // Example: "Thursday"
+			weekday: 'short', // Example: "Thursday"
 			year: 'numeric', // Example: "2025"
-			month: 'long', // Example: "January"
 			day: 'numeric', // Example: "16"
+			month: 'numeric', // Example: "January"
 		});
 	};
 	return (

@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://cratour.com
+
+# Sitemaps
+Sitemap: https://cratour.com/sitemap.xml
