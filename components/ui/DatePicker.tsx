@@ -8,7 +8,7 @@ import { Button } from '@/components/ui/button';
 import { Calendar } from '@/components/ui/calendar';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 
-export function DatePickerDemo({ selected, onChange }: { selected?: Date; onChange: any }) {
+export function DatePickerDemo({ selected, onChange }: { selected?: Date; onChange: (date: Date | undefined) => void }) {
 	const formatDate = (date: Date) => {
 		return date.toLocaleDateString(undefined, {
 			weekday: 'short', // Example: "Thursday"
