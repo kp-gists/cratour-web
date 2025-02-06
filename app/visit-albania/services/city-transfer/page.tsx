@@ -12,6 +12,12 @@ const TransferServicePage = () => {
 
 	useEffect(() => {}, [hash]);
 
+	const handleClick = (contenthash: string) => {
+		if (typeof window !== 'undefined') {
+			window.location.hash = contenthash;
+		}
+	};
+
 	return (
 		<div className='max-w-5xl mx-auto px-4 flex flex-col gap-4 md:gap-6 lg:gap-8 pt-4 md:pt-8 pb-10 scroll-smooth'>
 			{/* intro image */}
@@ -30,17 +36,17 @@ const TransferServicePage = () => {
 			</div>
 			<div className='flex flex-col items-center  relative  w-full h-full overflow-hidden mb-10 '>
 				{/* 1 */}
-				<Link href='#pickup' onClick={() => (window.location.hash = 'pickup')}>
+				<Link href='#pickup' onClick={() => handleClick('pickup')}>
 					<Image src={images.transfer1} width={750} height={600} className='rounded-lg' alt='ads' />
 				</Link>
 
 				{/* 2 */}
-				<Link href='#cartype'>
+				<Link href='#cartype' onClick={() => handleClick('cartype')}>
 					<Image src={images.transfer2} width={750} height={600} className='rounded-lg' alt='ads' />
 				</Link>
 
 				{/* 3 */}
-				<Link href='#extra' className='flex flex-col justify-center items-center w-full h-80 relative my-10 py-10 border'>
+				<Link href='#extra' onClick={() => handleClick('extra')} className='flex flex-col justify-center items-center w-full h-80 relative my-10 py-10 border'>
 					<Image src={images.transfer30} width={750} height={600} className='rounded-lg' alt='ads' />
 
 					<Image src={images.message} width={64} height={64} className='absolute top-8 left-[40%] rounded-lg' alt='ads' />
@@ -52,7 +58,11 @@ const TransferServicePage = () => {
 				</Link>
 
 				{/* 4 */}
-				<Link href='#newEmail' className='flex flex-col md:flex-row justify-around gap-4 items-center  bg-blue-50/20 w-[750px]'>
+				<Link
+					href='#newEmail'
+					onClick={() => handleClick('newEmail')}
+					className='flex flex-col md:flex-row justify-around gap-4 items-center  bg-blue-50/20 w-[750px]'
+				>
 					<div className='flex flex-col items-center md:flex-row gap-2 relative w-'>
 						<div className='w-14 h-14 relative'>
 							<div className='w-14 h-14 rounded-full absolute top-0 left-0 z-10 bg-blue-300' />
