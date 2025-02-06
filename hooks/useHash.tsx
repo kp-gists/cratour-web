@@ -3,22 +3,30 @@
 import { useEffect, useState } from 'react';
 
 const useHash = () => {
-	const [hash, setHash] = useState(() => window.location.hash.replace('#', ''));
+	const [hash, setHash] = useState('');
 
 	useEffect(() => {
+		if (typeof window === 'undefined') return;
 		const handleHashChange = () => {
 			setTimeout(() => {
-				setHash(window.location.hash.replace('#', ''));
+				if (window !== undefined) {
+					setHash(window.location.hash.replace('#', ''));
+				}
 			}, 10); // Delay ensures hash updates properly
 		};
 
-		window.addEventListener('hashchange', handleHashChange);
-		window.addEventListener('popstate', handleHashChange); // Handles browser back/forward
+		if (window !== undefined) {
+			window.addEventListener('hashchange', handleHashChange);
+			window.addEventListener('popstate', handleHashChange);
+		}
+		// Handles browser back/forward
 
 		// Cleanup listener on unmount
 		return () => {
-			window.removeEventListener('hashchange', handleHashChange);
-			window.removeEventListener('popstate', handleHashChange);
+			if (window !== undefined) {
+				window.removeEventListener('hashchange', handleHashChange);
+				window.removeEventListener('popstate', handleHashChange);
+			}
 		};
 	}, []);
 

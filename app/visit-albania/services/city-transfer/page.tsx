@@ -13,7 +13,8 @@ const TransferServicePage = () => {
 	useEffect(() => {}, [hash]);
 
 	const handleClick = (contenthash: string) => {
-		if (typeof window !== 'undefined') {
+		console.log(window);
+		if (window !== undefined) {
 			window.location.hash = contenthash;
 		}
 	};
