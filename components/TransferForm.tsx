@@ -381,10 +381,15 @@ const TransferForm = () => {
 						</div>
 					</div>
 					{/* Submit Button */}
-					<Button type='submit' id='newEmail' size={'lg'} variant={'form'} className='flex flex-row gap-2 items-center'>
-						Request price
-						<Image src={images.send} alt='notes' width={24} height={24} />
-					</Button>
+					<div className='flex gap-4'>
+						<Button type='submit' id='newEmail' size={'lg'} variant={'form'} className='flex flex-row gap-2 items-center'>
+							Send Request
+							<Image src={images.send} alt='notes' width={24} height={24} />
+						</Button>
+						<Button type='submit' id='newEmail' size={'lg'} variant={'form'} className='flex flex-row gap-2 text-green-500 items-center border-green-500'>
+							Continue to Whatsapp
+						</Button>
+					</div>
 				</form>
 			</Form>
 		</div>
