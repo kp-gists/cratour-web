@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import createDOMPurify from 'dompurify';
 import { JSDOM } from 'jsdom'; // Import jsdom to simulate the DOM environment
-import { sendEmail } from '@/lib/email';
+import { sendEmail, sendEmailTransfert } from '@/lib/email';
 
 export async function POST(req: NextRequest) {
 	const sender = {
@@ -21,25 +21,48 @@ export async function POST(req: NextRequest) {
 	const window = new JSDOM('').window;
 	const DOMPurify = createDOMPurify(window);
 	const sanitizedMsg = DOMPurify.sanitize(body.notes);
-
-	try {
-		const res = await sendEmail({
-			message: sanitizedMsg,
-			sender,
-			recipients,
-			subject: `this is a subject`,
-			title: `You got a message from ${body.fullName}: `,
-			clientEmail: `clientEmail ${body.email}`,
-		});
-		console.log(res);
-		return NextResponse.json({
-			message: 'Email Sent successfully',
-			response: res.accepted,
-		});
-	} catch (error) {
-		console.log('🚀 ~ POST ~ error:', error);
-		return NextResponse.json({
-			msg: 'email sent error',
-		});
+	// subject
+	// service type
+	// email
+	// notes
+	if (body.serviceType == 'transfer') {
+		try {
+			const res = await sendEmailTransfert({
+				message: sanitizedMsg,
+				sender,
+				recipients,
+				subject: body.subject,
+				title: `You got a message for  ${body.serviceType}: `,
+			});
+			return NextResponse.json({
+				message: 'Email Sent successfully',
+				response: res.accepted,
+			});
+		} catch (error) {
+			console.log('🚀 ~ POST ~ error:', error);
+			return NextResponse.json({
+				msg: 'email sent error',
+			});
+		}
+	} else {
+		try {
+			const res = await sendEmail({
+				message: sanitizedMsg,
+				sender,
+				recipients,
+				subject: body.subject,
+				title: `You got a message for  ${body.serviceType}: `,
+				clientEmail: `${body.email}`,
+			});
+			return NextResponse.json({
+				message: 'Email Sent successfully',
+				response: res.accepted,
+			});
+		} catch (error) {
+			console.log('🚀 ~ POST ~ error:', error);
+			return NextResponse.json({
+				msg: 'email sent error',
+			});
+		}
 	}
 }

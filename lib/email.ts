@@ -38,3 +38,22 @@ export const sendEmail = async (dto: SendEmailDTO) => {
 		text: title,
 	});
 };
+
+type SendEmailTransferDTO = {
+	sender: Mail.Address;
+	recipients: Mail.Address[];
+	subject: string;
+	message: any;
+	title: string;
+};
+export const sendEmailTransfert = async (dto: SendEmailTransferDTO) => {
+	const { message, recipients, sender, title, subject } = dto;
+
+	return await transport.sendMail({
+		from: sender,
+		to: recipients,
+		subject,
+		html: `${message}`,
+		text: title,
+	});
+};

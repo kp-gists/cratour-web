@@ -13,7 +13,7 @@ const buttonVariants = cva(
 				destructive: 'bg-destructive text-destructive-foreground shadow-sm hover:bg-destructive/90',
 				outline: 'border border-input bg-background shadow-sm hover:bg-accent hover:text-accent-foreground',
 				secondary: 'bg-secondary text-secondary-foreground shadow-sm hover:bg-secondary/80',
-				form: 'w-full md:w-fit mx-auto  min-w-52 border-2 border-dashed  bg-white text-xl  text-blue-500 font-semibold hover:border-2 hover:border-blue-600',
+				form: 'w-full md:w-fit mx-auto  min-w-52 border-2 border-dashed  bg-white text-xl  text-blue-500 font-semibold hover:border-2 hover:border-blue-600  hover:-translate-y-2 hover:scale-105',
 				ghost: 'hover:bg-accent hover:text-accent-foreground',
 				link: 'text-primary underline-offset-4 hover:underline',
 			},

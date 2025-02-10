@@ -1,35 +1,38 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import * as z from 'zod';
 import { Button } from './ui/button';
 import { Input } from './ui/input';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Textarea } from './ui/textarea';
-import { Checkbox } from './ui/checkbox';
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from './ui/form';
 import { DatePickerDemo } from './ui/DatePicker';
 import Image from 'next/image';
 import { images } from '@/constants/images';
-import { usePathname } from 'next/navigation';
 import useHash from '@/hooks/useHash';
+import { ToastContainer, toast } from 'react-toastify';
+
 import { cn } from '@/lib/utils';
+import { useRouter } from 'next/navigation';
+import { createWhatsappHref } from '@/lib/whatsapp';
+import { contacts } from '@/constants/contacts';
 
 const formSchema = z.object({
 	email: z.string().email('Invalid email address'),
-	people: z.number().int().min(1, 'At least one person is required'),
+	adults: z.number().int().min(1, 'At least one person is required'),
+	children: z.number().int().min(0).optional(),
+	stops: z.number().int().min(1).optional(),
 	baggages: z.number().int().min(0, 'Baggage count cannot be negative'),
 	pickUpDate: z.date({ required_error: 'Pickup date is required' }),
 	returnDate: z.date().optional(),
 	notes: z.string().optional(),
 	pickUpPlace: z.string().min(1, 'Where should I pick you up?'),
 	dropOffPlace: z.string().min(1, 'Where do I drop you?'),
-	carType: z.enum(['style', 'comfort', 'style-comfort', 'extra-comfort', 'super-comfort']).optional(),
+	carType: z.enum(['sedan', 'suv', 'van-minivan', 'minibus', 'bus']).optional(),
 	serviceType: z.enum(['hourly', 'direct']).optional(),
 	language: z.enum(['english', 'turkish', 'italian', 'albanian']).optional(),
-	stops: z.number().optional(),
-	travelTimeDisponibile: z.number().min(0, 'Travel time cannot be negative').optional(),
 });
 
 type FormData = z.infer<typeof formSchema>;
@@ -51,12 +54,16 @@ const languages = [
 
 const TransferForm = () => {
 	const hash = useHash();
+	const [mode, setMode] = useState<'email' | 'whatsapp'>('email');
+	const [isLoading, setIsLoading] = useState(false);
+	const router = useRouter();
 
 	const form = useForm({
 		resolver: zodResolver(formSchema),
 		defaultValues: {
 			email: '', // Default empty string for text input
-			people: 1, // Default to 1 person
+			adults: 1, // Default to 1 person
+			children: 0, // Default to 1 person
 			baggages: 0, // Default to 0 baggages
 			pickUpDate: undefined, // No default date
 			returnDate: undefined, // Optional date
@@ -65,9 +72,8 @@ const TransferForm = () => {
 			dropOffPlace: '', // Default empty input
 			carType: undefined, // No default selected
 			serviceType: undefined, // No default selected
-			language: undefined, // No default selected
-			stops: 0, // Default to 0 stops
-			travelTimeDisponibile: 0, // Default to 0 time available
+			language: undefined,
+			stops: 1, // No default selected
 		},
 	});
 
@@ -79,24 +85,82 @@ const TransferForm = () => {
 
 	const onSubmit = (data: FormData) => {
 		console.log(data);
-		const pickDate = data.pickUpDate.toLocaleDateString('sq', {
-			year: 'numeric', // Example: "2025"
-			day: 'numeric', // Example: "16"
-			month: 'long', // Example: "January"
-		});
-		const returnDate = data.returnDate
-			? data.returnDate.toLocaleDateString('sq', {
-					year: 'numeric', // Example: "2025"
-					day: 'numeric', // Example: "16"
-					month: 'long', // Example: "January"
-			  })
-			: '';
+		const message = `Pershendetje, I would like to request a price for a transfer.
+Here are my details:
+- **Email:** ${data.email}
+- **Passengers:** ${data.adults} Adults, ${data.children} Children
+- **Baggages:** ${data.baggages}
+- **Pick-Up Date:** ${data.pickUpDate ? data.pickUpDate.toDateString() : 'Not specified'}
+- **Return Date:** ${data.returnDate ? data.returnDate.toDateString() : 'Not specified'}
+- **Pick-Up Location:** ${data.pickUpPlace}
+- **Additional Stops:** ${data.stops}
+- **Drop-Off Location:** ${data.dropOffPlace}
+- **Car Type:** ${data.carType ? data.carType : 'Not specified'}
+- **Preferred Language:** ${data.language ? data.language : 'English'}
+- **Additional Notes:** ${data.notes ? data.notes : 'No additional notes'}
+Please provide me with the pricing details. Looking forward to your response. Thank you!`;
+
+		if (mode === 'whatsapp') {
+			console.log('send on whatsapp');
+			setIsLoading(true);
+
+			const text = encodeURIComponent(message);
+			const ref = createWhatsappHref(contacts.whatsapp.telNr, text);
+			router.push(ref, {});
+			setIsLoading(false);
+		} else {
+			console.log({ mode });
+			const notes = `<div>
+    <div>
+			<p><strong>**Email:</strong> ${data.email}</p>
+			<p><strong>**Passengers:</strong> ${data.adults} Adults, ${data.children} Children</p>
+			<p><strong>**Baggages:</strong> ${data.baggages}</p>
+			<p><strong>**Pick-Up Date:</strong> ${data.pickUpDate ? data.pickUpDate.toDateString() : 'Not specified'}</p>
+			<p><strong>**Return Date:</strong> ${data.returnDate ? data.returnDate.toDateString() : 'Not specified'}</p>
+			<p><strong>**Pick-Up Location:</strong> ${data.pickUpPlace}</p>
+			<p><strong>**Additional Stops:</strong> ${data.stops}</p>
+			<p><strong>**Drop-Off Location:</strong>  ${data.dropOffPlace}</p>
+			<p><strong>**Car Type:</strong>  ${data.carType ? data.carType : 'Not specified'}</p>
+			<p><strong>**Preferred Language:</strong> ${data.language ? data.language : 'English'}</p>
+			<p><strong>**Additional Notes:</strong> ${data.notes ? data.notes : 'No additional notes'}</p>
+		</div>
+    <h5>Please provide me with the pricing details. Looking forward to your response. Thank you!</h5>
+    </div>`;
+			const bodyData = {
+				subject: 'I would like to request a price for a transfer',
+				serviceType: 'transfer',
+				email: data.email,
+				notes: notes,
+			};
+			fetch('/api/emails', {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json',
+					Accept: 'application/json',
+				},
+				body: JSON.stringify(bodyData),
+			})
+				.then((res) => {
+					console.log('🚀 ~ .then ~ res:', res);
+					return res.json();
+				})
+				.then((d: any) => {
+					console.log('🚀 ~ .then ~ d:', d);
+					toast.success('Message was sent, check your email inbox for any the response of your request');
+				})
+				.catch((error) => {
+					console.log('🚀 ~ handleSubmit ~ error:', error);
+					toast.error('Sorry! Message was not sent!');
+				})
+				.finally(() => setIsLoading(false));
+		}
 	};
+
 	return (
-		<div className='flex flex-wrap w-full max-w-2xl mx-auto'>
+		<div className=' w-full max-w-2xl mx-auto'>
 			<Form {...form}>
-				<form onSubmit={handleSubmit(onSubmit as any)} className='flex flex-col items-start gap-4'>
-					<div id='pickup' className='p-5'>
+				<form onSubmit={handleSubmit(onSubmit as any)} className='flex flex-col items-center gap-4'>
+					<div id='pickup' className='p-5 w-[360px] md:w-fit'>
 						<div
 							className={cn(
 								' w-full flex border-2  border-dashed p-5 flex-col rounded-lg relative  justify-start items-start mb-4 gap-6 md:gap-8',
@@ -105,21 +169,21 @@ const TransferForm = () => {
 						>
 							<div
 								className={cn(
-									'rounded-xl bg-blue-50 border px-2 py-0.5 text-center absolute -top-[14px] left-3 text-sm',
+									'rounded-xl bg-blue-50 border px-2 py-0.5  text-center absolute -top-[14px] left-3 text-sm',
 									hash === 'extra' ? ' border-blue-500 text-blue-500 ' : '',
 								)}
 							>
 								Where is your Transfer to?
 							</div>
-							<div className='flex  justify-center items-end gap-4'>
+							<div className='flex flex-col md:flex-row  justify-center items-center md:items-end gap-4'>
 								<FormField
 									control={form.control}
 									name='pickUpPlace'
 									render={({ field }) => (
-										<FormItem className='flex flex-col gap-2 w-[320px]'>
+										<FormItem className='flex flex-col gap-2 w-fit md:w-[320px]'>
 											<FormLabel className='font-semibold font-sans'>Pick Up: </FormLabel>
 											<FormControl>
-												<Input id='pickUpPlace' {...field} placeholder='From' onChange={field.onChange} value={field.value} style={{ width: 300 }} />
+												<Input id='pickUpPlace' {...field} placeholder='From' onChange={field.onChange} value={field.value} style={{ width: 260 }} />
 											</FormControl>
 											<FormMessage />
 										</FormItem>
@@ -133,7 +197,7 @@ const TransferForm = () => {
 										<FormItem className='flex flex-col gap-2'>
 											<FormLabel className='font-semibold font-sans'>Drop off: </FormLabel>
 											<FormControl>
-												<Input id='dropOffPlace' {...field} placeholder='To' onChange={field.onChange} value={field.value} style={{ width: 300 }} />
+												<Input id='dropOffPlace' {...field} placeholder='To' onChange={field.onChange} value={field.value} style={{ width: 260 }} />
 											</FormControl>
 											<FormMessage />
 										</FormItem>
@@ -180,7 +244,7 @@ const TransferForm = () => {
 						</div>
 					</div>
 
-					<div id='cartype' className='p-5'>
+					<div id='cartype' className='p-5 w-[360px] md:w-fit'>
 						{/* Car Type  //TODO make it with icons better*/}
 						<div
 							className={cn(
@@ -228,8 +292,8 @@ const TransferForm = () => {
 						</div>
 					</div>
 
-					<div id='extra' className='p-5'>
-						<div className={cn('p-5 border-2 rounded-lg   border-dashed relative', hash === 'extra' ? ' border-blue-500 ' : '')}>
+					<div id='extra' className='p-5 w-[360px] md:w-fit'>
+						<div className={cn('p-5 border-2 rounded-lg w-fit  border-dashed relative', hash === 'extra' ? ' border-blue-500 ' : '')}>
 							{/*  */}
 							<div
 								className={cn(
@@ -240,9 +304,9 @@ const TransferForm = () => {
 								Extra
 							</div>
 							{/* group extra 3 */}
-							<div className='flex flex-col w-full gap-6 md:gap-10 '>
+							<div className='flex flex-col w-fit gap-6 md:gap-10 '>
 								{/* Email */}
-								<div className='flex flex-col md:flex-row  gap-6 md:gap-10 items-start md:items-end'>
+								<div className='flex flex-col md:flex-row  gap-6 md:gap-10 items-center md:items-end w-fit'>
 									<FormField
 										control={form.control}
 										name='email'
@@ -260,73 +324,88 @@ const TransferForm = () => {
 														type='email'
 														onChange={field.onChange}
 														value={field.value}
-														style={{ width: 300 }}
+														style={{ width: 260 }}
 													/>
 												</FormControl>
 												<FormMessage />
 											</FormItem>
 										)}
 									/>
+									<FormField
+										control={form.control}
+										name='stops'
+										render={({ field }) => (
+											<FormItem>
+												<FormLabel className='font-semibold font-sans flex items-center gap-2'>
+													<Image src={images.pinPlus} alt='notes' width={24} height={24} />
+													Stops{' '}
+												</FormLabel>
+												<FormControl>
+													<Input type='number' {...field} onChange={(e) => field.onChange(e.target.value ? parseInt(e.target.value, 10) : undefined)} />
+												</FormControl>
+												<FormMessage />
+											</FormItem>
+										)}
+									/>
+								</div>
 
-									<div className='flex flex-col gap-4 md:flex-row'>
-										{/* People */}
-										<FormField
-											control={form.control}
-											name='people'
-											render={({ field }) => (
-												<FormItem>
-													<FormLabel className='font-semibold font-sans flex items-center gap-2'>
-														<Image src={images.people} alt='notes' width={24} height={24} />
-														Number of People{' '}
-													</FormLabel>
-													<FormControl>
-														<Input type='number' {...field} onChange={(e) => field.onChange(e.target.value ? parseInt(e.target.value, 10) : undefined)} />
-													</FormControl>
-													<FormMessage />
-												</FormItem>
-											)}
-										/>
+								<div className='flex flex-col gap-4 md:flex-row items-center justify-center'>
+									{/* People */}
+									<FormField
+										control={form.control}
+										name='adults'
+										render={({ field }) => (
+											<FormItem>
+												<FormLabel className='font-semibold font-sans flex items-center gap-2'>
+													<Image src={images.people} alt='notes' width={24} height={24} />
+													Adults{' '}
+												</FormLabel>
+												<FormControl>
+													<Input type='number' {...field} onChange={(e) => field.onChange(e.target.value ? parseInt(e.target.value, 10) : undefined)} />
+												</FormControl>
+												<FormMessage />
+											</FormItem>
+										)}
+									/>
+									<FormField
+										control={form.control}
+										name='children'
+										render={({ field }) => (
+											<FormItem>
+												<FormLabel className='font-semibold font-sans flex items-center gap-2'>
+													<Image src={images.people} alt='notes' width={24} height={24} />
+													Children{' '}
+												</FormLabel>
+												<FormControl>
+													<Input type='number' {...field} onChange={(e) => field.onChange(e.target.value ? parseInt(e.target.value, 10) : undefined)} />
+												</FormControl>
+												<FormMessage />
+											</FormItem>
+										)}
+									/>
 
-										{/* Number of Baggages */}
-										<FormField
-											control={form.control}
-											name='baggages'
-											render={({ field }) => (
-												<FormItem>
-													<FormLabel className='font-semibold font-sans flex items-center gap-2'>
-														<Image src={images.suitcase} alt='notes' width={24} height={24} />
-														Number of Baggages
-													</FormLabel>
-													<FormControl>
-														<Input
-															type='number'
-															{...field}
-															onChange={(e) => field.onChange(e.target.value ? parseInt(e.target.value, 10) : undefined)}
-															placeholder='Enter number of baggages'
-														/>
-													</FormControl>
-													<FormMessage />
-												</FormItem>
-											)}
-										/>
-									</div>
-
-									{/* 
-							<FormField
-								control={form.control}
-								name='isDriverWaiting'
-								render={({ field }) => (
-									<FormItem className='flex flex-row items-center gap-4'>
-										<FormLabel>Is the driver waiting?</FormLabel>
-										<FormControl>
-											<div className='flex items-center space-x-2'>
-												<Checkbox id='isDriverWaiting' checked={field.value} onCheckedChange={(checked) => field.onChange(checked)} />
-											</div>
-										</FormControl>
-										<FormMessage />
-									</FormItem>
-								)}
-							/> */}
+									{/* Number of Baggages */}
+									<FormField
+										control={form.control}
+										name='baggages'
+										render={({ field }) => (
+											<FormItem>
+												<FormLabel className='font-semibold font-sans flex items-center gap-2'>
+													<Image src={images.suitcase} alt='notes' width={24} height={24} />
+													Nr. Baggages
+												</FormLabel>
+												<FormControl>
+													<Input
+														type='number'
+														{...field}
+														onChange={(e) => field.onChange(e.target.value ? parseInt(e.target.value, 10) : undefined)}
+														placeholder='2'
+													/>
+												</FormControl>
+												<FormMessage />
+											</FormItem>
+										)}
+									/>
 								</div>
 
 								{/* language */}
@@ -371,7 +450,7 @@ const TransferForm = () => {
 												Additional Info
 											</FormLabel>
 											<FormControl>
-												<Textarea {...field} rows={4} placeholder='Additional notes (optional)' className='w-[320px] md:w-[400px]' />
+												<Textarea {...field} rows={4} placeholder='Additional notes (optional)' className='w-fit md:w-[400px]' />
 											</FormControl>
 											<FormMessage />
 										</FormItem>
@@ -381,17 +460,32 @@ const TransferForm = () => {
 						</div>
 					</div>
 					{/* Submit Button */}
-					<div className='flex gap-4'>
-						<Button type='submit' id='newEmail' size={'lg'} variant={'form'} className='flex flex-row gap-2 items-center'>
+					<div className='flex w-full flex-col md:flex-row gap-4 justify-center md:justify-around items-center px-10 '>
+						<Button
+							disabled={isLoading}
+							type='submit'
+							size={'lg'}
+							variant={'form'}
+							onClick={() => setMode('email')}
+							className='flex flex-row gap-2 items-center'
+						>
 							Send Request
 							<Image src={images.send} alt='notes' width={24} height={24} />
 						</Button>
-						<Button type='submit' id='newEmail' size={'lg'} variant={'form'} className='flex flex-row gap-2 text-green-500 items-center border-green-500'>
+						<Button
+							type='submit'
+							disabled={isLoading}
+							onClick={() => setMode('whatsapp')}
+							size={'lg'}
+							variant={'form'}
+							className='flex flex-row gap-2 text-green-500 items-center border-green-500 hover:text-white hover:bg-green-400 hover:border-green-300'
+						>
 							Continue to Whatsapp
 						</Button>
 					</div>
 				</form>
 			</Form>
+			<ToastContainer />
 		</div>
 	);
 };

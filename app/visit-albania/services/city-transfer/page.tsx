@@ -1,11 +1,17 @@
 'use client';
 
 import TransferForm from '@/components/TransferForm';
+import RobotoText from '@/components/ui/RobotoText';
+import SatisfyText from '@/components/ui/SatisfyText';
+import { contacts } from '@/constants/contacts';
 import { images } from '@/constants/images';
+import { whyChooseTransfer } from '@/constants/why';
 import useHash from '@/hooks/useHash';
+import { createWhatsappHref } from '@/lib/whatsapp';
 import Image from 'next/image';
 import Link from 'next/link';
 import React, { useEffect } from 'react';
+import Road from '../_components/Road';
 
 const TransferServicePage = () => {
 	const hash = useHash();
@@ -23,19 +29,70 @@ const TransferServicePage = () => {
 		<div className='max-w-5xl mx-auto px-4 flex flex-col gap-4 md:gap-6 lg:gap-8 pt-4 md:pt-8 pb-10 scroll-smooth'>
 			{/* intro image */}
 			{/* About this activity */}
-			{/*  */}
-			Free cancellation -hash:{hash}
-			{/*  */}
-			Reserve now & pay later Keep your travel plans flexible — book your spot and pay nothing today.
-			{/*  */}
-			availability 24/7 Check availability to see starting times.
-			{/*  */}
-			Private group
-			{/* end of walk-down demo */}
-			<div className='p-4 '>
-				<a href='tel:+355673434342'>Call now!</a>
+			<div className='my-6 md:my-10'>
+				<h1 className='mb-8 text-xl text-center md:text-2xl font-bold'>
+					Why choose CRA-tour <br className='block md:hidden' /> for your transfers?
+				</h1>
+				<ul className='flex flex-wrap gap-6 items-center justify-center md:gap-8'>
+					{whyChooseTransfer.map((item) => (
+						<li
+							key={item.id}
+							className='px-3 w-full md:w-fit py-3 flex flex-col items-center gap-2 justify-center border-4 border-cyan-500 rounded-xl shadow shadow-cyan-500'
+						>
+							<div className='flex  justify-center items-center gap-2'>
+								<Image src={item.icon} width={32} height={32} alt={item.id} />
+								<strong className='text-lg md:text-xl'>{item.title}</strong>
+							</div>
+							<p className='max-w-72 h-12 text-center text-base'>{item.subtitle}</p>
+						</li>
+					))}
+				</ul>
 			</div>
-			<div className='flex flex-col items-center  relative  w-full h-full overflow-hidden mb-10 '>
+
+			<div id='cta-transfers my-6 md:my-10'>
+				<h2 className='mb-4 font-extrabold text-lg md:text-3xl text-gray-600 text-center'>Schedule Now!</h2>
+
+				<p className='text-center text-base md:text-lg'>Choose the method to connect with:</p>
+
+				<div className='flex flex-col md:flex-row justify-center items-center my-6 gap-4 md:gap-6'>
+					<Link
+						href={contacts.tel.href}
+						target='_blank'
+						className='flex justify-center items-center w-full md:w-[260px] gap-2 md:gap-4 px-4 py-1 border rounded-xl border-cyan-600 bg-cyan-600 text-white h-16 hover:scale-105 hover:-translate-y-1'
+					>
+						<div className='bg-white p-1 rounded-full flex justify-center items-center w-10 h-10'>
+							<Image src={contacts.tel.icon} width={28} height={28} alt={`call us on phone, tel: ${contacts.tel.href}`} />
+						</div>
+						<strong className='text-xl md:text-2xl'>{contacts.tel.title}</strong>
+					</Link>
+
+					<Link
+						href={createWhatsappHref(contacts.whatsapp.telNr, contacts.whatsapp.textService)}
+						className='flex justify-center items-center w-full md:w-[360px] gap-2 md:gap-4 px-4 py-1 border rounded-xl border-green-600 bg-green-100 text-black h-16 hover:bg-green-300 group'
+					>
+						<Image
+							src={contacts.whatsapp.icon}
+							width={32}
+							height={32}
+							className='group-hover:border-4 group-hover:border-white rounded-full'
+							alt={`chat us on whatsapp, tel: ${contacts.whatsapp.icon}`}
+						/>
+						<strong className='text-xl md:text-2xl'>{contacts.whatsapp.title}</strong>
+					</Link>
+					<Link
+						href={`#pickup`}
+						className='flex justify-center items-center w-full md:w-[260px] gap-2 md:gap-4 px-4 py-1  border-2 rounded-xl 0 text-black h-16 bg-cyan-50 hover:bg-cyan-200'
+					>
+						<Image src={images.message} width={28} height={28} alt={`call us on phone, tel: ${contacts.tel.href}`} />
+						<strong className='text-xl md:text-2xl'>e-mail us!</strong>
+					</Link>
+				</div>
+			</div>
+
+			<div className='flex flex-col items-center  relative  w-full h-full overflow-hidden my-10 '>
+				<h3 className='text-center font-semibold text-xl md:text-2xl md:w-[570px] mb-4'>
+					Follow the instructions to request the details of any transfers you are planning:
+				</h3>
 				{/* 1 */}
 				<Link href='#pickup' onClick={() => handleClick('pickup')}>
 					<Image src={images.transfer1} width={750} height={600} className='rounded-lg' alt='ads' />
@@ -47,15 +104,17 @@ const TransferServicePage = () => {
 				</Link>
 
 				{/* 3 */}
-				<Link href='#extra' onClick={() => handleClick('extra')} className='flex flex-col justify-center items-center w-full h-80 relative my-10 py-10 border'>
-					<Image src={images.transfer30} width={750} height={600} className='rounded-lg' alt='ads' />
+				<Link href='#extra' onClick={() => handleClick('extra')} className='flex flex-col justify-start items-center w-full h-[835px] relative my-10 '>
+					<Image src={images.transfer30} width={750} height={435} className='rounded-lg' alt='ads' />
 
-					<Image src={images.message} width={64} height={64} className='absolute top-8 left-[40%] rounded-lg' alt='ads' />
-					<Image src={images.languages} width={64} height={64} className='absolute top-8 right-1/3 rounded-lg' alt='ads' />
-					<p className='text-blue-500 text-lg p-2'>Extra Details</p>
-					<Image src={images.people} width={64} height={64} className='absolute top-[40%] left-[28%] rounded-lg' alt='ads' />
-					<Image src={images.suitcase} width={64} height={64} className='absolute  top-[40%] right-1/4  rounded-lg' alt='ads' />
-					<Image src={images.note} width={64} height={64} className='absolute bottom-8 left-1/2 rounded-lg' alt='ads' />
+					<div className='relative h-[400px] w-full'>
+						<Image src={images.message} width={64} height={64} className='absolute top-8 left-[40%] rounded-lg' alt='ads' />
+						<Image src={images.languages} width={64} height={64} className='absolute top-8 right-1/3 rounded-lg' alt='ads' />
+						<p className='text-blue-500 text-lg p-2 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2'>Extra Details</p>
+						<Image src={images.people} width={64} height={64} className='absolute top-[40%] left-[28%] rounded-lg' alt='ads' />
+						<Image src={images.suitcase} width={64} height={64} className='absolute  top-[40%] right-1/4  rounded-lg' alt='ads' />
+						<Image src={images.note} width={64} height={64} className='absolute bottom-8 left-1/2 rounded-lg' alt='ads' />
+					</div>
 				</Link>
 
 				{/* 4 */}
@@ -76,92 +135,15 @@ const TransferServicePage = () => {
 				</Link>
 
 				<Image src={images.transfer3} width={750} height={600} className='rounded-lg z-10' alt='ads' />
-				<div className='relative md:w-[750px] lg:w-[750px] h-full overflow-hidden border bg-white px-[50px]  -top-2 md:-top-4 pb-20'>
-					{/* road vertical */}
-					<div className='flex flex-row gap-2 '>
-						<div className='flex flex-col'>
-							<div className='w-10 h-24 bg-slate-400 relative z-30'>
-								<div className='w-1 h-10 rounded-sm bg-white absolute left-[18px] top-0'></div>
-							</div>
 
-							<div className='w-10 h-24 bg-slate-400 relative z-30'>
-								<div className='w-1 h-16 rounded-sm bg-white absolute left-[18px] top-4'></div>
-							</div>
-						</div>
-						<div className='w-full h-48 flex justify-center items-center z-30'>
-							<div className='flex flex-row justify-center items-center gap-2 md:gap-3'>
-								<Image src={images.checked} width={28} height={28} alt='checked driver' className='' />
+				<Road />
+			</div>
 
-								<p className='text-lg font-sans'>Your driver will be in touch before your transfer.</p>
-							</div>
-						</div>
-					</div>
-
-					<div className='flex justify-start items-end'>
-						{/* v1 */}
-						<div className='relative z-20 w-20 h-20  bg-white -top-[80px] '>
-							<div className='relative z-10 w-40 h-40 top-0 right-0 bg-slate-400 rounded-full '></div>
-							<div className='absolute top-1/2 left-1/2    z-10 w-20 h-20 bg-white rounded-full'></div>
-							{/* bars */}
-							<div className=' z-30 w-40 h-20 absolute top-0 left-0 bg-white' />
-							<div className=' z-30 w-20 h-40 absolute -bottom-20 -right-20 bg-white' />
-						</div>
-						{/* road 2 */}
-						<div className='w-[500px] h-10 bg-slate-400 relative z-30 '>
-							<div className='w-16 h-1 rounded-sm bg-white absolute top-[18px] right-5'></div>
-							<div className='w-16 h-1 rounded-sm bg-white absolute top-[18px] right-40'></div>
-							<div className='w-16 h-1 rounded-sm bg-white absolute top-[18px] right-80'></div>
-						</div>
-
-						<div className='relative z-20 w-20 h-20  bg-white -left-20 top-10'>
-							<div className='relative z-10 w-40 h-40 top-0 right-0 bg-slate-400 rounded-full '></div>
-							<div className='absolute top-1/2 left-1/2    z-10 w-20 h-20 bg-white rounded-full'></div>
-							{/* bars */}
-							<div className=' z-30 w-40 h-20 absolute -bottom-20 left-0 bg-white' />
-							<div className=' z-30 w-20 h-40 absolute -bottom-20 left-0 bg-white' />
-						</div>
-					</div>
-
-					<div className='pt-10   flex justify-end'>
-						<div className='flex flex-col'>
-							<div className='w-10 h-24 bg-slate-400 relative z-50 '>
-								<div className='w-1 h-10 rounded-sm bg-white absolute left-[18px] -top-3 z-50'></div>
-							</div>
-							<div className='w-10 h-24 bg-slate-400 relative z-50 '>
-								<div className='w-1 h-10 rounded-sm bg-white absolute left-[18px] -top-3 z-50'></div>
-								<div className='w-1 h-10 rounded-sm bg-white absolute left-[18px] -bottom-3 z-50'></div>
-							</div>
-						</div>
-					</div>
-
-					<div className='flex justify-end items-end h-[100px] relative -top-5'>
-						<div className='w-10 h-10 bg-black'></div>
-
-						<div className='relative z-20 w-20 h-20  -bottom-10 bg-white'>
-							<div className='relative z-10 w-40 h-40 top-0 right-0 bg-slate-400 rounded-full '></div>
-							<div className='absolute top-1/2 left-1/2    z-10 w-20 h-20 bg-white rounded-full'></div>
-							{/* bars */}
-							<div className=' z-30 w-40 h-20 absolute -bottom-20 left-0 bg-green-400' />
-							<div className=' z-30 w-20 h-40 absolute -bottom-20 -right-20 bg-black' />
-						</div>
-
-						<div className='w-[400px] h-10 bg-slate-400 relative z-30 '>
-							<div className='w-10 h-1 rounded-sm bg-white absolute top-[18px] right-5'></div>
-							<div className='w-10 h-1 rounded-sm bg-white absolute top-[18px] left-5'></div>
-							<div className='w-0 h-1 rounded-sm bg-white absolute top-[18px] right-40'></div>
-						</div>
-
-						<div className='relative z-20 w-20 h-20  bg-white -top-20 -left-20'>
-							<div className='relative z-10 w-40 h-40 top-0 right-0 bg-slate-400 rounded-full '></div>
-							<div className='absolute top-1/2 left-1/2    z-10 w-20 h-20 bg-white rounded-full'></div>
-							{/* bars */}
-							<div className=' z-30 w-40 h-20 absolute top-0 left-0 bg-white' />
-							<div className=' z-30 w-20 h-40 absolute -bottom-20 right-0 bg-white' />
-						</div>
-					</div>
-
-					<div className='flex justify-start items-start'></div>
-				</div>
+			<div className='w-full mx-auto flex justify-center items-center flex-col bg-contain'>
+				<SatisfyText as='h1' className='text-center font-extrabold text-4xl w-full text-blue-700'>
+					Fill up the form:
+				</SatisfyText>
+				<Image src='/png/form.png' alt='form ' width={600} height={600} className='bg-contain' />
 			</div>
 			<TransferForm />
 		</div>
