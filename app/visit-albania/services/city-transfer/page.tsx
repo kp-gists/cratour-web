@@ -1,17 +1,16 @@
 'use client';
 
 import TransferForm from '@/components/TransferForm';
-import RobotoText from '@/components/ui/RobotoText';
 import SatisfyText from '@/components/ui/SatisfyText';
 import { contacts } from '@/constants/contacts';
 import { images } from '@/constants/images';
-import { whyChooseTransfer } from '@/constants/why';
 import useHash from '@/hooks/useHash';
 import { createWhatsappHref } from '@/lib/whatsapp';
 import Image from 'next/image';
 import Link from 'next/link';
 import React, { useEffect } from 'react';
 import Road from '../_components/Road';
+import ChooseUsTransfer from '../_components/ChooseUsTransfer';
 
 const TransferServicePage = () => {
 	const hash = useHash();
@@ -29,25 +28,7 @@ const TransferServicePage = () => {
 		<div className='max-w-5xl mx-auto px-4 flex flex-col gap-4 md:gap-6 lg:gap-8 pt-4 md:pt-8 pb-10 scroll-smooth'>
 			{/* intro image */}
 			{/* About this activity */}
-			<div className='my-6 md:my-10'>
-				<h1 className='mb-8 text-xl text-center md:text-2xl font-bold'>
-					Why choose CRA-tour <br className='block md:hidden' /> for your transfers?
-				</h1>
-				<ul className='flex flex-wrap gap-6 items-center justify-center md:gap-8'>
-					{whyChooseTransfer.map((item) => (
-						<li
-							key={item.id}
-							className='px-3 w-full md:w-fit py-3 flex flex-col items-center gap-2 justify-center border-4 border-cyan-500 rounded-xl shadow shadow-cyan-500'
-						>
-							<div className='flex  justify-center items-center gap-2'>
-								<Image src={item.icon} width={32} height={32} alt={item.id} />
-								<strong className='text-lg md:text-xl'>{item.title}</strong>
-							</div>
-							<p className='max-w-72 h-12 text-center text-base'>{item.subtitle}</p>
-						</li>
-					))}
-				</ul>
-			</div>
+			<ChooseUsTransfer />
 
 			<div id='cta-transfers my-6 md:my-10'>
 				<h2 className='mb-4 font-extrabold text-lg md:text-3xl text-gray-600 text-center'>Schedule Now!</h2>

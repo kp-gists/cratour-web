@@ -180,7 +180,7 @@ const Road = () => {
 						{/* bars */}
 					</div>
 					<div className='absolute top-1/2 left-1/2    z-10 w-20 h-20 bg-white rounded-full flex justify-center items-center'>
-						<Image src={images.roundabout} width={72} height={72} alt='roundabout' />
+						<Image src={images.fountain} width={48} height={48} alt='roundabout' />
 					</div>
 
 					<div className=' z-30 w-40 h-20 absolute -bottom-20 left-0 bg-transparent' />

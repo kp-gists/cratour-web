@@ -1,1 +1,1 @@
-export type ServiceType = 'transfer' | 'medical' | 'tour' | 'hotel';
+export type ServiceType = 'transfer' | 'medical' | 'tour' | 'hotel' | 'rent-car';
