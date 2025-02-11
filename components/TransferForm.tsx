@@ -62,7 +62,7 @@ const TransferForm = () => {
 		resolver: zodResolver(formSchema),
 		defaultValues: {
 			email: '', // Default empty string for text input
-			adults: 1, // Default to 1 person
+			adults: 0, // Default to 1 person
 			children: 0, // Default to 1 person
 			baggages: 0, // Default to 0 baggages
 			pickUpDate: undefined, // No default date
@@ -341,7 +341,7 @@ Please provide me with the pricing details. Looking forward to your response. Th
 													Stops{' '}
 												</FormLabel>
 												<FormControl>
-													<Input type='number' {...field} onChange={(e) => field.onChange(e.target.value ? parseInt(e.target.value, 10) : undefined)} />
+													<Input type='number' {...field} onChange={(e) => field.onChange(Number(e.target.value) as any)} />
 												</FormControl>
 												<FormMessage />
 											</FormItem>
@@ -361,7 +361,7 @@ Please provide me with the pricing details. Looking forward to your response. Th
 													Adults{' '}
 												</FormLabel>
 												<FormControl>
-													<Input type='number' {...field} onChange={(e) => field.onChange(e.target.value ? parseInt(e.target.value, 10) : undefined)} />
+													<Input type='number' {...field} onChange={(e) => field.onChange(Number(e.target.value) as any)} />
 												</FormControl>
 												<FormMessage />
 											</FormItem>
@@ -377,7 +377,7 @@ Please provide me with the pricing details. Looking forward to your response. Th
 													Children{' '}
 												</FormLabel>
 												<FormControl>
-													<Input type='number' {...field} onChange={(e) => field.onChange(e.target.value ? parseInt(e.target.value, 10) : undefined)} />
+													<Input type='number' {...field} onChange={(e) => field.onChange(Number(e.target.value) as any)} />
 												</FormControl>
 												<FormMessage />
 											</FormItem>
@@ -395,12 +395,7 @@ Please provide me with the pricing details. Looking forward to your response. Th
 													Nr. Baggages
 												</FormLabel>
 												<FormControl>
-													<Input
-														type='number'
-														{...field}
-														onChange={(e) => field.onChange(e.target.value ? parseInt(e.target.value, 10) : undefined)}
-														placeholder='2'
-													/>
+													<Input type='number' {...field} onChange={(e) => field.onChange(Number(e.target.value) as any)} />
 												</FormControl>
 												<FormMessage />
 											</FormItem>

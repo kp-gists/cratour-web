@@ -17,11 +17,11 @@ const Road = () => {
 						<div className='w-1 h-16 rounded-sm bg-white absolute left-[18px] top-4'></div>
 					</div>
 				</div>
-				<div className='w-full h-48 flex justify-center items-center z-30'>
+				<div className='w-[300px] mx-auto md:w-full h-48 flex justify-center items-center z-30'>
 					<div className='flex flex-row justify-center items-center gap-2 md:gap-3'>
 						<Image src={images.checked} width={28} height={28} alt='checked driver' className='' />
 
-						<p className='text-lg font-sans'>Your driver will be in touch before your transfer.</p>
+						<p className='text-lg font-sans text-center'>Your driver will be in touch before your transfer.</p>
 					</div>
 				</div>
 			</div>
@@ -53,7 +53,7 @@ const Road = () => {
 			</div>
 
 			<div className='pt-10   flex justify-end relative'>
-				<div className='w-[370px] h-28 absolute top-14 gap-2 left-1/4 flex flex-col md:gap-4 justify-start items-center'>
+				<div className='w-[300px] md:w-[370px] h-28 absolute top-14 gap-2 left-1/4 flex flex-col md:gap-4 justify-start items-center'>
 					<div className='flex gap-2'>
 						<Image src={images.checked} width={28} height={28} alt='relax' />
 						<p className='text-lg md:text-2xl flex gap-1'>
@@ -117,7 +117,7 @@ const Road = () => {
 					</div>
 				</div>
 
-				<div className='w-full h-[200px] z-50 flex justify-center items-center flex-col gap-2'>
+				<div className='w-[300px]  md:w-full h-[200px] z-50 flex justify-center items-center flex-col gap-2'>
 					<Image src={images.pinSmall} width={24} height={24} alt='breakfast stop' />
 					<RobotoText className='font-extrabold text-lg md:text-2xl'>Extra Stops</RobotoText>
 					<p className='text-center w-[320px] text-base md:text-lg'>You can add additional stops and use it for food, drinks or for the view</p>
