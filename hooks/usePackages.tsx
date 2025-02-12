@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
-import { fetchAllPackages, fetchPackage } from '@/lib/query/tour-packages';
+import { fetchAllPackages, fetchAllTourPackages, fetchPackage } from '@/lib/query/tour-packages';
 
 export const useGetAllPackages = () => {
 	const {
@@ -10,7 +10,7 @@ export const useGetAllPackages = () => {
 		refetch,
 	} = useQuery({
 		queryKey: ['qk_packages'],
-		queryFn: fetchAllPackages,
+		queryFn: fetchAllTourPackages,
 	});
 	return {
 		packages,

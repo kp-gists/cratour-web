@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import * as z from 'zod';
 import { Button } from './ui/button';
@@ -60,21 +60,6 @@ const TransferForm = () => {
 
 	const form = useForm({
 		resolver: zodResolver(formSchema),
-		defaultValues: {
-			email: '', // Default empty string for text input
-			adults: 0, // Default to 1 person
-			children: 0, // Default to 1 person
-			baggages: 0, // Default to 0 baggages
-			pickUpDate: undefined, // No default date
-			returnDate: undefined, // Optional date
-			notes: '', // Default to empty string
-			pickUpPlace: '', // Default empty input
-			dropOffPlace: '', // Default empty input
-			carType: undefined, // No default selected
-			serviceType: undefined, // No default selected
-			language: undefined,
-			stops: 1, // No default selected
-		},
 	});
 
 	const {
@@ -82,6 +67,21 @@ const TransferForm = () => {
 		register,
 		handleSubmit,
 	} = form;
+	console.log({ errors });
+	// Ref to store the first error field
+	const errorRef = useRef<HTMLDivElement | null>(null);
+
+	useEffect(() => {
+		// If there are errors, scroll to the first one
+		const firstErrorField = Object.keys(errors)[Object.keys(errors).length - 1];
+		if (firstErrorField) {
+			const errorElement = document.getElementById(firstErrorField);
+			if (errorElement) {
+				errorElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+				errorElement.focus(); // Optional: Focus on the input field
+			}
+		}
+	}, [errors]);
 
 	const onSubmit = (data: FormData) => {
 		console.log(data);
@@ -180,7 +180,7 @@ Please provide me with the pricing details. Looking forward to your response. Th
 									control={form.control}
 									name='pickUpPlace'
 									render={({ field }) => (
-										<FormItem className='flex flex-col gap-2 w-fit md:w-[320px]'>
+										<FormItem className='flex flex-col gap-2 w-fit md:w-[320px]' ref={errors.pickUpPlace ? errorRef : null}>
 											<FormLabel className='font-semibold font-sans'>Pick Up: </FormLabel>
 											<FormControl>
 												<Input id='pickUpPlace' {...field} placeholder='From' onChange={field.onChange} value={field.value} style={{ width: 260 }} />
