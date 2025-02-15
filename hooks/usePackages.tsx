@@ -1,42 +1,43 @@
 import { useQuery } from '@tanstack/react-query';
-import { fetchAllPackages, fetchAllTourPackages, fetchPackage } from '@/lib/query/tour-packages';
+import { fetchAllPackages, fetchAllTourPackages, fetchPackageDetails } from '@/lib/query/tour-packages';
+import { Pagination } from '@/types/common';
 
-export const useGetAllPackages = () => {
+export const useGetAllPackages = ({ page, pageSize }: Pagination) => {
 	const {
-		data: packages,
-		isLoading,
-		isError,
-		error,
-		refetch,
+		data: tours,
+		isLoading: isLoadingTours,
+		isError: isErrorTour,
+		error: errorTour,
+		refetch: refetchTours,
 	} = useQuery({
 		queryKey: ['qk_packages'],
-		queryFn: fetchAllTourPackages,
+		queryFn: () => fetchAllPackages({ page, pageSize }),
 	});
 	return {
-		packages,
-		isLoading,
-		isError,
-		error,
-		refetch,
+		tours,
+		isLoadingTours,
+		isErrorTour,
+		errorTour,
+		refetchTours,
 	};
 };
 
-export const useGetPackage = (id: string) => {
+export const useGetTourPackage = (id: string) => {
 	const {
 		data: tourPackage,
-		isLoading,
-		isError,
-		error,
-		refetch,
+		isLoading: loadingTour,
+		isError: isErrirTour,
+		error: errorTour,
+		refetch: refetchTour,
 	} = useQuery({
-		queryKey: ['qk_package'],
-		queryFn: () => fetchPackage(id),
+		queryKey: ['qk_package' + id],
+		queryFn: () => fetchPackageDetails(id),
 	});
 	return {
 		tourPackage,
-		isLoading,
-		isError,
-		error,
-		refetch,
+		loadingTour,
+		isErrirTour,
+		errorTour,
+		refetchTour,
 	};
 };

@@ -1,35 +1,114 @@
-export type TourRoute = {
-	day: number;
+export interface Route {
+	id: string;
 	title: string;
-	description: string;
-	icon?: string; //TODO add icons map
-};
+	keywords?: string;
+	desc?: string;
+	cover?: Cover;
+	notes?: string; // Private field
+	days: number;
+	routeItem: RouteItem[];
+	cities: City[];
+}
 
-export type TourPackage = {
+export interface RouteItem {
+	id: string;
+	title: string;
+	desc?: string;
+	stayingTime?: string;
+	tour_activities: TourActivity[];
+}
+
+export interface TourActivity {
+	id: string;
 	title: string;
 	slug: string;
-	description: string;
-	keywords: string[];
-	image: string;
-	content: string;
-	daysIncluded: number;
-	routes: TourRoute[];
-};
+	subtitle?: string;
+	desc?: string;
+	// TODO fix the image
+	cover?: any;
+	attraction?: any;
+	activity_type?: any;
+}
+export interface Cover {
+	url: string;
+	formats: Formats;
+}
+export interface Formats {
+	thumbnail?: {
+		url: string;
+	};
+	small?: {
+		url: string;
+	};
+	large?: {
+		url: string;
+	};
+	medium?: {
+		url: string;
+	};
+}
 
-export enum CityActivitiesEnum {
-	Restaurants = 'restaurants',
-	Sightseeing = 'sightseeing',
-	ShopsAndBoutiques = 'shops-boutiques',
-	WhereToStay = 'where-to-stay',
-	CulturalExperiences = 'cultural-experiences',
-	OutdoorAdventures = 'outdoor-adventures',
-	Nightlife = 'nightlife',
-	FestivalsAndEvents = 'festivals-events',
-	LocalMarkets = 'local-markets',
-	HiddenGems = 'hidden-gems',
+export interface Attraction {
+	id: number;
+	documentId: string;
+	slug: string;
+	name: string;
+	cover: Cover;
+}
+
+export interface Itinerary {
+	name: string;
+	lat: number;
+	lng: number;
+}
+
+export interface Highlight {
+	id: number;
+	text: string;
+	description?: string;
+	isNew?: boolean;
+	icon: {
+		url: string;
+	};
+}
+export interface TourPackage {
+	id: string;
+	title: string;
+	slug: string;
+	desc?: string;
+	subtitle: string;
+	totalDays: number;
+	groupSize: string;
+	age: string;
+	routes: Route[];
+	categories: Category[];
+	isFeatured: boolean;
+	itinerary: Itinerary[];
+	content?: string; // CKEditor5 custom field
+	cover: Cover;
+	gallery?: any[];
+	customerPhotos?: any[];
+	highlights: Highlight[];
+	attractions: Attraction[];
+	createdAt: string;
+	updatedAt: string;
+	publishedAt?: string;
 }
 
 export type City = {
 	name: string;
 	location: string;
+};
+
+export type Category = {
+	title: string;
+	slug: string;
+	desc?: string;
+	icon: {
+		documentId: string;
+		id: number;
+		url: string;
+	};
+	documentId: string;
+	id: number;
 };

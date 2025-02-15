@@ -57,14 +57,20 @@ const Road = () => {
 					<div className='flex gap-2'>
 						<Image src={images.checked} width={28} height={28} alt='relax' />
 						<p className='text-lg md:text-2xl flex gap-1'>
-							<RobotoText className='font-bold'>Free Wi-Fi </RobotoText> on board
+							<RobotoText as='span' className='font-bold'>
+								Free Wi-Fi{' '}
+							</RobotoText>{' '}
+							on board
 						</p>
 					</div>
 					<p className='font-extrabold text-2xl'>&</p>
 					<div className='flex gap-2'>
 						<Image src={images.battery} width={28} height={28} alt='relax' />
 						<p className='text-lg md:text-2xl flex gap-1'>
-							<RobotoText className='font-bold'>Charge</RobotoText> your electronics
+							<RobotoText as='span' className='font-bold'>
+								Charge
+							</RobotoText>{' '}
+							your electronics
 						</p>
 					</div>
 				</div>

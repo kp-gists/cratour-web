@@ -19,9 +19,10 @@ const Services = () => {
 
 			<div className='flex flex-wrap justify-center items-center gap-8 px-3'>
 				{services.map((service) => (
-					<div
+					<Link
+						href={`/visit-albania/services/${service.slug}`}
 						key={service.id}
-						className=' hover:-translate-y-2 w-full  md:w-[275px] px-3 py-6 border-2 border-dashed  border-cyan-400  rounded-xl flex justify-center items-center flex-col gap-3'
+						className=' hover:-translate-y-2 w-full  md:w-[275px] px-3 py-6 border-2 border-dashed  border-cyan-400  rounded-xl flex justify-center items-center flex-col gap-3 '
 					>
 						<Image src={service.icon} width={80} height={80} alt={service.description} />
 
@@ -34,7 +35,7 @@ const Services = () => {
 						<Link href={`/visit-albania/services/${service.slug}`}>
 							<SatisfyText className='text-cyan-600 hover:underline hover:font-bold text-xl'>{service.cta}</SatisfyText>
 						</Link>
-					</div>
+					</Link>
 				))}
 			</div>
 

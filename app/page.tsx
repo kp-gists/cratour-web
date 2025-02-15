@@ -6,7 +6,6 @@ import Hero from '@/components/landing/Hero';
 import CitiesLayout from '@/components/landing/CitiesLayout';
 import TravelLayout from '@/components/landing/TravelLayout';
 import ContactUs from '@/components/landing/ContactUs';
-import { useGetAllPackages } from '@/hooks/usePackages';
 
 export default function Home() {
 	// const { error, isError, isLoading, packages, refetch } = useGetAllPackages();

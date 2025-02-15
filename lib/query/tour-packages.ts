@@ -1,5 +1,7 @@
 import qs from 'qs';
 import axios from 'axios';
+import { Pagination } from '@/types/common';
+import { ResTours } from '@/types/api';
 
 const apiUrl = process.env.NEXT_PUBLIC_API_URL;
 
@@ -38,10 +40,15 @@ export const fetchAllTourPackages = async () => {
 		.catch((e) => console.log('🚀 ~ fetch fetchAllTourPackages ~ e:', e));
 };
 
-export const fetchAllPackages = async () => {
+export const fetchAllPackages = async ({ page = 1, pageSize = 25, sort = 'desc' }: Pagination): Promise<ResTours> => {
 	const query = qs.stringify(
 		{
 			populate: '*',
+			pagination: {
+				page,
+				pageSize,
+			},
+			sort: [`publishedAt:${sort}`],
 		},
 		{
 			encodeValuesOnly: true,
@@ -55,20 +62,41 @@ export const fetchAllPackages = async () => {
 		.catch((e) => console.log('🚀 ~ fetch cities ~ e:', e));
 };
 
-export const fetchPackage = async (id: string) => {
+export const fetchPackageDetails = async (id: string) => {
 	const query = qs.stringify(
 		{
-			populate: '*',
+			populate: {
+				routes: { populate: '*' },
+				cover: { populate: '*' },
+				gallery: { populate: '*' },
+				customerPhotos: { populate: '*' },
+				categories: {
+					populate: {
+						icon: { fields: ['url'] }, // Adjust based on what you need from icon
+					},
+					fields: ['slug', 'title'],
+				},
+				attractions: {
+					populate: {
+						cover: {
+							fields: ['formats'],
+						},
+					},
+					fields: ['slug', 'name'],
+				},
+				highlights: { populate: '*' },
+				itinerary: { populate: '*' },
+			},
 		},
 		{
 			encodeValuesOnly: true,
 		},
 	);
-
+	console.log('url:' + `${apiUrl}/tour-packages/${id}?${query}`);
 	return axios
 		.get(`${apiUrl}/tour-packages/${id}?${query}`)
 		.then((res) => res.data)
 		.catch((e) => {
-			console.log('🚀 ~ fetch city ~ e:', e);
+			console.log('🚀 ~ fetchPackage ~ error:', e);
 		});
 };
