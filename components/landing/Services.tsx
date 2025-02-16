@@ -1,14 +1,19 @@
+'use client';
+
 import { services } from '@/constants/services';
 import Image from 'next/image';
 import React from 'react';
 import RobotoText from '../ui/RobotoText';
 import SatisfyText from '../ui/SatisfyText';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 
 const Services = () => {
 	{
 		/* services splash layout with tabs bar */
 	}
+
+	const router = useRouter();
 
 	return (
 		<div className='w-full h-fit p-4 md:p-10 lg:p-16 bg-cyan-100 flex flex-col justify-center items-center gap-8 md:gap-16'>
@@ -32,9 +37,9 @@ const Services = () => {
 
 						<p className='text-center h-20'>{service.description}</p>
 
-						<Link href={`/visit-albania/services/${service.slug}`}>
+						<div onClick={() => router.push(`/visit-albania/services/${service.slug}`)}>
 							<SatisfyText className='text-cyan-600 hover:underline hover:font-bold text-xl'>{service.cta}</SatisfyText>
-						</Link>
+						</div>
 					</Link>
 				))}
 			</div>

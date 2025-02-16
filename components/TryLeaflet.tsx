@@ -18,7 +18,9 @@ const destinations: {
 	{ name: 'Barcelona (Spain)', lat: 41.3874, lng: 2.1686 },
 ];
 
-const polylinePositions = destinations.map((dest: { lat: number; lng: number }) => [dest.lat, dest.lng]);
+import { LatLngTuple } from 'leaflet';
+
+const polylinePositions: LatLngTuple[] = destinations.map((dest: { lat: number; lng: number }) => [dest.lat, dest.lng] as LatLngTuple);
 
 const point = () => <div className='w-4 h-4 bg-blue-500'></div>;
 
