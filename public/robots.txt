@@ -3,7 +3,7 @@ User-agent: *
 Allow: /
 
 # Host
-Host: https://cratour.com
+Host: https://cratour.al
 
 # Sitemaps
-Sitemap: https://cratour.com/sitemap.xml
+Sitemap: https://cratour.al/sitemap.xml
