@@ -6,6 +6,7 @@ import Hero from '@/components/landing/Hero';
 import CitiesLayout from '@/components/landing/CitiesLayout';
 import TravelLayout from '@/components/landing/TravelLayout';
 import ContactUs from '@/components/landing/ContactUs';
+import Timeline from './visit-albania/services/tour-packages/_components/Timeline';
 
 export default function Home() {
 	// const { error, isError, isLoading, packages, refetch } = useGetAllPackages();
@@ -16,6 +17,8 @@ export default function Home() {
 
 			{/* HERO section */}
 			<Hero />
+
+			<Timeline />
 
 			<Services />
 

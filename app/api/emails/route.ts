@@ -14,6 +14,10 @@ export async function POST(req: NextRequest) {
 			name: 'kol.paja',
 			address: 'kol.paja@gmail.com',
 		},
+		{
+			name: 'CraTour',
+			address: 'cratour.al@gmail.com',
+		},
 	];
 
 	const body = await req.json();

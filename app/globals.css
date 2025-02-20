@@ -95,3 +95,14 @@ body {
 ::-webkit-scrollbar-thumb:hover {
 	background: #555;
 }
+
+/* Ngjyra e loading bar-it */
+#nprogress .bar {
+	background: #ff6600; /* Ngjyra që dëshiron */
+	height: 4px;
+}
+
+/* Efekti i shkëlqimit */
+#nprogress .peg {
+	box-shadow: 0 0 10px #ff6600, 0 0 5px #ff6600;
+}

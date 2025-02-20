@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
-import { fetchAllPackages, fetchAllTourPackages, fetchPackageDetails } from '@/lib/query/tour-packages';
+import { fetchAllPackages, fetchPackageDetailsBySlug } from '@/lib/query/tour-packages';
 import { Pagination } from '@/types/common';
 
 export const useGetAllPackages = ({ page, pageSize }: Pagination) => {
@@ -22,7 +22,7 @@ export const useGetAllPackages = ({ page, pageSize }: Pagination) => {
 	};
 };
 
-export const useGetTourPackage = (id: string) => {
+export const useGetTourPackage = (slug: string) => {
 	const {
 		data: tourPackage,
 		isLoading: loadingTour,
@@ -30,8 +30,8 @@ export const useGetTourPackage = (id: string) => {
 		error: errorTour,
 		refetch: refetchTour,
 	} = useQuery({
-		queryKey: ['qk_package' + id],
-		queryFn: () => fetchPackageDetails(id),
+		queryKey: ['qk_package' + slug],
+		queryFn: () => fetchPackageDetailsBySlug(slug),
 	});
 	return {
 		tourPackage,

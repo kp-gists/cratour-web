@@ -62,9 +62,12 @@ export const fetchAllPackages = async ({ page = 1, pageSize = 25, sort = 'desc' 
 		.catch((e) => console.log('🚀 ~ fetch cities ~ e:', e));
 };
 
-export const fetchPackageDetails = async (id: string) => {
+export const fetchPackageDetailsBySlug = async (slug: string) => {
 	const query = qs.stringify(
 		{
+			filters: {
+				slug: { $eq: slug }, // Filtering by slug
+			},
 			populate: {
 				routes: { populate: '*' },
 				cover: { populate: '*' },
@@ -72,7 +75,7 @@ export const fetchPackageDetails = async (id: string) => {
 				customerPhotos: { populate: '*' },
 				categories: {
 					populate: {
-						icon: { fields: ['url'] }, // Adjust based on what you need from icon
+						icon: { fields: ['url'] },
 					},
 					fields: ['slug', 'title'],
 				},
@@ -92,11 +95,12 @@ export const fetchPackageDetails = async (id: string) => {
 			encodeValuesOnly: true,
 		},
 	);
-	console.log('url:' + `${apiUrl}/tour-packages/${id}?${query}`);
+
+	console.log('url:' + `${apiUrl}/tour-packages?${query}`);
 	return axios
-		.get(`${apiUrl}/tour-packages/${id}?${query}`)
-		.then((res) => res.data)
+		.get(`${apiUrl}/tour-packages?${query}`)
+		.then((res) => res.data.data[0]) // Assuming you get an array and only need the first result
 		.catch((e) => {
-			console.log('🚀 ~ fetchPackage ~ error:', e);
+			console.log('🚀 ~ fetchPackageDetailsBySlug ~ error:', e);
 		});
 };

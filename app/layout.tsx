@@ -1,8 +1,14 @@
-import type { Metadata } from 'next';
+'use client';
+
+import { Analytics } from '@vercel/analytics/react';
 import { Geist, Geist_Mono, Satisfy } from 'next/font/google';
 import './globals.css';
 import 'react-day-picker/src/style.css';
 import AllProviders from '@/lib/config/providers';
+import { useEffect } from 'react';
+import { usePathname } from 'next/navigation';
+import NProgress from 'nprogress';
+import 'nprogress/nprogress.css';
 
 const satisfy = Satisfy({
 	variable: '--font-satisfy-mono',
@@ -20,20 +26,26 @@ const geistMono = Geist_Mono({
 	subsets: ['latin'],
 });
 
-export const metadata: Metadata = {
-	title: 'CRA Tour | Visit Albania',
-	description: 'Craft your visit to albania with cra tour with our services like tour packages, city transfers, medical tourism and renting a car or hotel',
-};
-
 export default function RootLayout({
 	children,
 }: Readonly<{
 	children: React.ReactNode;
 }>) {
+	const pathname = usePathname();
+
+	useEffect(() => {
+		NProgress.start(); // Fillo loading kur ndryshon rruga
+		const timer = setTimeout(() => {
+			NProgress.done(); // Mbyll loading pas 500ms (siguri për përmirësim UX)
+		}, 500);
+
+		return () => clearTimeout(timer);
+	}, [pathname]);
 	return (
 		<html lang='en'>
 			<body className={`${geistSans.variable} ${geistMono.variable} ${satisfy.variable} `}>
 				<AllProviders>{children}</AllProviders>
+				<Analytics />
 			</body>
 		</html>
 	);

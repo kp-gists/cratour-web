@@ -33,7 +33,7 @@ const TourPackagesPage = () => {
 					}).format(new Date(tour.publishedAt));
 					return (
 						<Link
-							href={`/visit-albania/services/tour-packages/${tour.documentId}`}
+							href={`/visit-albania/services/tour-packages/${tour.slug}`}
 							key={tour.id}
 							className='flex flex-col gap-3 border rounded-2xl p-4 justify-center items-center'
 						>

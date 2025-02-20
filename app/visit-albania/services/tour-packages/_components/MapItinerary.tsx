@@ -2,6 +2,7 @@ import FullScreenModal from '@/components/FullScreenModal';
 import MapWithItinerary from '@/components/MapWithItinerary';
 
 import { Itinerary } from '@/types/tour';
+import { InfoIcon } from 'lucide-react';
 import Image from 'next/image';
 import React, { useState } from 'react';
 
@@ -20,6 +21,10 @@ const MapItinerary = ({ items, title }: Props) => {
 		<div className='border  my-10  w-full flex px-2 md:px-12 py-6'>
 			<div className='rounded-xl overflow-hidden w-[360px] md:w-[700px] lg:w-[740px] relative'>
 				<MapWithItinerary items={items} height={360} />
+
+				<div className='absolute bottom-1 left-12 z-50 flex flex-row items-center gap-2 px-3 py-1 bg-white/20 backdrop-blur-md rounded-md shadow-md'>
+					<InfoIcon className='block' width={16} height={16} /> <i className='text-xs'>use ctrl + scroll to zoom +/-</i>
+				</div>
 
 				<div
 					className='absolute hover:cursor-pointer top-4 right-4 px-4 py-3 bg-white rounded-full z-50 flex justify-around items-center gap-4'

@@ -1,9 +1,9 @@
 'use client';
 
 import { Itinerary } from '@/types/tour';
-import React from 'react';
+import React, { useEffect } from 'react';
 
-import { MapContainer, TileLayer, Polyline, Marker, Popup } from 'react-leaflet';
+import { MapContainer, TileLayer, Polyline, Marker, Popup, useMap } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
 
@@ -11,20 +11,48 @@ type Props = {
 	items: Itinerary[];
 	height?: number;
 };
+const ZoomControl = () => {
+	const map = useMap();
+
+	useEffect(() => {
+		const enableZoom = (e: any) => {
+			if (e.ctrlKey) {
+				map.scrollWheelZoom.enable();
+			}
+		};
+
+		const disableZoom = () => {
+			map.scrollWheelZoom.disable();
+		};
+
+		document.addEventListener('keydown', enableZoom);
+		document.addEventListener('keyup', disableZoom);
+
+		return () => {
+			document.removeEventListener('keydown', enableZoom);
+			document.removeEventListener('keyup', disableZoom);
+		};
+	}, [map]);
+
+	return null;
+};
 
 const MapWithItinerary = ({ items, height = 400 }: Props) => {
 	return (
 		<MapContainer
-			center={[items[0].lat, items[0].lng]} // Center of Spain
+			center={[items[0].lat, items[0].lng]}
 			zoom={8}
 			style={{ height: `${height}px`, width: '100%', zIndex: 10 }}
+			maxZoom={12}
+			minZoom={6} // Prevents excessive zooming out
+			scrollWheelZoom={false} // Disables zoom on scroll
 		>
 			{/* Base Tile Layer */}
 			<TileLayer
 				url='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
 				attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
 			/>
-
+			<ZoomControl />
 			{/* Route Line */}
 			<Polyline positions={items.map((i) => [i.lat, i.lng])} color='blue' />
 

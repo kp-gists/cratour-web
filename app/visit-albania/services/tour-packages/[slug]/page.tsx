@@ -11,8 +11,8 @@ import MapItinerary from '../_components/MapItinerary';
 import Highlights from '../_components/Highlights';
 
 const TourPackagesPage = () => {
-	const { id } = useParams();
-	const { tourPackage, errorTour, loadingTour } = useGetTourPackage(id as string);
+	const { slug } = useParams();
+	const { tourPackage, errorTour, loadingTour } = useGetTourPackage(slug as string);
 	console.log('🚀 ~ TourPackagesPage ~ tourPackage,errorTour:', tourPackage, errorTour);
 
 	if (loadingTour) return <div>loading...</div>;
@@ -37,7 +37,7 @@ const TourPackagesPage = () => {
 		isFeatured,
 		itinerary,
 		routes,
-	} = tourPackage.data;
+	} = tourPackage;
 	console.log('🚀 ~ TourPackagesPage ~ title:', title);
 
 	return (
