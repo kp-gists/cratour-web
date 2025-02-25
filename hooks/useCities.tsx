@@ -1,6 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
-import { fetchAllAttractions } from '@/lib/query/attractions';
-import { fetchCity } from '@/lib/query/city';
+import { fetchAllCities, fetchCity } from '@/lib/query/city';
 
 export const useGetAllCities = () => {
 	const {
@@ -11,7 +10,7 @@ export const useGetAllCities = () => {
 		refetch,
 	} = useQuery({
 		queryKey: ['qk_cities'],
-		queryFn: fetchAllAttractions,
+		queryFn: fetchAllCities,
 	});
 	return {
 		cities,

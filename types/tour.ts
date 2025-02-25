@@ -96,8 +96,12 @@ export interface TourPackage {
 }
 
 export type City = {
-	name: string;
-	location: string;
+	title: string;
+	slug: string;
+	desc: string;
+	documentId: string;
+	content?: string;
+	cover?: any;
 };
 
 export type Category = {

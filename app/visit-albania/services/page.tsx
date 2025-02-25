@@ -22,7 +22,7 @@ const ServicesPage = () => {
 			</p>
 
 			<div className='flex flex-col gap-8 md:gap-12 lg:gap-16'>
-				{services.map((service, idx) => (
+				{services.english.map((service, idx) => (
 					<article key={service.id} className='flex flex-col gap-4'>
 						<SatisfyText as='h2' className='text-lg md:text-2xl'>
 							{idx + 1}. {service.title}

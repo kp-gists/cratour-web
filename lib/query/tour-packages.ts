@@ -89,6 +89,41 @@ export const fetchPackageDetailsBySlug = async (slug: string) => {
 				},
 				highlights: { populate: '*' },
 				itinerary: { populate: '*' },
+				seo: {
+					populate: '*',
+				},
+			},
+		},
+		{
+			encodeValuesOnly: true,
+		},
+	);
+	console.log(`city fetchPackageDetailsBySlug url: ${apiUrl}/tour-packages?${query}`);
+	return axios
+		.get(`${apiUrl}/tour-packages?${query}`)
+		.then((res) => res.data.data[0]) // Assuming you get an array and only need the first result
+		.catch((e) => {
+			console.log('🚀 ~ fetchPackageDetailsBySlug ~ error:', e);
+		});
+};
+export const fetchSeoPackageDetailsBySlug = async (slug: string) => {
+	const query = qs.stringify(
+		{
+			filters: {
+				slug: { $eq: slug }, // Filtering by slug
+			},
+			populate: {
+				seo: {
+					fields: ['metaTitle', 'metaDescription', 'keywords', 'canonical'],
+					populate: {
+						shareImage: {
+							fields: ['url'],
+						},
+					},
+				},
+				cover: {
+					fields: ['url'],
+				},
 			},
 		},
 		{
@@ -96,11 +131,12 @@ export const fetchPackageDetailsBySlug = async (slug: string) => {
 		},
 	);
 
-	console.log('url:' + `${apiUrl}/tour-packages?${query}`);
+	console.log(`${apiUrl}/tour-packages?${query}`);
+
 	return axios
 		.get(`${apiUrl}/tour-packages?${query}`)
 		.then((res) => res.data.data[0]) // Assuming you get an array and only need the first result
 		.catch((e) => {
-			console.log('🚀 ~ fetchPackageDetailsBySlug ~ error:', e);
+			console.log('🚀 ~ seo tour ~ error:', e);
 		});
 };

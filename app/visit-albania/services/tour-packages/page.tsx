@@ -11,7 +11,6 @@ const TourPackagesPage = () => {
 	const [pageSize, setPageSize] = useState<number>(25);
 
 	const { isLoadingTours, isErrorTour, tours, errorTour, refetchTours } = useGetAllPackages({ page, pageSize });
-	console.log('🚀 ~ TourPackagesPage ~ tours:', tours);
 
 	if (isLoadingTours) return <p>...loading tours</p>;
 

@@ -5,6 +5,7 @@ const apiUrl = process.env.NEXT_PUBLIC_API_URL;
 
 // ? cra-tour => city
 
+// todo add the pagination for each of this
 export const fetchAllCities = async () => {
 	const query = QueryString.stringify(
 		{

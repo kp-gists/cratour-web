@@ -8,10 +8,10 @@ import SatisfyText from '../ui/SatisfyText';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 
-const Services = () => {
-	{
-		/* services splash layout with tabs bar */
-	}
+type LanguageKeys = keyof typeof services;
+
+const Services = ({ lang = 'english' }: { lang?: LanguageKeys }) => {
+	const s = services[lang] || services.english;
 
 	const router = useRouter();
 
@@ -23,7 +23,7 @@ const Services = () => {
 			</p>
 
 			<div className='flex flex-wrap justify-center items-center gap-8 px-3'>
-				{services.map((service) => (
+				{s.map((service) => (
 					<Link
 						href={`/visit-albania/services/${service.slug}`}
 						key={service.id}

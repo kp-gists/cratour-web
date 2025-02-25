@@ -1,61 +1,50 @@
-'use client';
+import { fetchSeoPackageDetailsBySlug } from '@/lib/query/tour-packages';
+import { Metadata } from 'next';
+import TourDetailsPage from '../_components/TourDetailsPage';
 
-import { useGetTourPackage } from '@/hooks/usePackages';
-import React from 'react';
-import TourHero from '../_components/TourHero';
-import TourDescription from '../_components/TourDescription';
-import { useParams } from 'next/navigation';
-import TourDetails from '../_components/TourDetails';
-import TourAttractions from '../_components/TourAttractions';
-import MapItinerary from '../_components/MapItinerary';
-import Highlights from '../_components/Highlights';
-
-const TourPackagesPage = () => {
-	const { slug } = useParams();
-	const { tourPackage, errorTour, loadingTour } = useGetTourPackage(slug as string);
-	console.log('🚀 ~ TourPackagesPage ~ tourPackage,errorTour:', tourPackage, errorTour);
-
-	if (loadingTour) return <div>loading...</div>;
-
-	// TODO better
-	if (!tourPackage) return <div>tour not found</div>;
-
-	const {
-		categories,
-		cover,
-		title,
-		totalDays,
-		subtitle,
-		desc,
-		age,
-		attractions,
-		content,
-		customerPhotos,
-		gallery,
-		groupSize,
-		highlights,
-		isFeatured,
-		itinerary,
-		routes,
-	} = tourPackage;
-	console.log('🚀 ~ TourPackagesPage ~ title:', title);
-
-	return (
-		<div className='p-2 md:p-6 max-w-6xl flex flex-col justify-center items-center  mx-auto pb-10 gap-5'>
-			<TourHero categories={categories} title={title} cover={cover} days={totalDays} subtitle={subtitle} />
-
-			<TourDescription desc={desc} content={content} />
-			<TourDetails age={age} group={groupSize} />
-			<TourAttractions attractions={attractions} />
-			<MapItinerary items={itinerary} title={title} />
-			<Highlights highlights={highlights} />
-			{/* <Itinerary /> */}
-			{/* <MoreDescription /> */}
-			{/* <WhatsIncluded /> */}
-			{/* <Gallery /> */}
-			{/* <CustomerGallery /> */}
-		</div>
-	);
+type Props = {
+	params: { slug: string };
 };
 
-export default TourPackagesPage;
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+	const { slug } = await params;
+
+	try {
+		const tourPackage = await fetchSeoPackageDetailsBySlug(slug);
+		if (!tourPackage) {
+			return {
+				title: 'Tour Not Found - Cratour.al',
+				description: 'This tour package is not available.',
+			};
+		}
+
+		const title = tourPackage.seo?.metaTitle || tourPackage.title;
+		const desc = tourPackage.seo?.metaDescription || tourPackage.desc;
+		const imageUrl = tourPackage.cover?.url || '';
+
+		return {
+			title: `${title} - Cratour.al`,
+			description: desc,
+			openGraph: {
+				title,
+				description: desc,
+				images: imageUrl ? [{ url: imageUrl }] : [],
+				url: `${process.env.NEXT_PUBLIC_SITE_URL}/visit-albania/services/tour-packages/${slug}`,
+			},
+			twitter: {
+				card: 'summary_large_image',
+				title,
+				description: desc,
+				images: imageUrl ? [imageUrl] : [],
+			},
+		};
+	} catch (error) {
+		console.error('Metadata fetch error:', error);
+		return { title: 'Error fetching metadata' };
+	}
+}
+
+export default async function TourPage({ params }: Props) {
+	const { slug } = await params;
+	return <TourDetailsPage slug={slug} />;
+}

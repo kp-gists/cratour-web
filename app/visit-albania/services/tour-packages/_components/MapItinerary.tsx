@@ -13,7 +13,6 @@ type Props = {
 
 const MapItinerary = ({ items, title }: Props) => {
 	const [isModalOpen, setIsModalOpen] = useState(false);
-	console.log('🚀 ~ MapItinerary ~ items:', items);
 
 	if (!items.length) return;
 
