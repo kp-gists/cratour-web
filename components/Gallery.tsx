@@ -47,7 +47,7 @@ const Gallery = ({ gallery, title = 'Gallery:' }: Props) => {
 						<CarouselItem key={item.id} className='basis-full md:basis-1/2 lg:basis-1/3'>
 							<Link href={item.url} target='_blank' className='p-1 flex flex-col gap-4 '>
 								<Image
-									src={item!.formats!.small ? item!.formats!.small : item.url}
+									src={item.url}
 									width={250}
 									height={185}
 									alt={item.hash}

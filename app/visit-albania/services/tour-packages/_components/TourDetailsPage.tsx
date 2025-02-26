@@ -15,8 +15,12 @@ import Gallery from '@/components/Gallery';
 import ScreenLoading from '@/components/ScreenLoading';
 import ScreenErrorItem from '@/components/ScreenErrorItem';
 import ScreenError from '@/components/ScreenError';
+import { useParams } from 'next/navigation';
 
-const TourDetailsPage = ({ slug }: { slug: string }) => {
+const TourDetailsPage = () => {
+	const params = useParams();
+	const slug = params?.slug;
+
 	const { tourPackage, isErrorTour, loadingTour } = useGetTourPackage(slug as string);
 
 	if (loadingTour) return <ScreenLoading text='Loading Tour Package details...' />;
@@ -51,7 +55,7 @@ const TourDetailsPage = ({ slug }: { slug: string }) => {
 				<TourDescription desc={desc} content={content} />
 				<TourDetails age={age} group={groupSize} />
 				<TourAttractions attractions={attractions} />
-				<MapItinerary items={itinerary} title={title} />
+				{/* <MapItinerary items={itinerary} title={title} /> */}
 				<Highlights highlights={highlights} />
 				<Timeline routes={routes} />
 				<MoreDescription content={content} />
