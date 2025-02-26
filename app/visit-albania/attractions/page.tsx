@@ -1,13 +1,11 @@
-'use client';
-
-import { useGetAllAttractions } from '@/hooks/useAttractions';
+import { Metadata } from 'next';
 import React from 'react';
 
+// TODO add seo
+export const metadata: Metadata = {
+	title: 'Attractions',
+};
 const AttractionsPage = () => {
-	const { attractions, isError, isLoading, error } = useGetAllAttractions();
-	console.log('🚀 ~ AttractionsPage ~ error:', error);
-	console.log('🚀 ~ AttractionsPage ~ attractions,isError,isLoading:', attractions, isError, isLoading);
-
 	return <div>AttractionsPage</div>;
 };
 

@@ -1,6 +1,8 @@
-import React from 'react';
+'use client';
 
-import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
+import React, { useEffect, useState } from 'react';
+
+import { Carousel, CarouselApi, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
 import Link from 'next/link';
 import Image from 'next/image';
 
@@ -9,13 +11,31 @@ type Props = {
 	title?: string;
 };
 
-const TourGallery = ({ gallery, title = 'Gallery:' }: Props) => {
+const Gallery = ({ gallery, title = 'Gallery:' }: Props) => {
+	const [api, setApi] = useState<CarouselApi>();
+	const [current, setCurrent] = useState(0);
+	const [count, setCount] = useState(0);
+
+	useEffect(() => {
+		if (!api) {
+			return;
+		}
+
+		setCount(api.scrollSnapList().length);
+		setCurrent(api.selectedScrollSnap() + 1);
+
+		api.on('select', () => {
+			setCurrent(api.selectedScrollSnap() + 1);
+		});
+	}, [api]);
+
 	if (!gallery) return;
 
 	return (
 		<div className='flex flex-col justify-center items-start gap-4 md:gap-6  w-full px-8 md:px-16'>
 			<h3 className='text-xl md:text-2xl font-bold'>{title}</h3>
 			<Carousel
+				setApi={setApi}
 				opts={{
 					align: 'start',
 				}}
@@ -38,9 +58,12 @@ const TourGallery = ({ gallery, title = 'Gallery:' }: Props) => {
 				</CarouselContent>
 				<CarouselPrevious />
 				<CarouselNext />
+				<div className='py-2 text-center text-sm text-muted-foreground'>
+					{current} / {count}
+				</div>
 			</Carousel>
 		</div>
 	);
 };
 
-export default TourGallery;
+export default Gallery;

@@ -1,7 +1,8 @@
 import { useQuery } from '@tanstack/react-query';
 import { fetchAllAttractions, fetchAttraction } from '@/lib/query/attractions';
+import { Pagination } from '@/types/common';
 
-export const useGetAllAttractions = () => {
+export const useGetAllAttractions = ({ page, pageSize }: Pagination) => {
 	const {
 		data: attractions,
 		isLoading,
@@ -10,7 +11,7 @@ export const useGetAllAttractions = () => {
 		refetch,
 	} = useQuery({
 		queryKey: ['qk_attractions'],
-		queryFn: fetchAllAttractions,
+		queryFn: () => fetchAllAttractions({ page, pageSize }),
 	});
 	return {
 		attractions,
@@ -21,22 +22,22 @@ export const useGetAllAttractions = () => {
 	};
 };
 
-export const useGetAttraction = (id: string) => {
+export const useGetAttraction = (slug: string) => {
 	const {
 		data: attraction,
-		isLoading,
-		isError,
-		error,
-		refetch,
+		isLoading: isLoadingAttraction,
+		isError: isErrorAttraction,
+		error: errorAttraction,
+		refetch: refetchAttraction,
 	} = useQuery({
-		queryKey: ['qk_attraction'],
-		queryFn: () => fetchAttraction(id),
+		queryKey: ['qk_attraction', slug],
+		queryFn: () => fetchAttraction(slug),
 	});
 	return {
 		attraction,
-		isLoading,
-		isError,
-		error,
-		refetch,
+		isLoadingAttraction,
+		isErrorAttraction,
+		errorAttraction,
+		refetchAttraction,
 	};
 };

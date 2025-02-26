@@ -2,12 +2,8 @@ import { fetchSeoPackageDetailsBySlug } from '@/lib/query/tour-packages';
 import { Metadata } from 'next';
 import TourDetailsPage from '../_components/TourDetailsPage';
 
-type Props = {
-	params: { slug: string };
-};
-
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
-	const { slug } = await params;
+export async function generateMetadata({ params }: any): Promise<Metadata> {
+	const { slug } = params; // ❌ Remove 'await'
 
 	try {
 		const tourPackage = await fetchSeoPackageDetailsBySlug(slug);
@@ -44,7 +40,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 	}
 }
 
-export default async function TourPage({ params }: Props) {
-	const { slug } = await params;
+export default async function TourPage({ params }: any): Promise<any> {
+	const { slug } = params; // ❌ Remove 'await'
 	return <TourDetailsPage slug={slug} />;
 }

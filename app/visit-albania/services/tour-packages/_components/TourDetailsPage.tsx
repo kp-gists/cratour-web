@@ -10,7 +10,7 @@ import MapItinerary from './MapItinerary';
 import Highlights from './Highlights';
 import Timeline from './Timeline';
 import MoreDescription from './MoreDescription';
-import TourGallery from './TourGallery';
+import Gallery from '@/components/Gallery';
 
 const TourDetailsPage = ({ slug }: { slug: string }) => {
 	const { tourPackage, errorTour, loadingTour } = useGetTourPackage(slug as string);
@@ -52,8 +52,8 @@ const TourDetailsPage = ({ slug }: { slug: string }) => {
 				<Timeline routes={routes} />
 				<MoreDescription content={content} />
 				{/* <WhatsIncluded /> */}
-				<TourGallery gallery={gallery} title='Tour Gallery Photos: ' />
-				<TourGallery gallery={customerPhotos} title='Photos From Our Customers: ' />
+				<Gallery gallery={gallery} title='Tour Gallery Photos: ' />
+				<Gallery gallery={customerPhotos} title='Photos From Our Customers: ' />
 			</div>
 		</>
 	);
