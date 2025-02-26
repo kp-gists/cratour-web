@@ -31,7 +31,7 @@ export default async function sitemap({ id }: { id: number }): Promise<MetadataR
 
 	// Map attractions to sitemap format
 	return attractions.data.map((attraction: any) => ({
-		url: `${liveUrl}/visit-albania/attractions/${attraction.slug}`,
+		url: `${liveUrl}/what-to-visit-in-albania/attractions/${attraction.slug}`,
 		lastModified: attraction.updatedAt,
 	}));
 }
