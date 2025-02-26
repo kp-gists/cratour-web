@@ -1,7 +1,9 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 'use client';
 
 import Gallery from '@/components/Gallery';
 import Loading from '@/components/Loading';
+import ScreenError from '@/components/ScreenError';
 import ScreenLoading from '@/components/ScreenLoading';
 import { useGetAttraction } from '@/hooks/useAttractions';
 import { fetchToursByAttractionSlug } from '@/lib/query/attractions';
@@ -18,20 +20,13 @@ const AttractionDetailsPage = ({ slug }: { slug: string }) => {
 		queryFn: () => fetchToursByAttractionSlug(slug),
 	});
 
-	// console.log({ data, isLoading, isError });
 	if (isErrorAttraction) {
 		console.log('🚀 ~ AttractionPage ~ isErrorAttraction:', errorAttraction);
-		return (
-			<div>
-				{/* TODO add better */}
-				something went wrong!
-			</div>
-		);
+		return <ScreenError buttonLabel='All Attractions' buttonLink='/visit-albania/attractions' />;
 	}
 
 	if (isLoadingAttraction) {
-		// TOD add screen loader
-		return <ScreenLoading text='Loading Attraction' />;
+		return <ScreenLoading text='Loading Attraction...' />;
 	}
 
 	const {
@@ -41,7 +36,7 @@ const AttractionDetailsPage = ({ slug }: { slug: string }) => {
 		tags,
 		gallery,
 		isSuggested,
-		cover: { url },
+		cover: { url, width, height },
 	} = attraction;
 
 	const published = new Date(publishedAt).toLocaleDateString('en', {
@@ -58,7 +53,7 @@ const AttractionDetailsPage = ({ slug }: { slug: string }) => {
 					{!isSuggested ? (
 						<div className='flex-row flex gap-2 items-center'>
 							<Image src='/png/suggest.png' width={24} height={24} alt='is suggested attraction' />
-							<h5 className='text-lg font-serif'>This attraction is suggested by us!</h5>
+							<h5 className='text-lg font-serif bg-cover'>This attraction is suggested by us!</h5>
 						</div>
 					) : (
 						''
@@ -67,13 +62,13 @@ const AttractionDetailsPage = ({ slug }: { slug: string }) => {
 					<p>{published}</p>
 				</div>
 				<div>
-					<div className='w-full  lg:w-[915px] h-[260px] lg:h-[515px] relative overflow-hidden rounded-3xl shadow'>
-						<Image src={url} alt='' fill />
+					<div className='w-full  lg:w-[915px] h-[260px] lg:h-[515px] relative overflow-hidden rounded-3xl shadow flex justify-center items-center'>
+						<Image src={url} alt='' width={width} height={height} className='bg-cover' />
 					</div>
 				</div>
 				<div className='flex flex-wrap gap-3 pl-6 pr-0 md:pr-40'>
 					{tags.length > 0 &&
-						tags.split(',').map((tag: string) => (
+						tags.split(' ').map((tag: string) => (
 							<div key={tag} className='border rounded-md px-2 py-1 bg-gray-100 text-stone-800 italic text-sm'>
 								{tag}
 							</div>

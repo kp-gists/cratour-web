@@ -24,13 +24,13 @@ export default function Home() {
 			<TravelLayout />
 
 			{/* City layout */}
-			{/* <CitiesLayout /> */}
+			<CitiesLayout />
 
 			{/* Tours Layout simple descriptions with ctas */}
 
 			{/* Travel features things to do on a tour */}
 
-			{/* <ContactUs /> */}
+			<ContactUs />
 			<Footer />
 		</div>
 	);

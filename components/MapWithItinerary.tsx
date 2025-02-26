@@ -15,6 +15,7 @@ const ZoomControl = () => {
 	const map = useMap();
 
 	useEffect(() => {
+		// eslint-disable-next-line @typescript-eslint/no-explicit-any
 		const enableZoom = (e: any) => {
 			if (e.ctrlKey) {
 				map.scrollWheelZoom.enable();

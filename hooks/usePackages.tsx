@@ -26,7 +26,7 @@ export const useGetTourPackage = (slug: string) => {
 	const {
 		data: tourPackage,
 		isLoading: loadingTour,
-		isError: isErrirTour,
+		isError: isErrorTour,
 		error: errorTour,
 		refetch: refetchTour,
 	} = useQuery({
@@ -36,7 +36,7 @@ export const useGetTourPackage = (slug: string) => {
 	return {
 		tourPackage,
 		loadingTour,
-		isErrirTour,
+		isErrorTour,
 		errorTour,
 		refetchTour,
 	};

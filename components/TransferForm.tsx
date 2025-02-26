@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 'use client';
 
 import React, { useEffect, useRef, useState } from 'react';
@@ -67,7 +68,6 @@ const TransferForm = () => {
 		register,
 		handleSubmit,
 	} = form;
-	console.log({ errors });
 	// Ref to store the first error field
 	const errorRef = useRef<HTMLDivElement | null>(null);
 
@@ -84,7 +84,6 @@ const TransferForm = () => {
 	}, [errors]);
 
 	const onSubmit = (data: FormData) => {
-		console.log(data);
 		const message = `Pershendetje, I would like to request a price for a transfer.
 Here are my details:
 - **Email:** ${data.email}
@@ -101,7 +100,6 @@ Here are my details:
 Please provide me with the pricing details. Looking forward to your response. Thank you!`;
 
 		if (mode === 'whatsapp') {
-			console.log('send on whatsapp');
 			setIsLoading(true);
 
 			const text = encodeURIComponent(message);
@@ -109,7 +107,6 @@ Please provide me with the pricing details. Looking forward to your response. Th
 			router.push(ref, {});
 			setIsLoading(false);
 		} else {
-			console.log({ mode });
 			const notes = `<div>
     <div>
 			<p><strong>**Email:</strong> ${data.email}</p>
@@ -141,11 +138,9 @@ Please provide me with the pricing details. Looking forward to your response. Th
 				body: JSON.stringify(bodyData),
 			})
 				.then((res) => {
-					console.log('🚀 ~ .then ~ res:', res);
 					return res.json();
 				})
-				.then((d: any) => {
-					console.log('🚀 ~ .then ~ d:', d);
+				.then(() => {
 					toast.success('Message was sent, check your email inbox for any the response of your request');
 				})
 				.catch((error) => {

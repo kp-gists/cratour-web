@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @next/next/no-img-element */
 import React from 'react';
 
 type Props = {
@@ -7,11 +9,8 @@ type Props = {
 };
 
 const ResponsiveImage = ({ formats, className, noImg = false }: Props) => {
-	console.log('🚀 ~ ResponsiveImage ~ formats:', formats);
 	if (noImg) {
 		return (
-			// eslint-disable-next-line @next/next/no-img-element
-
 			<img
 				src={'/jpg/tirana-demo.jpg'} // Fallback
 				alt='Blog Cover Image'
@@ -20,7 +19,6 @@ const ResponsiveImage = ({ formats, className, noImg = false }: Props) => {
 		);
 	}
 	return (
-		// eslint-disable-next-line @next/next/no-img-element
 		<img
 			src={formats?.large?.url || formats.small.url} // Fallback
 			alt='Blog Cover Image'

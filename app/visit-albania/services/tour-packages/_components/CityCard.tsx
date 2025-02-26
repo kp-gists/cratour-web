@@ -10,7 +10,7 @@ type Props = {
 const CityCard = ({ city }: Props) => {
 	return (
 		<Link
-			href={`/visit-albania/cities/${city.slug}`}
+			href={`/what-to-visit-in-albania/cities/${city.slug}`}
 			className='flex flex-row items-center gap-3 md:gap-6 border p-2 border-gray-300 rounded-xl relative hover:border-green-300 '
 		>
 			<div className='flex justify-center items-center  h-[140px] w-[140px] '>

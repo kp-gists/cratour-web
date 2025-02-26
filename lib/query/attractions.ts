@@ -18,7 +18,6 @@ export const fetchAllAttractions = async ({ page = 1, pageSize = 25, sort = 'des
 			encodeValuesOnly: true,
 		},
 	);
-	console.log(`${apiUrl}/city-attractions?${query}`);
 
 	return axios
 		.get(`${apiUrl}/city-attractions?${query}`)
@@ -37,7 +36,6 @@ export const fetchAttraction = async (slug: string) => {
 			encodeValuesOnly: true,
 		},
 	);
-	console.log(`${apiUrl}/city-attractions?${query}`);
 
 	return axios
 		.get(`${apiUrl}/city-attractions?${query}`)
@@ -58,7 +56,6 @@ export const fetchToursByAttractionSlug = async (slug: string) => {
 			encodeValuesOnly: true,
 		},
 	);
-	console.log(`${apiUrl}/city-attractions?${query}`);
 
 	return axios
 		.get(`${apiUrl}/tour-packages?${query}`)

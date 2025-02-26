@@ -10,8 +10,6 @@ type Props = {
 };
 
 const TourAttractions = ({ attractions }: Props) => {
-	console.log('🚀 ~ TourAttractions ~ attractions:', attractions);
-
 	return (
 		<div className='flex flex-col justify-center items-start gap-4 md:gap-6  w-full px-8 md:px-16'>
 			<h3 className='text-xl md:text-2xl font-bold'>What attractions you will explore: </h3>

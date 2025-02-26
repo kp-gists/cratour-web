@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { fetchAllAttractions } from '@/lib/query/attractions';
 import { MetadataRoute } from 'next';
 

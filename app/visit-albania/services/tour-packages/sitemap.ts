@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { fetchAllPackages } from '@/lib/query/tour-packages';
 import { MetadataRoute } from 'next';
 

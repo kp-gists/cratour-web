@@ -12,7 +12,6 @@ export const fetchAllActivities = async () => {
 			encodeValuesOnly: true,
 		},
 	);
-	// console.log(`${apiUrl}/tour-activities?${query}`);
 
 	return axios
 		.get(`${apiUrl}/tour-activities?${query}`)

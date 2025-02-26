@@ -1,5 +1,8 @@
+/* eslint-disable no-unused-vars */
 'use client';
 
+import ScreenError from '@/components/ScreenError';
+import ScreenLoading from '@/components/ScreenLoading';
 import { useGetAllPackages } from '@/hooks/usePackages';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -10,13 +13,12 @@ const TourPackagesPage = () => {
 	const [sort, setSort] = useState<'asc' | 'desc'>('desc');
 	const [pageSize, setPageSize] = useState<number>(25);
 
+	// TODO filters & pagination
 	const { isLoadingTours, isErrorTour, tours, errorTour, refetchTours } = useGetAllPackages({ page, pageSize });
 
-	if (isLoadingTours) return <p>...loading tours</p>;
+	if (isLoadingTours) return <ScreenLoading text='Loading Tour Packages' />;
 
-	if (isErrorTour) return <p>error</p>;
-
-	console.log({ errorTour });
+	if (isErrorTour) return <ScreenError />;
 
 	return (
 		<div className='p-4 md:p-6 max-w-6xl flex flex-col justify-center items-center border mx-auto'>

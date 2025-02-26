@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { cn } from '@/lib/utils';
 import Image from 'next/image';
 import React from 'react';
@@ -141,7 +142,6 @@ const Timeline = ({ routes }: Props) => {
 		place: idx === 0 ? 'first' : idx === routes.length - 1 ? 'last' : 'mid',
 		dir: idx % 2 === 0 ? 'left' : 'right',
 	}));
-	console.log('🚀 ~ Timeline ~ transformed:', transformed);
 
 	return (
 		<div className='w-[900px] mx-auto flex flex-col gap-6 my-10 md:my-20'>

@@ -15,7 +15,7 @@ const links = [
 	},
 ];
 
-const Footer = ({ isHome = false }: Props) => {
+const Footer = ({}: Props) => {
 	return (
 		<div className='relative w-full  px-4 py-6 border-t-2'>
 			<div className='flex justify-around items-center gap-4 md:gap-8'>

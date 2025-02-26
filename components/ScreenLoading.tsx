@@ -1,8 +1,8 @@
 import React from 'react';
 
-type Props = { loading?: boolean; text?: string };
+type Props = { text?: string };
 
-const ScreenLoading = ({ loading, text = 'Loading...' }: Props) => {
+const ScreenLoading = ({ text = 'Loading...' }: Props) => {
 	return (
 		<div className='fixed inset-0 flex items-center justify-center bg-white dark:bg-gray-900 z-50'>
 			<div className='flex flex-col items-center gap-4'>

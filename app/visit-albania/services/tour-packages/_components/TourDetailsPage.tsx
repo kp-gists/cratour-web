@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 'use client';
 
 import { useGetTourPackage } from '@/hooks/usePackages';
@@ -11,14 +12,17 @@ import Highlights from './Highlights';
 import Timeline from './Timeline';
 import MoreDescription from './MoreDescription';
 import Gallery from '@/components/Gallery';
+import ScreenLoading from '@/components/ScreenLoading';
+import ScreenErrorItem from '@/components/ScreenErrorItem';
+import ScreenError from '@/components/ScreenError';
 
 const TourDetailsPage = ({ slug }: { slug: string }) => {
-	const { tourPackage, errorTour, loadingTour } = useGetTourPackage(slug as string);
+	const { tourPackage, isErrorTour, loadingTour } = useGetTourPackage(slug as string);
 
-	if (loadingTour) return <div>loading...</div>;
+	if (loadingTour) return <ScreenLoading text='Loading Tour Package details...' />;
+	if (isErrorTour) return <ScreenError />;
 
-	// TODO better
-	if (!tourPackage) return <div>tour not found</div>;
+	if (!tourPackage) return <ScreenErrorItem buttonLabel='All Tours' buttonLink='/visit-albania/services/tour-packages' message='Tour not found!' />;
 
 	const {
 		categories,

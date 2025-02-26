@@ -53,7 +53,7 @@ const TravelLayout = () => {
 				</Link>
 			</div>
 
-			<Link href={'/visit-albania/cities'} className='block absolute top-[10%] left-[10%]'>
+			<Link href={'/what-to-visit-in-albania/cities'} className='block absolute top-[10%] left-[10%]'>
 				<div className='flex justify-center items-center flex-col gap-1 md:gap-2 w-[220px] h-[170px] p-2 border-2 border-white bg-cyan-200 rounded-lg'>
 					<RobotoText className='text-xl md:text-3xl text-center font-bold text-primary-400'>20+</RobotoText>
 					<SatisfyText className='text-center'>breathtaking cities and towns, each with unique stories and experiences.</SatisfyText>

@@ -15,7 +15,6 @@ export const fetchAllCities = async () => {
 			encodeValuesOnly: true,
 		},
 	);
-	// console.log(`${apiUrl}/cra-tours?${query}`);
 
 	return axios
 		.get(`${apiUrl}/cra-tours?${query}`)

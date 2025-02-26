@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { fetchSeoPackageDetailsBySlug } from '@/lib/query/tour-packages';
 import { Metadata } from 'next';
 import TourDetailsPage from '../_components/TourDetailsPage';

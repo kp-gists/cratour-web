@@ -64,7 +64,7 @@ const CitiesLayout = () => {
 					history.{' '}
 				</p>
 
-				<Link href={'/visit-albania/cities'} className='block'>
+				<Link href={'/what-to-visit-in-albania/cities'} className='block'>
 					<SatisfyText
 						as='h5'
 						className='text-xl font-bold px-4 py-2 hover:bg-yellow-100 bg-cyan-300 rounded-lg text-purple-700 hover:scale-105 hover:text-purple-900  hover:underline shadow-lg drop-shadow-lg shadow-yellow-50'

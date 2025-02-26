@@ -12,18 +12,12 @@ const ChooseUsTransfer = () => {
 				{whyChooseTransfer.map((item) => (
 					<li
 						key={item.id}
-						className='w-[300px] h-[300px] p-2 flex flex-col items-center justify-center border-2 border-green-500 rounded-xl shadow shadow-green-500 relative overflow-hidden'
+						className='w-[300px] h-[300px] p-2 flex flex-col items-center justify-center border-2 border-cyan-500 rounded-xl shadow shadow-cyan-500 relative overflow-hidden'
 					>
-						<Image
-							src={item.icon}
-							width={72}
-							height={72}
-							alt={item.id}
-							className='w-[260px] h-[260px] md:w-[260px] md:h-[260px]  absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 -z-10'
-						/>
+						<Image src={item.icon} width={128} height={128} alt={item.id} className='mb-4 ' />
 						<div className='bg-white/30 backdrop-blur-sm flex flex-col justify-center items-center rounded-lg m-2'>
 							<strong className='text-lg md:text-xl  rounded-xl px-2 py-1'>{item.title}</strong>
-							<p className='w-full  text-center font-semibold text-base '>{item.subtitle}</p>
+							<p className='w-full  text-center font-medium text-pretty text-base '>{item.subtitle}</p>
 						</div>
 					</li>
 				))}

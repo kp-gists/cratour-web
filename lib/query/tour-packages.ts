@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import qs from 'qs';
 import axios from 'axios';
 import { Pagination } from '@/types/common';
@@ -54,7 +55,6 @@ export const fetchAllPackages = async ({ page = 1, pageSize = 25, sort = 'desc' 
 			encodeValuesOnly: true,
 		},
 	);
-	// console.log(`${apiUrl}/tour-packages?${query}`);
 
 	return axios
 		.get(`${apiUrl}/tour-packages?${query}`)
@@ -98,7 +98,6 @@ export const fetchPackageDetailsBySlug = async (slug: string) => {
 			encodeValuesOnly: true,
 		},
 	);
-	console.log(`city fetchPackageDetailsBySlug url: ${apiUrl}/tour-packages?${query}`);
 	return axios
 		.get(`${apiUrl}/tour-packages?${query}`)
 		.then((res) => res.data.data[0]) // Assuming you get an array and only need the first result
@@ -130,8 +129,6 @@ export const fetchSeoPackageDetailsBySlug = async (slug: string) => {
 			encodeValuesOnly: true,
 		},
 	);
-
-	console.log(`${apiUrl}/tour-packages?${query}`);
 
 	return axios
 		.get(`${apiUrl}/tour-packages?${query}`)
