@@ -32,7 +32,7 @@ export async function generateMetadata({ params }: any): Promise<Metadata> {
 				title,
 				description: desc,
 				images: imageUrl ? [{ url: imageUrl }] : [],
-				url: `${process.env.NEXT_PUBLIC_SITE_URL}/visit-albania/attractions/${params.slug}`,
+				url: `${process.env.NEXT_PUBLIC_SITE_URL}/what-to-visit-in-albania/attractions/${params.slug}`,
 			},
 			twitter: {
 				card: 'summary_large_image',

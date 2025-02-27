@@ -1,7 +1,8 @@
 import { useQuery } from '@tanstack/react-query';
 import { fetchAllCities, fetchCity } from '@/lib/query/city';
+import { Pagination } from '@/types/common';
 
-export const useGetAllCities = () => {
+export const useGetAllCities = ({ page = 1, pageSize = 25, sort = 'desc' }: Pagination) => {
 	const {
 		data: cities,
 		isLoading,
@@ -10,7 +11,7 @@ export const useGetAllCities = () => {
 		refetch,
 	} = useQuery({
 		queryKey: ['qk_cities'],
-		queryFn: fetchAllCities,
+		queryFn: () => fetchAllCities({ page, pageSize, sort }),
 	});
 	return {
 		cities,

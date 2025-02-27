@@ -89,7 +89,7 @@ const TravelLayout = () => {
 				<Image width={225} height={205} src={images.sand} className='bg-cover ' alt='berat castle' />
 			</div>
 
-			<Link href={'/visit-albania/attractions'} className='flex flex-row items-end absolute bottom-[10%] left-[5%] md:left-[10%]'>
+			<Link href={'/what-to-visit-in-albania/attractions'} className='flex flex-row items-end absolute bottom-[10%] left-[5%] md:left-[10%]'>
 				<div className='flex justify-center items-center flex-col gap-1 relative z-20 md:gap-2 w-[200px] h-[170px] md:w-[220px] md:h-[170px] p-2 border-2 border-white bg-cyan-200 rounded-lg'>
 					<RobotoText className='text-xl md:text-3xl text-center font-bold text-primary-400'>40+</RobotoText>
 					<SatisfyText className='text-center'>national parks, rivers, lakes, and mountains for nature enthusiasts.</SatisfyText>
@@ -105,7 +105,7 @@ const TravelLayout = () => {
 			</Link>
 
 			<div className='hidden flex-col items-end justify-end absolute lg:bottom-0 lg:flex lg:right-0 xl:bottom-[10%] xl:right-[10%]'>
-				<Link href={'/visit-albania/attractions'} className='flex flex-row '>
+				<Link href={'/what-to-visit-in-albania/attractions'} className='flex flex-row '>
 					<div className='flex justify-center items-center flex-col gap-1 relative z-20 md:gap-2 w-[220px] h-[170px] p-2 border-2 border-white bg-cyan-200 rounded-lg'>
 						<RobotoText className='text-xl md:text-3xl text-center font-bold text-primary-400'>50+</RobotoText>
 						<SatisfyText className='text-center'>ancient castles, archaeological sites, and museums waiting to be uncovered.</SatisfyText>
