@@ -55,7 +55,7 @@ const TourDetailsPage = () => {
 				<TourDescription desc={desc} content={content} />
 				<TourDetails age={age} group={groupSize} />
 				<TourAttractions attractions={attractions} />
-				{/* <MapItinerary items={itinerary} title={title} /> */}
+				<MapItinerary items={itinerary} title={title} />
 				<Highlights highlights={highlights} />
 				<Timeline routes={routes} />
 				<MoreDescription content={content} />
