@@ -9,6 +9,7 @@ import { useEffect } from 'react';
 import { usePathname } from 'next/navigation';
 import NProgress from 'nprogress';
 import 'nprogress/nprogress.css';
+import GoogleAnalytics from '@/components/GA4';
 
 const satisfy = Satisfy({
 	variable: '--font-satisfy-mono',
@@ -52,6 +53,7 @@ export default function RootLayout({
 			<body className={`${geistSans.variable} ${geistMono.variable} ${satisfy.variable} `}>
 				<AllProviders>{children}</AllProviders>
 				<Analytics />
+				<GoogleAnalytics />
 			</body>
 		</html>
 	);
