@@ -1,22 +1,28 @@
-'use client';
+'use client'; // Ensures this component runs only on the client
 
 import { Itinerary } from '@/types/tour';
 import React, { useEffect } from 'react';
+import dynamic from 'next/dynamic';
 
-import { MapContainer, TileLayer, Polyline, Marker, Popup, useMap } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
-import L from 'leaflet';
+import { useMap } from 'react-leaflet';
+
+const MapContainer = dynamic(() => import('react-leaflet').then((mod) => mod.MapContainer), { ssr: false });
+const TileLayer = dynamic(() => import('react-leaflet').then((mod) => mod.TileLayer), { ssr: false });
+const Polyline = dynamic(() => import('react-leaflet').then((mod) => mod.Polyline), { ssr: false });
+const Marker = dynamic(() => import('react-leaflet').then((mod) => mod.Marker), { ssr: false });
+const Popup = dynamic(() => import('react-leaflet').then((mod) => mod.Popup), { ssr: false });
 
 type Props = {
 	items: Itinerary[];
 	height?: number;
 };
+
 const ZoomControl = () => {
 	const map = useMap();
 
 	useEffect(() => {
-		// eslint-disable-next-line @typescript-eslint/no-explicit-any
-		const enableZoom = (e: any) => {
+		const enableZoom = (e: KeyboardEvent) => {
 			if (e.ctrlKey) {
 				map.scrollWheelZoom.enable();
 			}
@@ -39,61 +45,25 @@ const ZoomControl = () => {
 };
 
 const MapWithItinerary = ({ items, height = 400 }: Props) => {
+	if (typeof window === 'undefined') return null; // Prevent SSR issues
+
 	return (
 		<MapContainer
 			center={[items[0].lat, items[0].lng]}
 			zoom={8}
 			style={{ height: `${height}px`, width: '100%', zIndex: 10 }}
 			maxZoom={12}
-			minZoom={6} // Prevents excessive zooming out
-			scrollWheelZoom={false} // Disables zoom on scroll
+			minZoom={6}
+			scrollWheelZoom={false}
 		>
-			{/* Base Tile Layer */}
 			<TileLayer
 				url='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
 				attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
 			/>
 			<ZoomControl />
-			{/* Route Line */}
 			<Polyline positions={items.map((i) => [i.lat, i.lng])} color='blue' />
-
-			{/* Markers */}
 			{items.map((dest, index) => (
-				<Marker
-					key={index}
-					position={[dest.lat, dest.lng]}
-					icon={L.divIcon({
-						className: 'custom-marker',
-						html: `<div style="
-                background: ${
-									index === 0
-										? 'green' // Start point (Madrid)
-										: index === items.length - 1
-										? 'red' // End point (Barcelona)
-										: 'blue'
-								};
-                color: white;
-                padding:0;
-                border-radius: 10px;
-                font-size: 14px;
-                font-weight: bold;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                flex-direction: column;
-                text-align: center;
-                width:16px;
-                height:16px;
-                ">
-                <div style="
-                  width: 6px;
-                  height: 6px;
-                  background: white;
-                  border-radius: 50%;
-                "></div>
-              </div>`,
-					})}
-				>
+				<Marker key={index} position={[dest.lat, dest.lng]}>
 					<Popup>{dest.name}</Popup>
 				</Marker>
 			))}

@@ -1,5 +1,9 @@
 import FullScreenModal from '@/components/FullScreenModal';
-import MapWithItinerary from '@/components/MapWithItinerary';
+import dynamic from 'next/dynamic';
+
+const MapWithItinerary = dynamic(() => import('@/components/MapWithItinerary'), {
+	ssr: false, // Prevents server-side rendering
+});
 
 import { Itinerary } from '@/types/tour';
 import { InfoIcon } from 'lucide-react';
