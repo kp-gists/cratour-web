@@ -22,7 +22,7 @@ export async function generateMetadata({ params }: any): Promise<Metadata> {
 		}
 
 		const title = attraction.seo?.metaTitle || attraction.title;
-		const desc = attraction.seo?.metaDescription || attraction.tags.join(',');
+		const desc = attraction.seo?.metaDescription;
 		const imageUrl = attraction.cover?.url || '';
 
 		return {

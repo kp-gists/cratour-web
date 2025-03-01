@@ -14,6 +14,7 @@ import React from 'react';
 
 const AttractionDetailsPage = ({ slug }: { slug: string }) => {
 	const { attraction, isLoadingAttraction, isErrorAttraction, errorAttraction } = useGetAttraction(slug as string);
+	console.log('🚀 ~ AttractionDetailsPage ~ attraction:', attraction);
 
 	const { data, isLoading, isError } = useQuery({
 		queryKey: ['qk_attraction_tours', slug],
@@ -67,7 +68,8 @@ const AttractionDetailsPage = ({ slug }: { slug: string }) => {
 					</div>
 				</div>
 				<div className='flex flex-wrap gap-3 pl-6 pr-0 md:pr-40'>
-					{tags.length > 0 &&
+					{tags !== null &&
+						tags.length > 0 &&
 						tags.split(' ').map((tag: string) => (
 							<div key={tag} className='border rounded-md px-2 py-1 bg-gray-100 text-stone-800 italic text-sm'>
 								{tag}
@@ -91,13 +93,11 @@ const AttractionDetailsPage = ({ slug }: { slug: string }) => {
 
 				{isLoading && !isError && <Loading />}
 				{!isLoading && isError && ''}
-				<div className='flex flex-col gap-4'>
-					<h1 className='text-3xl font-semibold'>Related Tours for this Attraction:</h1>
-					<div className='flex flex-col items-center gap-8 max-w-5xl'>
-						{!isLoading &&
-							!isError &&
-							data.length > 0 &&
-							data.map((tour: any) => (
+				{!isLoading && !isError && data.length > 0 && (
+					<div className='flex flex-col gap-4'>
+						<h1 className='text-3xl font-semibold'>Related Tours for this Attraction:</h1>
+						<div className='flex flex-col items-center gap-8 max-w-5xl'>
+							{data.map((tour: any) => (
 								<Link
 									href={`/visit-albania/services/tour-packages/${tour.slug}`}
 									key={tour.id}
@@ -112,8 +112,9 @@ const AttractionDetailsPage = ({ slug }: { slug: string }) => {
 									</div>
 								</Link>
 							))}
+						</div>
 					</div>
-				</div>
+				)}
 			</div>
 		</div>
 	);
