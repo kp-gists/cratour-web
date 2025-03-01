@@ -1,11 +1,14 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 'use client'; // Ensures this component runs only on the client
 
 import { Itinerary } from '@/types/tour';
 import React, { useEffect } from 'react';
+import L from 'leaflet';
 
 import 'leaflet/dist/leaflet.css';
 import { MapContainer, Marker, Polyline, Popup, TileLayer, useMap } from 'react-leaflet';
-
+// Fix for missing default marker icons
+// Apply globally
 type Props = {
 	items: Itinerary[];
 	height?: number;
@@ -56,7 +59,41 @@ const MapWithItinerary = ({ items, height = 400 }: Props) => {
 			<ZoomControl />
 			<Polyline positions={items.map((i) => [i.lat, i.lng])} color='blue' />
 			{items.map((dest, index) => (
-				<Marker key={index} position={[dest.lat, dest.lng]}>
+				<Marker
+					key={index}
+					position={[dest.lat, dest.lng]}
+					icon={L.divIcon({
+						className: 'custom-marker',
+						html: `<div style="
+											background: ${
+												index === 0
+													? 'green' // Start point (Madrid)
+													: index === items.length - 1
+													? 'red' // End point (Barcelona)
+													: 'blue'
+											};
+											color: white;
+											padding:0;
+											border-radius: 10px;
+											font-size: 14px;
+											font-weight: bold;
+											display: flex;
+											align-items: center;
+											justify-content: center;
+											flex-direction: column;
+											text-align: center;
+											width:16px;
+											height:16px;
+											">
+											<div style="
+												width: 6px;
+												height: 6px;
+												background: white;
+												border-radius: 50%;
+											"></div>
+										</div>`,
+					})}
+				>
 					<Popup>{dest.name}</Popup>
 				</Marker>
 			))}
