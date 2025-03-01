@@ -22,11 +22,14 @@ const TourDetailsPage = () => {
 	const slug = params?.slug;
 
 	const { tourPackage, isErrorTour, loadingTour } = useGetTourPackage(slug as string);
+	console.log('🚀 ~ TourDetailsPage ~ tourPackage, isErrorTour, loadingTour:', tourPackage, isErrorTour, loadingTour);
 
 	if (loadingTour) return <ScreenLoading text='Loading Tour Package details...' />;
+	if (!tourPackage) return <ScreenLoading text='Loading Tour Package details...' />;
 	if (isErrorTour) return <ScreenError />;
 
-	if (!tourPackage) return <ScreenErrorItem buttonLabel='All Tours' buttonLink='/visit-albania/services/tour-packages' message='Tour not found!' />;
+	if (!tourPackage && !loadingTour && !isErrorTour)
+		return <ScreenErrorItem buttonLabel='All Tours' buttonLink='/visit-albania/services/tour-packages' message='Tour not found!' />;
 
 	const {
 		categories,
