@@ -19,6 +19,9 @@ import { cn } from '@/lib/utils';
 import { useRouter } from 'next/navigation';
 import { createWhatsappHref } from '@/lib/whatsapp';
 import { contacts } from '@/constants/contacts';
+import { useGetAllCities } from '@/hooks/useCities';
+import CitySelect from './form/CitySelect';
+import { LoaderIcon } from 'lucide-react';
 
 const formSchema = z.object({
 	email: z.string().email('Invalid email address'),
@@ -58,6 +61,19 @@ const TransferForm = () => {
 	const [mode, setMode] = useState<'email' | 'whatsapp'>('email');
 	const [isLoading, setIsLoading] = useState(false);
 	const router = useRouter();
+	const [selectedCity, setSelectedCity] = useState('');
+	const [selected2City, setSelected2City] = useState('');
+
+	// Fixed value for 1000 cities just to get all
+	const {
+		cities,
+		isLoading: isLoadingCities,
+		isError,
+	} = useGetAllCities({
+		page: 1,
+		pageSize: 1000,
+		sort: 'asc',
+	});
 
 	const form = useForm({
 		resolver: zodResolver(formSchema),
@@ -91,9 +107,9 @@ Here are my details:
 - **Baggages:** ${data.baggages}
 - **Pick-Up Date:** ${data.pickUpDate ? data.pickUpDate.toDateString() : 'Not specified'}
 - **Return Date:** ${data.returnDate ? data.returnDate.toDateString() : 'Not specified'}
-- **Pick-Up Location:** ${data.pickUpPlace}
+- **Pick-Up Location:** ${selectedCity ? selectedCity : data.pickUpPlace}
 - **Additional Stops:** ${data.stops}
-- **Drop-Off Location:** ${data.dropOffPlace}
+- **Drop-Off Location:** ${selected2City ? selected2City : data.dropOffPlace}
 - **Car Type:** ${data.carType ? data.carType : 'Not specified'}
 - **Preferred Language:** ${data.language ? data.language : 'English'}
 - **Additional Notes:** ${data.notes ? data.notes : 'No additional notes'}
@@ -178,7 +194,21 @@ Please provide me with the pricing details. Looking forward to your response. Th
 										<FormItem className='flex flex-col gap-2 w-fit md:w-[320px]' ref={errors.pickUpPlace ? errorRef : null}>
 											<FormLabel className='font-semibold font-sans'>Pick Up: </FormLabel>
 											<FormControl>
-												<Input id='pickUpPlace' {...field} placeholder='From' onChange={field.onChange} value={field.value} style={{ width: 260 }} />
+												<>
+													{isError ? (
+														<Input id='pickUpPlace' {...field} placeholder='From' onChange={field.onChange} value={field.value} style={{ width: 260 }} />
+													) : (
+														<>
+															<div className=''>
+																{isLoadingCities ? (
+																	<LoaderIcon className='animate-spin' />
+																) : (
+																	<CitySelect cities={cities.data} selectedCity={selectedCity} onChange={setSelectedCity} />
+																)}
+															</div>
+														</>
+													)}
+												</>
 											</FormControl>
 											<FormMessage />
 										</FormItem>
@@ -192,7 +222,21 @@ Please provide me with the pricing details. Looking forward to your response. Th
 										<FormItem className='flex flex-col gap-2'>
 											<FormLabel className='font-semibold font-sans'>Drop off: </FormLabel>
 											<FormControl>
-												<Input id='dropOffPlace' {...field} placeholder='To' onChange={field.onChange} value={field.value} style={{ width: 260 }} />
+												<>
+													{isError ? (
+														<Input id='dropOffPlace' {...field} placeholder='To' onChange={field.onChange} value={field.value} style={{ width: 260 }} />
+													) : (
+														<>
+															<div className=''>
+																{isLoadingCities ? (
+																	<LoaderIcon className='animate-spin' />
+																) : (
+																	<CitySelect cities={cities.data} selectedCity={selected2City} onChange={setSelected2City} />
+																)}
+															</div>
+														</>
+													)}
+												</>
 											</FormControl>
 											<FormMessage />
 										</FormItem>
