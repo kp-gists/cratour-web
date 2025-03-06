@@ -1,6 +1,5 @@
 'use client';
 
-import { Analytics } from '@vercel/analytics/react';
 import { Geist, Geist_Mono, Satisfy } from 'next/font/google';
 import './globals.css';
 import 'react-day-picker/src/style.css';
@@ -52,7 +51,6 @@ export default function RootLayout({
 			<meta name='google-site-verification' content='D1nHMHh85FL0jJR0fPPAUxSNkNGX2bSUqKg0EODKeQc' />
 			<body className={`${geistSans.variable} ${geistMono.variable} ${satisfy.variable} `}>
 				<AllProviders>{children}</AllProviders>
-				<Analytics />
 				<GoogleAnalytics />
 			</body>
 		</html>
