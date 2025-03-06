@@ -43,15 +43,17 @@ export default function RootLayout({
 	}, [pathname]);
 	return (
 		<html lang='en'>
-			<title>Cra Tour | Home</title>
-			<meta
-				name='description'
-				content='Cratour crafts your visit to Albania, with services such as tour packages,transfers, medical tourism, rent a car, reservations,accommodation'
-			></meta>
-			<meta name='google-site-verification' content='D1nHMHh85FL0jJR0fPPAUxSNkNGX2bSUqKg0EODKeQc' />
+			<head>
+				<title>Cra Tour | Home</title>
+				<meta
+					name='description'
+					content='Cratour crafts your visit to Albania, with services such as tour packages,transfers, medical tourism, rent a car, reservations,accommodation'
+				></meta>
+				<meta name='google-site-verification' content='D1nHMHh85FL0jJR0fPPAUxSNkNGX2bSUqKg0EODKeQc' />
+				<GoogleAnalytics />
+			</head>
 			<body className={`${geistSans.variable} ${geistMono.variable} ${satisfy.variable} `}>
 				<AllProviders>{children}</AllProviders>
-				<GoogleAnalytics />
 			</body>
 		</html>
 	);
