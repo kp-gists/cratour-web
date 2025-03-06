@@ -203,21 +203,25 @@ Please provide me with the pricing details. Looking forward to your response. Th
 										<FormItem className='flex flex-col gap-2 w-fit md:w-[320px]' ref={errors.pickUpPlace ? errorRef : null}>
 											<FormLabel className='font-semibold font-sans'>Pick Up: </FormLabel>
 											<FormControl>
-												<>
-													{isError ? (
-														<Input id='pickUpPlace' {...field} placeholder='From' onChange={field.onChange} value={field.value} style={{ width: 260 }} />
-													) : (
-														<>
-															<div className=''>
-																{isLoadingCities ? (
-																	<LoaderIcon className='animate-spin' />
-																) : (
-																	<CitySelect cities={cities.data} selectedCity={field.value} onChange={(name: string) => field.onChange(name)} />
-																)}
-															</div>
-														</>
-													)}
-												</>
+												{isError ? (
+													<Input
+														id='pickUpPlace'
+														{...field}
+														placeholder='From'
+														onChange={field.onChange}
+														value={field.value}
+														ref={field.ref}
+														style={{ width: 260 }}
+													/>
+												) : (
+													<div className=''>
+														{isLoadingCities ? (
+															<LoaderIcon className='animate-spin' />
+														) : (
+															<CitySelect cities={cities.data} selectedCity={field.value} onChange={(name: string) => field.onChange(name)} />
+														)}
+													</div>
+												)}
 											</FormControl>
 											<FormMessage />
 										</FormItem>
@@ -231,21 +235,17 @@ Please provide me with the pricing details. Looking forward to your response. Th
 										<FormItem className='flex flex-col gap-2'>
 											<FormLabel className='font-semibold font-sans'>Drop off: </FormLabel>
 											<FormControl>
-												<>
-													{isError ? (
-														<Input id='dropOffPlace' {...field} placeholder='To' onChange={field.onChange} value={field.value} style={{ width: 260 }} />
-													) : (
-														<>
-															<div className=''>
-																{isLoadingCities ? (
-																	<LoaderIcon className='animate-spin' />
-																) : (
-																	<CitySelect cities={cities.data} selectedCity={field.value} onChange={(name: string) => field.onChange(name)} />
-																)}
-															</div>
-														</>
-													)}
-												</>
+												{isError ? (
+													<Input id='dropOffPlace' {...field} placeholder='To' onChange={field.onChange} value={field.value} style={{ width: 260 }} />
+												) : (
+													<div className=''>
+														{isLoadingCities ? (
+															<LoaderIcon className='animate-spin' />
+														) : (
+															<CitySelect cities={cities.data} selectedCity={field.value} onChange={(name: string) => field.onChange(name)} />
+														)}
+													</div>
+												)}
 											</FormControl>
 											<FormMessage />
 										</FormItem>
