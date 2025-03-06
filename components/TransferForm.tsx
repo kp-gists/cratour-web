@@ -23,13 +23,18 @@ import { useGetAllCities } from '@/hooks/useCities';
 import CitySelect from './form/CitySelect';
 import { LoaderIcon } from 'lucide-react';
 
+const today = new Date();
+today.setHours(0, 0, 0, 0);
+
 const formSchema = z.object({
 	email: z.string().email('Invalid email address'),
 	adults: z.number().int().min(1, 'At least one person is required'),
 	children: z.number().int().min(0).optional(),
 	stops: z.number().int().min(1).optional(),
 	baggages: z.number().int().min(0, 'Baggage count cannot be negative'),
-	pickUpDate: z.date({ required_error: 'Pickup date is required' }),
+	pickUpDate: z.date({ required_error: 'Pickup date is required' }).refine((date) => date >= today, {
+		message: 'Pickup date must be in the future',
+	}),
 	returnDate: z.date().optional(),
 	notes: z.string().optional(),
 	pickUpPlace: z.string().min(1, 'Where should I pick you up?'),
@@ -61,7 +66,6 @@ const TransferForm = () => {
 	const [mode, setMode] = useState<'email' | 'whatsapp'>('email');
 	const [isLoading, setIsLoading] = useState(false);
 	const router = useRouter();
-	const [selectedCity, setSelectedCity] = useState('');
 	const [selected2City, setSelected2City] = useState('');
 
 	// Fixed value for 1000 cities just to get all
@@ -83,6 +87,7 @@ const TransferForm = () => {
 		formState: { errors },
 		register,
 		handleSubmit,
+		reset,
 	} = form;
 	// Ref to store the first error field
 	const errorRef = useRef<HTMLDivElement | null>(null);
@@ -107,7 +112,7 @@ Here are my details:
 - **Baggages:** ${data.baggages}
 - **Pick-Up Date:** ${data.pickUpDate ? data.pickUpDate.toDateString() : 'Not specified'}
 - **Return Date:** ${data.returnDate ? data.returnDate.toDateString() : 'Not specified'}
-- **Pick-Up Location:** ${selectedCity ? selectedCity : data.pickUpPlace}
+- **Pick-Up Location:** ${data.pickUpPlace}
 - **Additional Stops:** ${data.stops}
 - **Drop-Off Location:** ${selected2City ? selected2City : data.dropOffPlace}
 - **Car Type:** ${data.carType ? data.carType : 'Not specified'}
@@ -122,6 +127,7 @@ Please provide me with the pricing details. Looking forward to your response. Th
 			const ref = createWhatsappHref(contacts.whatsapp.telNr, text);
 			router.push(ref, {});
 			setIsLoading(false);
+			reset();
 		} else {
 			const notes = `<div>
     <div>
@@ -163,7 +169,10 @@ Please provide me with the pricing details. Looking forward to your response. Th
 					console.log('🚀 ~ handleSubmit ~ error:', error);
 					toast.error('Sorry! Message was not sent!');
 				})
-				.finally(() => setIsLoading(false));
+				.finally(() => {
+					setIsLoading(false);
+					reset();
+				});
 		}
 	};
 
@@ -203,7 +212,7 @@ Please provide me with the pricing details. Looking forward to your response. Th
 																{isLoadingCities ? (
 																	<LoaderIcon className='animate-spin' />
 																) : (
-																	<CitySelect cities={cities.data} selectedCity={selectedCity} onChange={setSelectedCity} />
+																	<CitySelect cities={cities.data} selectedCity={field.value} onChange={(name: string) => field.onChange(name)} />
 																)}
 															</div>
 														</>
@@ -231,7 +240,7 @@ Please provide me with the pricing details. Looking forward to your response. Th
 																{isLoadingCities ? (
 																	<LoaderIcon className='animate-spin' />
 																) : (
-																	<CitySelect cities={cities.data} selectedCity={selected2City} onChange={setSelected2City} />
+																	<CitySelect cities={cities.data} selectedCity={field.value} onChange={(name: string) => field.onChange(name)} />
 																)}
 															</div>
 														</>
