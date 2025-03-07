@@ -25,7 +25,7 @@ _iub.csConfiguration = {"siteId":3953466,"cookiePolicyId":57630008,"lang":"en","
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
 
-  gtag('config', ${GA_TRACKING_ID});
+  gtag('config', '${GA_TRACKING_ID}');
 				`}</Script>
 		</>
 	);
