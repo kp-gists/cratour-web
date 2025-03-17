@@ -9,15 +9,22 @@ export async function generateMetadata({ params }: any): Promise<Metadata> {
 		return {
 			title: 'Attraction Not Found - Cratour.al',
 			description: 'This Attraction is not available.',
+			alternates: {
+				canonical: 'https://cratour.al/what-to-visit-in-albania/attractions/',
+			},
 		};
 	}
 
 	try {
 		const attraction = await fetchAttraction(params.slug);
+		const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://cratour.al';
 		if (!attraction) {
 			return {
 				title: 'Attraction Found - Cratour.al',
 				description: 'This Attraction is not available.',
+				alternates: {
+					canonical: 'https://cratour.al/what-to-visit-in-albania/attractions/',
+				},
 			};
 		}
 
@@ -32,13 +39,16 @@ export async function generateMetadata({ params }: any): Promise<Metadata> {
 				title,
 				description: desc,
 				images: imageUrl ? [{ url: imageUrl }] : [],
-				url: `${process.env.NEXT_PUBLIC_SITE_URL}/what-to-visit-in-albania/attractions/${params.slug}`,
+				url: `${siteUrl}/what-to-visit-in-albania/attractions/${params.slug}`,
 			},
 			twitter: {
 				card: 'summary_large_image',
 				title,
 				description: desc,
 				images: imageUrl ? [imageUrl] : [],
+			},
+			alternates: {
+				canonical: `${siteUrl}/what-to-visit-in-albania/attractions/${params.slug}`,
 			},
 		};
 	} catch (error) {

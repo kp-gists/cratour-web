@@ -11,6 +11,10 @@ import 'nprogress/nprogress.css';
 import GoogleAnalytics from '@/components/GA4';
 import '@ant-design/v5-patch-for-react-19';
 import Footer from '@/components/Footer';
+import { ApolloProvider } from '@apollo/client';
+import { client } from '@/lib/client';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
 
 const satisfy = Satisfy({
 	variable: '--font-satisfy-mono',
@@ -48,13 +52,17 @@ export default function RootLayout({
 			<head>
 				<meta name='google-site-verification' content='D1nHMHh85FL0jJR0fPPAUxSNkNGX2bSUqKg0EODKeQc' />
 				<GoogleAnalytics />
+				<link rel='stylesheet' type='text/css' charSet='UTF-8' href='https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css' />
+				<link rel='stylesheet' type='text/css' href='https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css' />
 			</head>
 			<body className={`${geistSans.variable} ${geistMono.variable} ${satisfy.variable} `}>
-				<AllProviders>
-					{children}
+				<ApolloProvider client={client}>
+					<AllProviders>
+						{children}
 
-					<Footer />
-				</AllProviders>
+						<Footer />
+					</AllProviders>
+				</ApolloProvider>
 			</body>
 		</html>
 	);

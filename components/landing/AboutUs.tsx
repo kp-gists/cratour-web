@@ -3,7 +3,6 @@ import { MapPinCheckInside } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
-
 type Props = {
 	lang?: LanguageKeys;
 };
@@ -12,6 +11,7 @@ type LanguageKeys = keyof typeof aboutUs;
 
 const AboutUs = ({ lang = 'english' }: Props) => {
 	const data = aboutUs[lang];
+
 	return (
 		<div className='max-w-[1400px] mx-auto py-6 md:py-8 flex flex-col justify-center gap-8 px-3'>
 			<h1 className='font-semibold text-3xl mx-auto'>{data.title}</h1>
