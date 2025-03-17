@@ -22,6 +22,7 @@ import { contacts } from '@/constants/contacts';
 import { useGetAllCities } from '@/hooks/useCities';
 import CitySelect from './form/CitySelect';
 import { LoaderIcon } from 'lucide-react';
+import { useGetAllAttractions } from '@/hooks/useAttractions';
 
 const today = new Date();
 today.setHours(0, 0, 0, 0);
@@ -66,7 +67,6 @@ const TransferForm = () => {
 	const [mode, setMode] = useState<'email' | 'whatsapp'>('email');
 	const [isLoading, setIsLoading] = useState(false);
 	const router = useRouter();
-	const [selected2City, setSelected2City] = useState('');
 
 	// Fixed value for 1000 cities just to get all
 	const {
@@ -78,7 +78,15 @@ const TransferForm = () => {
 		pageSize: 1000,
 		sort: 'asc',
 	});
-
+	const {
+		attractions,
+		isLoading: loadingAttractions,
+		isError: isErrorAttraction,
+	} = useGetAllAttractions({
+		page: 1,
+		pageSize: 1000,
+		sort: 'asc',
+	});
 	const form = useForm({
 		resolver: zodResolver(formSchema),
 	});
@@ -114,7 +122,7 @@ Here are my details:
 - **Return Date:** ${data.returnDate ? data.returnDate.toDateString() : 'Not specified'}
 - **Pick-Up Location:** ${data.pickUpPlace}
 - **Additional Stops:** ${data.stops}
-- **Drop-Off Location:** ${selected2City ? selected2City : data.dropOffPlace}
+- **Drop-Off Location:** ${data.dropOffPlace}
 - **Car Type:** ${data.carType ? data.carType : 'Not specified'}
 - **Preferred Language:** ${data.language ? data.language : 'English'}
 - **Additional Notes:** ${data.notes ? data.notes : 'No additional notes'}
@@ -215,10 +223,14 @@ Please provide me with the pricing details. Looking forward to your response. Th
 													/>
 												) : (
 													<div className=''>
-														{isLoadingCities ? (
+														{isLoadingCities || loadingAttractions ? (
 															<LoaderIcon className='animate-spin' />
 														) : (
-															<CitySelect cities={cities.data} selectedCity={field.value} onChange={(name: string) => field.onChange(name)} />
+															<CitySelect
+																cities={[...cities.data, ...attractions.data]}
+																selectedCity={field.value}
+																onChange={(name: string) => field.onChange(name)}
+															/>
 														)}
 													</div>
 												)}
@@ -239,10 +251,14 @@ Please provide me with the pricing details. Looking forward to your response. Th
 													<Input id='dropOffPlace' {...field} placeholder='To' onChange={field.onChange} value={field.value} style={{ width: 260 }} />
 												) : (
 													<div className=''>
-														{isLoadingCities ? (
+														{isLoadingCities || loadingAttractions ? (
 															<LoaderIcon className='animate-spin' />
 														) : (
-															<CitySelect cities={cities.data} selectedCity={field.value} onChange={(name: string) => field.onChange(name)} />
+															<CitySelect
+																cities={[...cities.data, ...attractions.data]}
+																selectedCity={field.value}
+																onChange={(name: string) => field.onChange(name)}
+															/>
 														)}
 													</div>
 												)}
@@ -359,7 +375,7 @@ Please provide me with the pricing details. Looking forward to your response. Th
 										control={form.control}
 										name='email'
 										render={({ field }) => (
-											<FormItem className='flex flex-col '>
+											<FormItem className='h-[100px] flex flex-col justify-start items-start'>
 												<FormLabel className='font-semibold font-sans flex items-center gap-2'>
 													<Image src={images.message} alt='notes' width={24} height={24} />
 													Email:{' '}
@@ -383,7 +399,7 @@ Please provide me with the pricing details. Looking forward to your response. Th
 										control={form.control}
 										name='stops'
 										render={({ field }) => (
-											<FormItem>
+											<FormItem className='h-[100px] flex flex-col justify-start items-start'>
 												<FormLabel className='font-semibold font-sans flex items-center gap-2'>
 													<Image src={images.pinPlus} alt='notes' width={24} height={24} />
 													Stops{' '}
@@ -403,7 +419,7 @@ Please provide me with the pricing details. Looking forward to your response. Th
 										control={form.control}
 										name='adults'
 										render={({ field }) => (
-											<FormItem>
+											<FormItem className='h-[100px] flex flex-col justify-start items-start'>
 												<FormLabel className='font-semibold font-sans flex items-center gap-2'>
 													<Image src={images.people} alt='notes' width={24} height={24} />
 													Adults{' '}
@@ -419,7 +435,7 @@ Please provide me with the pricing details. Looking forward to your response. Th
 										control={form.control}
 										name='children'
 										render={({ field }) => (
-											<FormItem>
+											<FormItem className='h-[100px] flex flex-col justify-start items-start'>
 												<FormLabel className='font-semibold font-sans flex items-center gap-2'>
 													<Image src={images.people} alt='notes' width={24} height={24} />
 													Children{' '}
@@ -437,7 +453,7 @@ Please provide me with the pricing details. Looking forward to your response. Th
 										control={form.control}
 										name='baggages'
 										render={({ field }) => (
-											<FormItem>
+											<FormItem className='h-[100px] flex flex-col justify-start items-start'>
 												<FormLabel className='font-semibold font-sans flex items-center gap-2'>
 													<Image src={images.suitcase} alt='notes' width={24} height={24} />
 													Nr. Baggages

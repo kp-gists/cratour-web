@@ -7,8 +7,8 @@ import { fetchAttraction } from '@/lib/query/attractions';
 export async function generateMetadata({ params }: any): Promise<Metadata> {
 	if (!params?.slug || typeof params.slug !== 'string') {
 		return {
-			title: 'Tour Not Found - Cratour.al',
-			description: 'This tour package is not available.',
+			title: 'Attraction Not Found - Cratour.al',
+			description: 'This Attraction is not available.',
 		};
 	}
 
@@ -16,8 +16,8 @@ export async function generateMetadata({ params }: any): Promise<Metadata> {
 		const attraction = await fetchAttraction(params.slug);
 		if (!attraction) {
 			return {
-				title: 'Tour Not Found - Cratour.al',
-				description: 'This tour package is not available.',
+				title: 'Attraction Found - Cratour.al',
+				description: 'This Attraction is not available.',
 			};
 		}
 

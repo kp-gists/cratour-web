@@ -9,6 +9,8 @@ import { usePathname } from 'next/navigation';
 import NProgress from 'nprogress';
 import 'nprogress/nprogress.css';
 import GoogleAnalytics from '@/components/GA4';
+import '@ant-design/v5-patch-for-react-19';
+import Footer from '@/components/Footer';
 
 const satisfy = Satisfy({
 	variable: '--font-satisfy-mono',
@@ -34,9 +36,9 @@ export default function RootLayout({
 	const pathname = usePathname();
 
 	useEffect(() => {
-		NProgress.start(); // Fillo loading kur ndryshon rruga
+		NProgress.start();
 		const timer = setTimeout(() => {
-			NProgress.done(); // Mbyll loading pas 500ms (siguri për përmirësim UX)
+			NProgress.done();
 		}, 500);
 
 		return () => clearTimeout(timer);
@@ -44,16 +46,15 @@ export default function RootLayout({
 	return (
 		<html lang='en'>
 			<head>
-				<title>Cra Tour | Home</title>
-				<meta
-					name='description'
-					content='Cratour crafts your visit to Albania, with services such as tour packages,transfers, medical tourism, rent a car, reservations,accommodation'
-				></meta>
 				<meta name='google-site-verification' content='D1nHMHh85FL0jJR0fPPAUxSNkNGX2bSUqKg0EODKeQc' />
 				<GoogleAnalytics />
 			</head>
 			<body className={`${geistSans.variable} ${geistMono.variable} ${satisfy.variable} `}>
-				<AllProviders>{children}</AllProviders>
+				<AllProviders>
+					{children}
+
+					<Footer />
+				</AllProviders>
 			</body>
 		</html>
 	);

@@ -1,4 +1,4 @@
-export const langs = ['english', 'deutsch', 'arabic', 'français', 'русский', 'türkçe', 'italiano', 'español', 'polski', 'українська', 'nederlands'];
+export const langs = ['english', 'deutsch', 'arabic', 'français', 'русский', 'türkçe', 'italiano', 'español', 'polski', 'nederlands'];
 
 export const languages = [
 	{
@@ -46,11 +46,7 @@ export const languages = [
 		slug: 'polski',
 		flag: 'https://cdn.ipwhois.io/flags/pl.svg',
 	},
-	{
-		id: 'uk',
-		slug: 'українська',
-		flag: 'https://cdn.ipwhois.io/flags/ua.svg',
-	},
+
 	{
 		id: 'nl',
 		slug: 'nederlands',

@@ -94,7 +94,7 @@ const Hero = () => {
 				</SatisfyText>
 
 				<Link
-					href={''}
+					href={'#craft'}
 					className='block text-lg lowercase bg-white py-1 rounded-lg px-6 ring ring-cyan-400	 leading-tight shadow-xl mt-4 font-bold text-cyan-400'
 				>
 					PLAN NOW!

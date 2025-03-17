@@ -8,6 +8,10 @@ import ScreenLoading from '@/components/ScreenLoading';
 import ScreenError from '@/components/ScreenError';
 import Link from 'next/link';
 import Image from 'next/image';
+import Slider from 'react-slick';
+import { Tag } from 'antd';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
 
 const AttractionsList = () => {
 	const [page, setPage] = useState<number>(1);
@@ -28,24 +32,55 @@ const AttractionsList = () => {
 
 			<div className='flex flex-col  items-center justify-center max-w-5xl gap-8'>
 				{attractions.data.map((item: any) => {
+					const settings = {
+						dots: false,
+						infinite: true,
+						slidesToShow: 1,
+						slidesToScroll: 1,
+						autoplay: true,
+						speed: 1200,
+						autoplaySpeed: 3000,
+						cssEase: 'linear',
+					};
 					return (
 						<Link
-							className='flex flex-row w-full justify-end items-end gap-6 border-2 border-dashed border-cyan-400 px-6 py-5 rounded-xl overflow-hidden'
+							className='flex flex-col lg:flex-row w-full justify-end items-end gap-6 border-2 border-dashed border-cyan-400 px-6 py-5 rounded-xl overflow-hidden'
 							href={`/what-to-visit-in-albania/attractions/${item.slug}`}
 							key={item.id}
 						>
 							<Image src={item.cover.url} alt={item.name} width={360} height={260} className='bg-contain h-[260px] w-[360px] rounded-xl' />
 
-							<div className='flex flex-col  gap-3 md:gap-4 items-start w-[400px]'>
+							<div className='flex flex-col  gap-3 md:gap-4 items-start w-fit  md:w-[400px]'>
 								<div className='flex flex-wrap gap-3'>
-									{item.tags.split(' ').map((tag: any) => (
-										<div key={tag} className='px-2 py-1 rounded-md border block text-xs bg-cyan-100 italic'>
-											{tag}
-										</div>
-									))}
+									{item.tags !== null
+										? item.tags
+												.split(' ')
+												.slice(0, 3)
+												.map((tag: any) => (
+													<div key={tag} className='px-2 py-1 rounded-md border block text-xs bg-cyan-100 italic'>
+														{tag}
+													</div>
+												))
+										: ''}
 								</div>
 								<h2 className='text-xl font-semibold'>{item.name}</h2>
 								{item.seo !== null ? <p className='text-pretty'>{item.seo.metaDescription}</p> : ''}
+								<div className=''>
+									{item.tour_activities.length > 0 && (
+										<div className='flex flex-col w-[300px]'>
+											<h2>Activities: </h2>
+											<Slider {...settings}>
+												{item.tour_activities.map((activity: any) => (
+													<div key={activity.slug} className='w-full  flex justify-center  items-center'>
+														<div className='mx-0 flex justify-self-center'>
+															<Tag className='bg-orange-100 '>{activity.title}</Tag>
+														</div>
+													</div>
+												))}
+											</Slider>
+										</div>
+									)}
+								</div>
 							</div>
 						</Link>
 					);

@@ -8,6 +8,7 @@ import ScreenLoading from '@/components/ScreenLoading';
 import { useGetAttraction } from '@/hooks/useAttractions';
 import { fetchToursByAttractionSlug } from '@/lib/query/attractions';
 import { useQuery } from '@tanstack/react-query';
+import { Tag } from 'antd';
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
@@ -67,13 +68,13 @@ const AttractionDetailsPage = ({ slug }: { slug: string }) => {
 						<Image src={url} alt='' width={width} height={height} className='bg-cover' />
 					</div>
 				</div>
-				<div className='flex flex-wrap gap-3 pl-6 pr-0 md:pr-40'>
+				<div className='flex flex-wrap gap-2 px-6'>
 					{tags !== null &&
 						tags.length > 0 &&
-						tags.split(' ').map((tag: string) => (
-							<div key={tag} className='border rounded-md px-2 py-1 bg-gray-100 text-stone-800 italic text-sm'>
+						tags.split(',').map((tag: string) => (
+							<Tag key={tag} className=''>
 								{tag}
-							</div>
+							</Tag>
 						))}
 				</div>
 

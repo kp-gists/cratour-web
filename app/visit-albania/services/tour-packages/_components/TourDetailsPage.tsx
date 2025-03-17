@@ -50,22 +50,20 @@ const TourDetailsPage = () => {
 	} = tourPackage;
 
 	return (
-		<>
-			<div className='p-2 md:p-6 max-w-6xl flex flex-col justify-center items-center  mx-auto pb-10 gap-5'>
-				<TourHero categories={categories} title={title} cover={cover} days={totalDays} subtitle={subtitle} />
+		<div className='p-2 md:p-6 overflow-hidden max-w-6xl flex flex-col justify-center items-center  mx-auto pb-10 gap-5'>
+			<TourHero categories={categories} title={title} cover={cover} days={totalDays} subtitle={subtitle} />
 
-				<TourDescription desc={desc} content={content} />
-				<TourDetails age={age} group={groupSize} />
-				<TourAttractions attractions={attractions} />
-				<MapItinerary items={itinerary} title={title} />
-				<Highlights highlights={highlights} />
-				<Timeline routes={routes} />
-				<MoreDescription content={content} />
-				{/* <WhatsIncluded /> */}
-				<Gallery gallery={gallery} title='Tour Gallery Photos: ' />
-				<Gallery gallery={customerPhotos} title='Photos From Our Customers: ' />
-			</div>
-		</>
+			<TourDescription desc={desc} content={content} />
+			<TourDetails age={age} group={groupSize} />
+			<TourAttractions attractions={attractions} />
+			<MapItinerary items={itinerary} title={title} />
+			<Highlights highlights={highlights} />
+			<Timeline routes={routes} />
+			<MoreDescription content={content} />
+			{/* <WhatsIncluded /> */}
+			<Gallery gallery={gallery} title='Tour Gallery Photos: ' />
+			<Gallery gallery={customerPhotos} title='Photos From Our Customers: ' />
+		</div>
 	);
 };
 

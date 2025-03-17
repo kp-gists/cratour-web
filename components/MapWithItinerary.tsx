@@ -94,6 +94,7 @@ const MapWithItinerary = ({ items, height = 400 }: Props) => {
 										</div>`,
 					})}
 				>
+					{/* TODO add the city card */}
 					<Popup>{dest.name}</Popup>
 				</Marker>
 			))}

@@ -22,6 +22,8 @@ const DynamicLanguagePage = () => {
 		}
 	}, [lang, router]);
 
+	// TODO add the languages to each component
+
 	return (
 		<div className='w-full flex justify-center items-center  flex-col pb-10  h-full overflow-y-scroll '>
 			{/* TODO landing */}
