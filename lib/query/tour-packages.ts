@@ -61,6 +61,27 @@ export const fetchAllPackages = async ({ page = 1, pageSize = 25, sort = 'desc' 
 		.then((res) => res.data)
 		.catch((e) => console.log('🚀 ~ fetch cities ~ e:', e));
 };
+export const fetchAllPackagesInfinite = async ({ pageParam, sort }: any) => {
+	console.log('🚀 ~ fetchAllPackagesInfinite ~ sort:', sort);
+	const query = qs.stringify(
+		{
+			populate: '*',
+			pagination: {
+				page: pageParam,
+				pageSize: 10,
+			},
+			// sort: [`publishedAt:${sort}`],
+		},
+		{
+			encodeValuesOnly: true,
+		},
+	);
+
+	return axios
+		.get(`${apiUrl}/tour-packages?${query}`)
+		.then((res) => res.data)
+		.catch((e) => console.log('🚀 ~ fetch cities ~ e:', e));
+};
 
 export const fetchPackageDetailsBySlug = async (slug: string) => {
 	const query = qs.stringify(

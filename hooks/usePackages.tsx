@@ -1,5 +1,5 @@
-import { useQuery } from '@tanstack/react-query';
-import { fetchAllPackages, fetchPackageDetailsBySlug } from '@/lib/query/tour-packages';
+import { useInfiniteQuery, useQuery } from '@tanstack/react-query';
+import { fetchAllPackages, fetchPackageDetailsBySlug, fetchAllPackagesInfinite } from '@/lib/query/tour-packages';
 import { Pagination } from '@/types/common';
 import { useEffect, useState } from 'react';
 
@@ -20,6 +20,21 @@ export const useGetAllPackages = ({ page, pageSize }: Pagination) => {
 		isErrorTour,
 		errorTour,
 		refetchTours,
+	};
+};
+
+export const useInfinitePackages = () => {
+	const { data, status } = useInfiniteQuery({
+		queryKey: ['qk_packages_infinite'],
+		queryFn: (props: any) => fetchAllPackagesInfinite(props),
+		getNextPageParam: (lastPage) => {
+			return lastPage;
+		},
+		initialPageParam: 1,
+	});
+	console.log('🚀 ~ useInfinitePackages ~ data:', data, status);
+	return {
+		data,
 	};
 };
 
