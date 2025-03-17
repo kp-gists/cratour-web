@@ -33,7 +33,7 @@ const GET_ATTRACTIONS = gql`
 
 const AttractionsList = () => {
 	const [page, setPage] = useState<number>(1);
-	const [pageSize, setPageSize] = useState<number>(50);
+	const [pageSize, setPageSize] = useState<number>(10);
 
 	const { attractions, isError, isLoading, error } = useGetAllAttractions({ page, pageSize });
 

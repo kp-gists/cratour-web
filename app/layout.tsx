@@ -53,6 +53,7 @@ export default function RootLayout({
 				<meta name='google-site-verification' content='D1nHMHh85FL0jJR0fPPAUxSNkNGX2bSUqKg0EODKeQc' />
 				<GoogleAnalytics />
 				<link rel='stylesheet' type='text/css' charSet='UTF-8' href='https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css' />
+				<link rel='icon' href='/favicon.ico' />
 				<link rel='stylesheet' type='text/css' href='https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css' />
 			</head>
 			<body className={`${geistSans.variable} ${geistMono.variable} ${satisfy.variable} `}>

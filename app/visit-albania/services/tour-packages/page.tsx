@@ -11,7 +11,7 @@ import React, { useState } from 'react';
 const TourPackagesPage = () => {
 	const [page, setPage] = useState<number>(1);
 	const [sort, setSort] = useState<'asc' | 'desc'>('desc');
-	const [pageSize, setPageSize] = useState<number>(25);
+	const [pageSize, setPageSize] = useState<number>(10);
 
 	// TODO filters & pagination
 	const { isLoadingTours, isErrorTour, tours, errorTour, refetchTours } = useGetAllPackages({ page, pageSize });

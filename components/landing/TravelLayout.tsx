@@ -117,7 +117,7 @@ const TravelLayout = () => {
 				<Image src={images.pinBig} width={36} height={49} className='absolute bottom-9 -left-6  ' alt='line city' />
 			</div>
 
-			<Link href={'/visit-albania/tour-packages'} className='hidden md:flex flex-row absolute bottom-10 md:left-[60%] lg:left-[45%]'>
+			<Link href={'/visit-albania/services/tour-packages'} className='hidden md:flex flex-row absolute bottom-10 md:left-[60%] lg:left-[45%]'>
 				<div className='flex justify-center items-center flex-col gap-1 relative z-20 md:gap-2 w-[220px] h-[170px] p-2 border-2 border-white bg-cyan-200 rounded-lg'>
 					<RobotoText className='text-xl md:text-3xl text-center font-bold text-primary-400'>33+</RobotoText>
 					<SatisfyText className='text-center'>curated tour packages tailored to your interests..</SatisfyText>
