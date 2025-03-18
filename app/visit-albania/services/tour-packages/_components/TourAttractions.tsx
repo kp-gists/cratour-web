@@ -25,7 +25,7 @@ const TourAttractions = ({ attractions }: Props) => {
 						<CarouselItem key={item.slug} className='basis-full md:basis-1/2 lg:basis-1/3'>
 							<Link href={`/what-to-visit-in-albania/attractions/${item.slug}`} className='p-1 flex flex-col gap-4 '>
 								<Image
-									src={item!.cover!.formats!.small!.url}
+									src={item!.cover!.url}
 									width={250}
 									height={185}
 									alt={item.slug}

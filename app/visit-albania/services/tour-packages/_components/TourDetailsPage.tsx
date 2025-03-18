@@ -1,7 +1,6 @@
 /* eslint-disable no-unused-vars */
 'use client';
 
-import { useGetTourPackage } from '@/hooks/usePackages';
 import React from 'react';
 import TourHero from './TourHero';
 import TourDescription from './TourDescription';
@@ -16,22 +15,106 @@ import ScreenLoading from '@/components/ScreenLoading';
 import ScreenErrorItem from '@/components/ScreenErrorItem';
 import ScreenError from '@/components/ScreenError';
 import { useParams } from 'next/navigation';
+import { gql, useQuery } from '@apollo/client';
+
+export const GET_TOUR = gql`
+	query TourPackageBySlug($slug: String!) {
+		tourPackages(filters: { slug: { eq: $slug } }) {
+			slug
+			title
+			subtitle
+			age
+			groupSize
+			isFeatured
+			highlights {
+				isNew
+				id
+				description
+				text
+				icon {
+					url
+				}
+			}
+			desc
+			content
+			totalDays
+			cover {
+				url
+			}
+			itenerary {
+				city {
+					title
+					# lat
+					# long
+					cover {
+						url
+					}
+				}
+				order
+			}
+			categories {
+				slug
+				title
+				icon {
+					url
+				}
+			}
+			customerPhotos {
+				url
+			}
+			gallery {
+				url
+				documentId
+				hash
+			}
+			routes {
+				days
+				id
+				cover {
+					url
+				}
+				title
+				routeItem {
+					desc
+					id
+					stayingTime
+					title
+				}
+				cities {
+					# lat
+					# lng
+					title
+					slug
+					desc
+				}
+			}
+			attractions {
+				slug
+				name
+				cover {
+					url
+				}
+			}
+		}
+	}
+`;
 
 const TourDetailsPage = () => {
 	const params = useParams();
 	const slug = params?.slug;
 
-	const { tourPackage, isErrorTour, loadingTour } = useGetTourPackage(slug as string);
+	const { data, loading, error } = useQuery(GET_TOUR, {
+		variables: { slug },
+	});
 
-	if (loadingTour) return <ScreenLoading text='Loading Tour Package details...' />;
-	if (!tourPackage) return <ScreenLoading text='Loading Tour Package details...' />;
-	if (isErrorTour) return <ScreenError />;
+	if (loading) return <ScreenLoading text='Loading Tour Package details...' />;
+	if (error) return <ScreenError />;
 
-	if (!tourPackage && !loadingTour && !isErrorTour)
+	if (!data.tourPackages.length && !loading && !loading)
 		return <ScreenErrorItem buttonLabel='All Tours' buttonLink='/visit-albania/services/tour-packages' message='Tour not found!' />;
 
 	const { categories, cover, title, totalDays, subtitle, desc, age, attractions, content, customerPhotos, gallery, groupSize, highlights, isFeatured, routes } =
-		tourPackage;
+		data.tourPackages[0];
 
 	return (
 		<div className='p-2 md:p-6 overflow-hidden max-w-6xl flex flex-col justify-center items-center  mx-auto pb-10 gap-5'>
@@ -40,7 +123,7 @@ const TourDetailsPage = () => {
 			<TourDescription desc={desc} content={content} />
 			<TourDetails age={age} group={groupSize} />
 			<TourAttractions attractions={attractions} />
-			{/* <MapItinerary items={itinerary} title={title} /> */}
+			{/* <MapItinerary items={itenerary} title={title} /> */}
 			<Highlights highlights={highlights} />
 			<Timeline routes={routes} />
 			<MoreDescription content={content} />

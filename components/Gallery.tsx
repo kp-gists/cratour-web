@@ -30,7 +30,7 @@ const Gallery = ({ gallery, title = 'Gallery:' }: Props) => {
 		});
 	}, [api]);
 
-	if (!gallery) return;
+	if (!gallery.length) return;
 
 	return (
 		<div className='flex flex-col justify-center items-start gap-4 md:gap-6  w-full px-8 md:px-16'>
@@ -44,7 +44,7 @@ const Gallery = ({ gallery, title = 'Gallery:' }: Props) => {
 			>
 				<CarouselContent>
 					{gallery.map((item) => (
-						<CarouselItem key={item.id} className='basis-full md:basis-1/2 lg:basis-1/3'>
+						<CarouselItem key={item.documentId} className='basis-full md:basis-1/2 lg:basis-1/3'>
 							<Link href={item.url} target='_blank' className='p-1 flex flex-col gap-4 '>
 								<Image
 									src={item.url}

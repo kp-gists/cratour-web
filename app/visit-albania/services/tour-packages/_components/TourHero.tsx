@@ -39,7 +39,7 @@ const TourHero = ({ title, categories, cover, days, subtitle }: Props) => {
 				{categories.map((category) => (
 					<Link
 						key={category.slug}
-						href={`/what-to-visit-in-albania/category/${category.documentId}`}
+						href={`/what-to-visit-in-albania/category/${category.slug}`}
 						target='_blank'
 						className='flex md:flex-row gap-2 px-2 md:px-4 py-1 md:py-2 bg-gray-100 items-center rounded-lg'
 					>

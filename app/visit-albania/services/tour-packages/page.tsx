@@ -3,12 +3,9 @@
 
 import ScreenError from '@/components/ScreenError';
 import ScreenLoading from '@/components/ScreenLoading';
-import { useGetAllPackages, useInfinitePackages } from '@/hooks/usePackages';
 import { fetchAllPackagesInfinite } from '@/lib/query/tour-packages';
 import { useInfiniteQuery } from '@tanstack/react-query';
-import { Button, Spin } from 'antd';
-import Image from 'next/image';
-import Link from 'next/link';
+import { Spin } from 'antd';
 import React, { useEffect, useState } from 'react';
 import { useInView } from 'react-intersection-observer';
 import TourCard from './_components/TourCard';
@@ -55,7 +52,7 @@ const TourPackagesPage = () => {
 					}),
 				)}
 			</div>
-			{/* <Button ref={ref} disabled={!hasNextPage} loading={isFetchingNextPage} onClick={() => fetchNextPage()}></Button> */}
+
 			{isFetchingNextPage && <Spin className='my-10' />}
 		</div>
 	);

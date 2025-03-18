@@ -38,7 +38,7 @@ const ItineraryCard = ({ dir, title, desc, cover, isLast = false, cities, items 
 					<DialogDescription className='w-full max-w-screen-lg p-6 overflow-y-auto max-h-[80vh]'>
 						<div className='flex flex-col gap-4 md:gap-8'>
 							{cities.map((city) => (
-								<CityCard key={city.id} city={city} />
+								<CityCard key={city.slug} city={city} />
 							))}
 						</div>
 					</DialogDescription>
@@ -150,7 +150,7 @@ const Timeline = ({ routes }: Props) => {
 			<div className='relative flex flex-col items-center'>
 				{transformed.map((item, idx) => (
 					<ItineraryCard
-						key={item.id}
+						key={item.title}
 						cities={item.cities}
 						isLast={idx === routes.length - 1}
 						cover={item.cover}
