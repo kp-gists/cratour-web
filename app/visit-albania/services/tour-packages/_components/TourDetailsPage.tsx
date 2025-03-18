@@ -30,24 +30,8 @@ const TourDetailsPage = () => {
 	if (!tourPackage && !loadingTour && !isErrorTour)
 		return <ScreenErrorItem buttonLabel='All Tours' buttonLink='/visit-albania/services/tour-packages' message='Tour not found!' />;
 
-	const {
-		categories,
-		cover,
-		title,
-		totalDays,
-		subtitle,
-		desc,
-		age,
-		attractions,
-		content,
-		customerPhotos,
-		gallery,
-		groupSize,
-		highlights,
-		isFeatured,
-		itinerary,
-		routes,
-	} = tourPackage;
+	const { categories, cover, title, totalDays, subtitle, desc, age, attractions, content, customerPhotos, gallery, groupSize, highlights, isFeatured, routes } =
+		tourPackage;
 
 	return (
 		<div className='p-2 md:p-6 overflow-hidden max-w-6xl flex flex-col justify-center items-center  mx-auto pb-10 gap-5'>
@@ -56,7 +40,7 @@ const TourDetailsPage = () => {
 			<TourDescription desc={desc} content={content} />
 			<TourDetails age={age} group={groupSize} />
 			<TourAttractions attractions={attractions} />
-			<MapItinerary items={itinerary} title={title} />
+			{/* <MapItinerary items={itinerary} title={title} /> */}
 			<Highlights highlights={highlights} />
 			<Timeline routes={routes} />
 			<MoreDescription content={content} />

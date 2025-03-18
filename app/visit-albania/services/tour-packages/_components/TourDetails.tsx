@@ -10,7 +10,7 @@ const TourDetails = ({ age, group }: Props) => {
 	const items = [
 		{
 			id: 'tour-guide',
-			image: '/png/group.png',
+			image: '/png/tour-guide.png',
 			title: 'Tour Guide',
 			subtitle: 'Esclusive, well-detailed and making memories',
 		},

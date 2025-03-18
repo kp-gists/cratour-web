@@ -11,6 +11,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
 import { useInView } from 'react-intersection-observer';
+import TourCard from './_components/TourCard';
 
 const TourPackagesPage = () => {
 	const [page, setPage] = useState<number>(1);
@@ -40,46 +41,17 @@ const TourPackagesPage = () => {
 	if (status === 'error') return <ScreenError />;
 
 	return (
-		<div className='p-4 md:p-6 max-w-6xl flex flex-col justify-center items-center border mx-auto'>
+		<div className='md:p-6 max-w-6xl flex flex-col justify-center items-center mx-auto'>
 			<div>{/* Tours header */}</div>
 			<div>{/* Tour filters //TODO in future */}</div>
 
 			<div className=' max-w-6xl flex flex-wrap gap-8'>
 				{data.pages?.map((page) =>
 					page.data.map((tour: any, idx: number) => {
-						const publishDate = new Intl.DateTimeFormat('sq-AL', {
-							day: '2-digit',
-							month: '2-digit',
-							year: 'numeric',
-						}).format(new Date(tour.publishedAt));
-
 						if (page.data.length - 1 == idx) {
-							return (
-								<Link
-									href={`/visit-albania/services/tour-packages/${tour.slug}`}
-									key={tour.id}
-									className='flex flex-col gap-3 border rounded-2xl p-4 justify-center items-center'
-									ref={ref}
-								>
-									<h1>{tour.title}</h1>
-									{tour.cover && <Image src={tour.cover.url} alt='' width={330} height={220} />}
-									<p className='max-w-md'>{tour.desc}</p>
-									<div>{publishDate}</div>
-								</Link>
-							);
+							return <TourCard key={tour.slug} ref={ref} tour={tour} />;
 						}
-						return (
-							<Link
-								href={`/visit-albania/services/tour-packages/${tour.slug}`}
-								key={tour.id}
-								className='flex flex-col gap-3 border rounded-2xl p-4 justify-center items-center'
-							>
-								<h1>{tour.title}</h1>
-								{tour.cover && <Image src={tour.cover.url} alt='' width={330} height={220} />}
-								<p className='max-w-md'>{tour.desc}</p>
-								<div>{publishDate}</div>
-							</Link>
-						);
+						return <TourCard key={tour.slug} tour={tour} />;
 					}),
 				)}
 			</div>

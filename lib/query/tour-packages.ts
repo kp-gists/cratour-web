@@ -109,7 +109,6 @@ export const fetchPackageDetailsBySlug = async (slug: string) => {
 					fields: ['slug', 'name'],
 				},
 				highlights: { populate: '*' },
-				itinerary: { populate: '*' },
 				seo: {
 					populate: '*',
 				},
