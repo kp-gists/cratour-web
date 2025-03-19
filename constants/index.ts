@@ -81,3 +81,56 @@ export const logos = {
 	logoY: '/logo/logo-vertical.png',
 	icon: '/logo/cratour-icon.png',
 };
+
+export const business = {
+	desc: 'Cratour.al is a licensed travel company specializing in customized tours and private transfers across Albania. Founded by tourism expert Lulezim Marra, it offers authentic, stress-free journeys tailored to each traveler. With deep local knowledge and trusted partnerships, we ensure unforgettable experiences free from tourist traps.',
+	longDesc:
+		'Cratour.al is a fully licensed travel company specializing in customized tours and private transfers across Albania. Founded by Lulezim Marra, a seasoned content creator and tourism expert, Cratour.al is built on a deep passion for showcasing Albania’s rich history, culture, and landscapes. With years of experience working with international media and organizing tours, we offer travelers a unique, authentic, and stress-free journey—free from tourist traps and tailored to their needs. Whether it’s exploring hidden gems, enjoying seamless transportation, or experiencing local hospitality, Cratour.al ensures every trip is crafted with honesty, expertise, and care',
+};
+
+export const links = {
+	services: [
+		{
+			href: 'https://cratour.al/visit-albania/services/tour-packages',
+			title: 'Our Tours',
+		},
+		{
+			href: 'https://cratour.al/visit-albania/services/city-transfer',
+			title: 'Transfers',
+		},
+		{
+			href: 'https://cratour.al/visit-albania/services/medical-tourism',
+			title: 'Medical Tourism',
+		},
+		{
+			href: 'https://cratour.al/visit-albania/services/hotel-reservation',
+			title: 'Hotel Reservation',
+		},
+		{
+			href: 'https://cratour.al/visit-albania/services/rent-car',
+			title: 'Rent a car',
+		},
+	],
+	aboutUs: [
+		{
+			href: 'https://cratour.al/about-us',
+			title: 'Our Story',
+		},
+		{
+			href: 'https://cratour.al/visit-albania',
+			title: 'Visit Albania!',
+		},
+		{
+			href: 'https://cratour.al/contact',
+			title: 'Contact',
+		},
+		{
+			href: 'https://cratour.al/what-to-visit-in-albania/tour-experiences',
+			title: 'Tour Experiences',
+		},
+		{
+			href: 'https://cratour.al/what-to-visit-in-albania',
+			title: 'What to visit/to do in Albania',
+		},
+	],
+};

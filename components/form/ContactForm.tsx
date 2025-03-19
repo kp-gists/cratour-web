@@ -86,7 +86,7 @@ const ContactForm = ({ place = 'home' }: Props) => {
 	};
 
 	return (
-		<div className=' flex flex-col md:flex-col lg:flex-row justify-center items-center lg:items-start gap-4 md:gap-8 border-t-2 border-gray-200 pt-10 mt-16 w-full mx-auto max-w-[1200px] px-2 md:px-4'>
+		<div className=' flex flex-col md:flex-col lg:flex-row justify-center items-center lg:items-start gap-4 md:gap-8 border-t-2 border-gray-200 pt-10 mt-16 w-full mx-auto max-w-[1400px]  px-4 md:px-6 lg:px-8'>
 			<div className=' w-full flex flex-col  gap-3 md:gap-4 lg:gap-6 px-4 md:px-4 lg:px-0'>
 				<h1 className='text-2xl md:text-3xl font-bold w-fit lg:w-full md:text-wrap lg:text-nowrap flex flex-col md:flex-row gap-2'>
 					Cratour.al <br className='block md:hidden' />{' '}
