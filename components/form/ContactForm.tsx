@@ -7,6 +7,10 @@ import { useGetAllCities } from '@/hooks/useCities';
 import { useGetAllAttractions } from '@/hooks/useAttractions';
 import PlaceOptions from './PlaceOptions';
 import MultiplePlaceSelect from './PlaceOptions';
+import Link from 'next/link';
+import { logos } from '@/constants';
+import Image from 'next/image';
+import { contacts, contactsList } from '@/constants/contacts';
 
 const { Option } = Select;
 type Props = {
@@ -40,7 +44,7 @@ const ContactForm = ({ place = 'home' }: Props) => {
 		const placesList = data.places.map((place: string) => `<li>${place}</li>`).join('');
 		const notes = `<div>
             <div>
-              <p><strong>**Full Name:</strong> ${data.subject}</p>
+              <p><strong>**Subject:</strong> ${data.subject}</p>
               <p><strong>**Full Name:</strong> ${data.fullName}</p>
               <p><strong>**Phone:</strong> ${data.phone}</p>
               <p><strong>**People:</strong> ${data.group}</p>
@@ -82,11 +86,56 @@ const ContactForm = ({ place = 'home' }: Props) => {
 	};
 
 	return (
-		<div className=' flex flex-col md:flex-row justify-center items-center gap-3 mt-16 w-full mx-auto max-w-[1200px]'>
-			<div>
-				<h1>Contact Us</h1>
+		<div className=' flex flex-col md:flex-col lg:flex-row justify-center items-center lg:items-start gap-4 md:gap-8 border-t-2 border-gray-200 pt-10 mt-16 w-full mx-auto max-w-[1200px] px-2 md:px-4'>
+			<div className=' w-full flex flex-col  gap-3 md:gap-4 lg:gap-6 px-4 md:px-4 lg:px-0'>
+				<h1 className='text-2xl md:text-3xl font-bold w-fit lg:w-full md:text-wrap lg:text-nowrap flex flex-col md:flex-row gap-2'>
+					Cratour.al <br className='block md:hidden' />{' '}
+					<div className='flex gap-2'>
+						<span className='hidden md:block'> ~ </span> Crafting your visit ti Albania
+					</div>
+				</h1>
+
+				<p>
+					At Cratour.al, we specialize in crafting personalized tours for every traveler. From fully customized itineraries to exclusive local experiences, we
+					provide expert guidance throughout your journey in Albania. Whether it’s airport transfers, accommodation bookings, or unique cultural explorations,
+					we ensure every detail is tailored to your needs.
+				</p>
+
+				<p>
+					If you&apos;re planning a trip with family, friends, or a group, or if you&apos;re organizing a conference or event, we are here to help. Contact us,
+					and let us create the perfect itinerary for you, filled with authentic experiences and local charm.
+				</p>
+
+				<div className='my-2'>
+					<p className='pb-4'>
+						<Link href={'/contact'} className='pr-1 text-blue-600 font-semibold'>
+							Contact us!{' '}
+						</Link>
+						or send a message using the form
+					</p>
+
+					<div className='flex flex-col justify-center items-center md:flex-row md:justify-start  my-4 w-full overflow-visible'>
+						<Image src={logos.logoY} alt='' width={180} height={180} />
+
+						<div className='flex flex-col gap-1 items-start justify-start'>
+							{contactsList.map((c) => (
+								<Link
+									key={c.title}
+									target='_blank'
+									className='flex w-full  text-base gap-2 items-center hover:bg-cyan-100 hover:border-cyan-300 px-3 py-2 rounded-lg border border-transparent '
+									href={c.href}
+								>
+									<Image src={c.icon} alt='' width={24} height={24} />
+									<span className='font-semibold overflow-visible flex text-nowrap'>{c.title}:</span>
+									<span className='text-gray-600'>{c.label}</span>{' '}
+								</Link>
+							))}
+						</div>
+					</div>
+				</div>
 			</div>
 			<div>
+				<h1 className='text-xl font-semibold text-center mb-4'>Send us a message:</h1>
 				<Form
 					form={form}
 					layout='horizontal'
@@ -163,8 +212,8 @@ const ContactForm = ({ place = 'home' }: Props) => {
 					</Form.Item>
 
 					{/* Submit Button */}
-					<Form.Item className='flex justify-end'>
-						<Button disabled={isLoading} loading={isLoading} type='primary' htmlType='submit'>
+					<Form.Item className='flex justify-center w-full'>
+						<Button disabled={isLoading} className='w-[300px] px-10 md:w-fit' size='large' loading={isLoading} type='primary' htmlType='submit'>
 							Send a message
 						</Button>
 					</Form.Item>

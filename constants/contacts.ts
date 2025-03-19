@@ -12,4 +12,31 @@ export const contacts = {
 		textService: 'Greetings 👋!\nI am texting for the city transfer in Albania, I would like...',
 		icon: '/png/whatsapp.png',
 	},
+	email: {
+		address: 'cratour.al@gmail.com',
+		title: 'Email us',
+		icon: '/png/mail.png',
+	},
 };
+
+export const contactsList = [
+	{
+		href: 'tel:+355673434342',
+		title: 'Call us!',
+		icon: '/png/call-us.png',
+		label: '+355 67 34 34 34 2',
+	},
+	{
+		telNr: '355673434342',
+		href: 'https://wa.me/355673434342?text=Hey!',
+		title: 'Chat on whatsapp',
+		icon: '/png/whatsapp.png',
+		label: '+355673434342',
+	},
+	{
+		href: 'mailto:cratour.al@gmail.com',
+		title: 'Email us',
+		icon: '/png/mail.png',
+		label: 'cratour.al@gmail.com',
+	},
+];

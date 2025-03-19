@@ -75,3 +75,9 @@ export const cityActivities = [
 		icon: images.hiddenGems,
 	},
 ];
+
+export const logos = {
+	logoX: '/logo/logo-horizontal.png',
+	logoY: '/logo/logo-vertical.png',
+	icon: '/logo/cratour-icon.png',
+};
