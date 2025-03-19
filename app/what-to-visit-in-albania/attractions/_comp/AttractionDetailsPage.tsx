@@ -71,7 +71,7 @@ const AttractionDetailsPage = ({ slug }: { slug: string }) => {
 				<div className='flex flex-wrap gap-2 px-6'>
 					{tags !== null &&
 						tags.length > 0 &&
-						tags.split(',').map((tag: string) => (
+						tags.split(' ').map((tag: string) => (
 							<Tag key={tag} className=''>
 								{tag}
 							</Tag>

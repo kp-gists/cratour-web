@@ -28,19 +28,20 @@ const Footer = ({}: Props) => {
 	return (
 		<div className='relative w-full  px-4 md:px-8 py-6 border-t-2 '>
 			<div className='max-w-[1200px] mx-auto gap-1  w-full flex flex-col justify-center items-center'>
-				<div className='flex flex-col md:gap-6 md:px-6 lg:flex-row justify-between items-center w-full'>
+				<div className='flex flex-col md:gap-6 md:px-6 lg:flex-row justify-between items-center lg:items-end w-full'>
 					<div className='w-[340px] md:w-full flex justify-center items-center flex-col md:items-start'>
 						<Image src={logos.logoX} width={200} height={200} alt='' />
-						<p className='text-sm'>{business.desc}</p>
+						<p className='text-sm md:text-base'>{business.desc}</p>
 					</div>
-					<div className='flex px-4 my-6 md:px-8 w-full flex-col md:flex-row md:justify-start lg:justify-center items-start md:items-center gap-4 md:gap-6 lg:gap-10'>
+					<div className='flex px-4 my-6 md:my-0 md:px-8 w-full flex-col md:flex-row md:justify-start lg:justify-center items-start md:items-center lg:items-end gap-4 md:gap-6 lg:gap-10'>
 						<div>
 							<h2 className='font-sans font-semibold text-lg mb-2'>Services:</h2>
 							<div className='pr-4 w-full md:w-full lg:w-[240px] '>
 								{links.services.map((link) => (
-									<Link className='text-base hover:font-semibold flex mb-1 flex-row gap-3 items-center group ' href={link.href} key={link.href}>
-										<Circle className='w-3 h-3  mr-1 text-cyan-400 group-hover:bg-cyan-400 rounded-full' /> <div>{link.title}</div>{' '}
-										<ArrowRight className='w-4 h-4 text-cyan-400 group-hover:ml-2' />
+									<Link className='text-base hover:font-semibold flex mb-1 flex-row items-center group ' href={link.href} key={link.href}>
+										<Circle className='w-3 h-3 mr-2 text-cyan-400 group-hover:bg-cyan-400 rounded-full' />
+										<div className='border-b-2  border-b-transparent hover:border-b-cyan-400'>{link.title}</div>
+										<ArrowRight className='w-4 h-4 text-cyan-400 ml-1 group-hover:ml-2' />
 									</Link>
 								))}
 							</div>
@@ -50,9 +51,10 @@ const Footer = ({}: Props) => {
 							<h2 className='font-sans font-semibold text-lg mb-2'>About us:</h2>
 							<div className='pr-4 w-full md:w-full lg:w-[320px]'>
 								{links.aboutUs.map((link) => (
-									<Link className='text-base mb-1 flex flex-row gap-1 items-center group hover:font-semibold ' href={link.href} key={link.href}>
-										<Circle className='w-3 h-3 text-cyan-400 mr-1 group-hover:bg-cyan-400 rounded-full' /> <div>{link.title}</div>{' '}
-										<ArrowRight className='w-4 h-4 text-cyan-400 group-hover:ml-2' />
+									<Link className='text-base mb-1 flex flex-row  items-center group hover:font-semibold ' href={link.href} key={link.href}>
+										<Circle className='w-3 h-3 text-cyan-400 mr-2 group-hover:bg-cyan-400 rounded-full' />
+										<div className='border-b-2  border-b-transparent hover:border-b-cyan-400'>{link.title}</div>
+										<ArrowRight className='w-4 h-4 text-cyan-400 ml-1 group-hover:ml-2' />
 									</Link>
 								))}
 							</div>

@@ -30,6 +30,7 @@ const Gallery = ({ gallery, title = 'Gallery:' }: Props) => {
 		});
 	}, [api]);
 
+	if (gallery == null) return;
 	if (!gallery.length) return;
 
 	return (
