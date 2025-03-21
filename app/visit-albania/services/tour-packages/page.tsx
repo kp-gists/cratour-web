@@ -67,10 +67,10 @@ const TourPackagesPage = () => {
 					/>
 					{/* Hover Overlay */}
 					<div
-						className='absolute inset-0 rounded-3xl bg-black bg-opacity-50 flex items-center justify-center 
+						className='absolute w-full h-full md:w-[600px] md:h-[600px] z-50 top-0 left-0 rounded-3xl bg-transparent bg-opacity-50 flex items-center justify-center 
                 transition-transform duration-300 scale-100 group-hover:scale-105'
 					>
-						<span className='text-white text-2xl font-bold'>Explore Cities</span>
+						<span className='text-white text-2xl font-bold hidden  group-hover:flex  group-hover:underline'>Explore Cities</span>
 					</div>
 				</div>
 			</Link>
