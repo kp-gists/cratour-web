@@ -6,6 +6,12 @@ import Link from 'next/link';
 import ToursList from './_components/ToursList';
 import CraftTourDrawer from '@/components/drawers/CraftTourDrawer';
 import Image from 'next/image';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+	title: 'Tour Packages',
+	description: 'Or Handpicked tour packages with cratour and can be modified and crafted and edited tours upon your needs',
+};
 
 const TourPackagesPage = () => {
 	return (
