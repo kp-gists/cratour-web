@@ -51,7 +51,7 @@ const TourPackagesPage = () => {
 			</div>
 			<Link href={'/what-to-visit-in-albania/cities'} className='relative group rounded-3xl'>
 				<Image
-					src='/png/albania-cities.png'
+					src='/png/albania-cities.webp'
 					width={600}
 					height={600}
 					alt='cratour visit albania cities'
