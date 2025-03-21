@@ -125,6 +125,45 @@ export const fetchPackageDetailsBySlug = async (slug: string) => {
 			console.log('🚀 ~ fetchPackageDetailsBySlug ~ error:', e);
 		});
 };
+export const fetchPackageDetailsById = async (id: string) => {
+	const query = qs.stringify(
+		{
+			populate: {
+				routes: { populate: '*' },
+				cover: { populate: '*' },
+				gallery: { populate: '*' },
+				customerPhotos: { populate: '*' },
+				categories: {
+					populate: {
+						icon: { fields: ['url'] },
+					},
+					fields: ['slug', 'title'],
+				},
+				attractions: {
+					populate: {
+						cover: {
+							fields: ['formats'],
+						},
+					},
+					fields: ['slug', 'name'],
+				},
+				highlights: { populate: '*' },
+				seo: {
+					populate: '*',
+				},
+			},
+		},
+		{
+			encodeValuesOnly: true,
+		},
+	);
+	return axios
+		.get(`${apiUrl}/tour-packages/${id}?${query}`)
+		.then((res) => res.data.data) // Assuming you get an array and only need the first result
+		.catch((e) => {
+			console.log('🚀 ~ fetchPackageDetailsBySlug ~ error:', e);
+		});
+};
 export const fetchSeoPackageDetailsBySlug = async (slug: string) => {
 	const query = qs.stringify(
 		{

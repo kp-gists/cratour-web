@@ -44,7 +44,7 @@ export const socials = [
 	{
 		displayName: 'Pinterest',
 		// TODO add correct social link
-		url: 'https://www.youtube.com/yourbusiness',
+		url: 'https://www.pinterest.com/yourbusiness',
 		subtitle: 'Pin your favorite on Pinterest',
 		icon: '/png/pinterest.png', // Replace with your icon path or component
 	},

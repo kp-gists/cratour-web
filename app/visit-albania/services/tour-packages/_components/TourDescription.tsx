@@ -15,7 +15,7 @@ const TourDescription = ({ desc, content }: Props) => {
 				<Dialog>
 					{content && (
 						<span className=''>
-							<DialogTrigger className='text-base hover:text-blue-600 hover:font-bold animate-pulse text-blue-800'>...quick look</DialogTrigger>
+							<DialogTrigger className='text-base hover:text-blue-600 hover:font-bold  text-blue-900'>...quick look</DialogTrigger>
 						</span>
 					)}
 					<DialogContent>

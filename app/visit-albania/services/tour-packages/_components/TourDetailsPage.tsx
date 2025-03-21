@@ -110,7 +110,7 @@ const TourDetailsPage = () => {
 	if (loading) return <ScreenLoading text='Loading Tour Package details...' />;
 	if (error) return <ScreenError />;
 
-	if (!data.tourPackages.length && !loading && !loading)
+	if (!data.tourPackages.length && !loading)
 		return <ScreenErrorItem buttonLabel='All Tours' buttonLink='/visit-albania/services/tour-packages' message='Tour not found!' />;
 
 	const { categories, cover, title, totalDays, subtitle, desc, age, attractions, content, customerPhotos, gallery, groupSize, highlights, isFeatured, routes } =

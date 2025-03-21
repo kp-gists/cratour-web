@@ -32,7 +32,14 @@ const TourHero = ({ title, categories, cover, days, subtitle }: Props) => {
 				</div>
 			</div>
 			<div className='w-full  lg:w-[915px] h-[260px] lg:h-[515px] relative overflow-hidden rounded-3xl shadow'>
-				<Image src={cover.url} alt='' fill />
+				<Image
+					src={cover.url}
+					alt=''
+					width={915}
+					height={515}
+					className='w-full  bg-cover  lg:w-[915px] h-[260px] md:h-[400px] md:w-[800px] lg:h-[515px]'
+					priority
+				/>
 			</div>
 
 			<div className='flex flex-wrap gap-x-1 gap-y-2 md:gap-4  w-full '>
@@ -43,7 +50,7 @@ const TourHero = ({ title, categories, cover, days, subtitle }: Props) => {
 						target='_blank'
 						className='flex md:flex-row gap-2 px-2 md:px-4 py-1 md:py-2 bg-gray-100 items-center rounded-lg'
 					>
-						<Image src={category.icon.url} alt={category.slug} width={24} height={24} className='w-4 h-4 md:w-6 md:h-6' />
+						{category.icon ? <Image src={category.icon.url} alt={category.slug} width={24} height={24} className='w-4 h-4 md:w-6 md:h-6' /> : ''}
 
 						<span className='capitalize text-sm md:text-base  leading-6'>{category.title}</span>
 					</Link>

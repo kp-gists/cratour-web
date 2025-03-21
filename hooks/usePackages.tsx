@@ -1,5 +1,5 @@
 import { useInfiniteQuery, useQuery } from '@tanstack/react-query';
-import { fetchAllPackages, fetchPackageDetailsBySlug, fetchAllPackagesInfinite } from '@/lib/query/tour-packages';
+import { fetchAllPackages, fetchPackageDetailsBySlug, fetchAllPackagesInfinite, fetchPackageDetailsById } from '@/lib/query/tour-packages';
 import { Pagination } from '@/types/common';
 import { useEffect, useState } from 'react';
 
@@ -32,9 +32,9 @@ export const useInfinitePackages = () => {
 		},
 		initialPageParam: 1,
 	});
-	console.log('🚀 ~ useInfinitePackages ~ data:', data, status);
 	return {
 		data,
+		status,
 	};
 };
 
@@ -49,6 +49,27 @@ export function useGetTourPackage(slug: string) {
 		queryKey: ['qk_package', slug],
 		queryFn: () => fetchPackageDetailsBySlug(slug),
 		enabled: isClient && !!slug, // ✅ Fetch only on client & when slug exists
+	});
+
+	return {
+		tourPackage: query.data,
+		loadingTour: query.isLoading,
+		isErrorTour: query.isError,
+		errorTour: query.error,
+		refetchTour: query.refetch,
+	};
+}
+export function useGetTourPackageById(id: string) {
+	const [isClient, setIsClient] = useState(false);
+
+	useEffect(() => {
+		setIsClient(true);
+	}, []);
+
+	const query = useQuery({
+		queryKey: ['qk_package_id', id],
+		queryFn: () => fetchPackageDetailsById(id),
+		enabled: isClient && !!id, // ✅ Fetch only on client & when id exists
 	});
 
 	return {

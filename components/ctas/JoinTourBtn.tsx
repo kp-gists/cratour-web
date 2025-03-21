@@ -1,11 +1,10 @@
 'use client';
 
 import React, { useState } from 'react';
-import { Form, Input, DatePicker, InputNumber, Drawer, Button, Select } from 'antd';
+import { Form, Input, DatePicker, InputNumber, Drawer, Button, Select, message } from 'antd';
 import { createWhatsappHref } from '@/lib/whatsapp';
 import { contacts } from '@/constants/contacts';
 import { useRouter } from 'next/navigation';
-import { toast, ToastContainer } from 'react-toastify';
 
 const { Option } = Select;
 
@@ -22,6 +21,20 @@ const JoinTourBtn = ({ label, slug, title, id, order }: Props) => {
 	const [open, setOpen] = useState(false);
 	const [isLoading, setIsLoading] = useState(false);
 	const router = useRouter();
+	const [messageApi, contextHolder] = message.useMessage();
+	const success = () => {
+		messageApi.open({
+			type: 'success',
+			content: 'Message was sent, check your email inbox for any the response!',
+		});
+	};
+
+	const errorMessage = () => {
+		messageApi.open({
+			type: 'error',
+			content: 'Sorry! Message was not sent!',
+		});
+	};
 
 	const [form] = Form.useForm();
 	const [mode, setType] = useState<'email' | 'whatsapp'>('email');
@@ -34,6 +47,8 @@ const JoinTourBtn = ({ label, slug, title, id, order }: Props) => {
 	};
 
 	const onFinish = (data: any) => {
+		setIsLoading(true);
+
 		const message = `Pershendetje, I would like to request a price for a transfer.
     Here are my details:
     - **Email:** ${data.email}
@@ -45,8 +60,6 @@ const JoinTourBtn = ({ label, slug, title, id, order }: Props) => {
     Please provide me with the pricing details. Looking forward to your response. Thank you!`;
 
 		if (mode === 'whatsapp') {
-			setIsLoading(true);
-
 			const text = encodeURIComponent(message);
 			const ref = createWhatsappHref(contacts.whatsapp.telNr, text);
 			router.push(ref, {});
@@ -93,11 +106,11 @@ const JoinTourBtn = ({ label, slug, title, id, order }: Props) => {
 					return res.json();
 				})
 				.then(() => {
-					toast.success('Message was sent, check your email inbox for any the response of your request');
+					success();
 				})
 				.catch((error) => {
 					console.log('🚀 ~ handleSubmit ~ error:', error);
-					toast.error('Sorry! Message was not sent!');
+					errorMessage();
 				})
 				.finally(() => {
 					setIsLoading(false);
@@ -189,7 +202,7 @@ const JoinTourBtn = ({ label, slug, title, id, order }: Props) => {
 						</button>
 					</div>
 				</Form>
-				<ToastContainer />
+				{contextHolder}
 			</Drawer>
 		</div>
 	);

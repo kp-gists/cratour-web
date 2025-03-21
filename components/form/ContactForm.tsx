@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import { Form, Input, InputNumber, Select, Button } from 'antd';
-import { toast, ToastContainer } from 'react-toastify';
+import { Bounce, toast, ToastContainer } from 'react-toastify';
 import { useGetAllCities } from '@/hooks/useCities';
 import { useGetAllAttractions } from '@/hooks/useAttractions';
 import PlaceOptions from './PlaceOptions';
@@ -219,7 +219,7 @@ const ContactForm = ({ place = 'home' }: Props) => {
 					</Form.Item>
 				</Form>
 			</div>
-			<ToastContainer />
+			<ToastContainer transition={Bounce} autoClose={2000} closeOnClick />
 		</div>
 	);
 };

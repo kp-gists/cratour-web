@@ -2,7 +2,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { ToastContainer, toast } from 'react-toastify';
+import { Bounce, ToastContainer, toast } from 'react-toastify';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
@@ -247,7 +247,7 @@ const Contact = () => {
 					</Button>
 				</form>
 			</Form>
-			<ToastContainer />
+			<ToastContainer transition={Bounce} autoClose={2000} closeOnClick />
 		</div>
 	);
 };

@@ -13,7 +13,7 @@ import { DatePickerDemo } from './ui/DatePicker';
 import Image from 'next/image';
 import { images } from '@/constants/images';
 import useHash from '@/hooks/useHash';
-import { ToastContainer, toast } from 'react-toastify';
+import { Bounce, ToastContainer, toast } from 'react-toastify';
 
 import { cn } from '@/lib/utils';
 import { useRouter } from 'next/navigation';
@@ -544,7 +544,7 @@ Please provide me with the pricing details. Looking forward to your response. Th
 					</div>
 				</form>
 			</Form>
-			<ToastContainer />
+			<ToastContainer transition={Bounce} autoClose={2000} closeOnClick />
 		</div>
 	);
 };

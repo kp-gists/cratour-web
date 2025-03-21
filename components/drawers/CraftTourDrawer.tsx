@@ -2,8 +2,8 @@
 
 import React, { useState } from 'react';
 import CraftTourForm from '../form/CraftTourForm';
-import { Button, Drawer, Modal, Space } from 'antd';
-import { PencilRuler, PlusIcon } from 'lucide-react';
+import { Button, Drawer } from 'antd';
+import { PencilRuler } from 'lucide-react';
 
 type Props = {
 	page?: string;
@@ -11,8 +11,6 @@ type Props = {
 
 const CraftTourDrawer = (props: Props) => {
 	const [open, setOpen] = useState(false);
-	const [openModal, setOpenModal] = useState(false);
-
 	const showDrawer = () => {
 		setOpen(true);
 	};
@@ -27,7 +25,7 @@ const CraftTourDrawer = (props: Props) => {
 			</Button>
 			<Drawer
 				title='Create your own Tour'
-				width={720}
+				width={760}
 				size='large'
 				onClose={onClose}
 				open={open}

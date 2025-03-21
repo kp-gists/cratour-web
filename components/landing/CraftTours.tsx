@@ -16,7 +16,6 @@ const CraftTours = () => {
 		page: 1,
 		pageSize: 50,
 	});
-	console.log('🚀 ~ CraftTours ~ tours:', isErrorTour, isLoadingTours, tours);
 
 	const settings = {
 		dots: true,
@@ -27,8 +26,8 @@ const CraftTours = () => {
 		autoplaySpeed: 800,
 		cssEase: 'linear',
 		slidesToShow: 1,
-		nextArrow: <NextArrow className='text-violet-600' />,
-		prevArrow: <PrevArrow className='text-violet-600' />,
+		// nextArrow: <NextArrow className='text-violet-600' />,
+		// prevArrow: <PrevArrow className='text-violet-600' />,
 	};
 	const categoriesSettings = {
 		dots: false,
@@ -50,7 +49,7 @@ const CraftTours = () => {
 						{isLoadingTours && <Spin />}
 						{isErrorTour && <></>}
 						{/* Display the tours in a carousel if they exist */}
-						<div className='w-[400px] md:w-[800px] '>
+						<div className='w-[400px] md:w-[800px] overflow-visible mx-10 relative  '>
 							{tours?.data && tours?.data.length > 0 && (
 								<Slider {...settings}>
 									{/* Todo add custom arrows */}
