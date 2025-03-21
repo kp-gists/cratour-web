@@ -49,17 +49,20 @@ const TourPackagesPage = () => {
 					<CraftTourDrawer />
 				</div>
 			</div>
-			<Link href={'/what-to-visit-in-albania/cities'} className='relative group rounded-3xl'>
-				<Image
-					src='/png/albania-cities.webp'
-					width={600}
-					height={600}
-					alt='cratour visit albania cities'
-					className='md:w-[600px] md:h-[600px] transition duration-300 group-hover:brightness-75 rounded-3xl'
-				/>
-				{/* Hover Overlay */}
-				<div className='absolute inset-0 rounded-3xl bg-black bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300'>
-					<span className='text-white text-2xl font-bold'>Explore Cities</span>
+			<Link href={'/what-to-visit-in-albania/cities'} className='relative group block w-[600px] h-[600px] rounded-3xl'>
+				<div className='relative w-full h-full'>
+					<Image
+						src='/png/albania-cities.webp'
+						width={600}
+						height={600}
+						alt='cratour visit albania cities'
+						priority
+						className='w-full h-full transition duration-300 group-hover:brightness-75 rounded-3xl'
+					/>
+					{/* Hover Overlay */}
+					<div className='absolute inset-0 rounded-3xl bg-black bg-opacity-50 flex items-center justify-center transition-opacity duration-300 opacity-100 group-hover:opacity-100'>
+						<span className='text-white text-2xl font-bold'>Explore Cities</span>
+					</div>
 				</div>
 			</Link>
 
