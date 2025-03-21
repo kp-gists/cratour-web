@@ -20,7 +20,7 @@ const CraftTourDrawer = (props: Props) => {
 	};
 	return (
 		<div>
-			<Button type='primary' className='text-lg ' size='large' onClick={showDrawer} icon={<PencilRuler className='w-4 h-4' />}>
+			<Button type='primary' style={{ height: 50 }} className='text-lg ' size='large' onClick={showDrawer} icon={<PencilRuler className='w-4 h-4' />}>
 				Craft your own Tour!
 			</Button>
 			<Drawer
@@ -34,6 +34,7 @@ const CraftTourDrawer = (props: Props) => {
 						paddingBottom: 40,
 					},
 				}}
+				className={open ? 'opacity-100' : 'opacity-0'}
 			>
 				<CraftTourForm onClose={onClose} />
 			</Drawer>
