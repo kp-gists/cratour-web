@@ -76,7 +76,7 @@ const JoinTourBtn = ({ label, slug, title, id, order }: Props) => {
             </a>
           </p>
           <p>Check tour Strapi CMS URL: 
-            <a href="https://test-cms-strapi-cra-tour-production.up.railway.app/admin/content-manager/collection-types/api::tour-package.tour-package/${id}" target="_blank">
+            <a href="https://cra-strapi-production-4d5a.up.railway.app/admin/content-manager/collection-types/api::tour-package.tour-package/${id}" target="_blank">
             ${order} -  ${title}
             </a>
           </p>
