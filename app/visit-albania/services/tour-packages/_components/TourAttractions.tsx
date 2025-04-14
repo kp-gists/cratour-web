@@ -24,13 +24,15 @@ const TourAttractions = ({ attractions }: Props) => {
 					{attractions.map((item) => (
 						<CarouselItem key={item.slug} className='basis-full md:basis-1/2 lg:basis-1/3'>
 							<Link href={`/what-to-visit-in-albania/attractions/${item.slug}`} className='p-1 flex flex-col gap-4 '>
-								<Image
-									src={item!.cover!.url}
-									width={250}
-									height={185}
-									alt={item.slug}
-									className='rounded-lg w-[300px] md:w-[250px] h-[225px] md:h-[185px] bg-contain'
-								/>
+								{item.cover && (
+									<Image
+										src={item!.cover!.url}
+										width={250}
+										height={185}
+										alt={item.slug}
+										className='rounded-lg w-[300px] md:w-[250px] h-[225px] md:h-[185px] bg-contain'
+									/>
+								)}
 								<p className='capitalize text-lg font-bold'>{item.name}</p>
 							</Link>
 						</CarouselItem>

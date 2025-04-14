@@ -19,11 +19,13 @@ const MultiplePlaceSelect = ({ cities, attractions, isError, loading, value, onC
 	if (loading) return <Spin />;
 	if (isError) return <Tag color='red'>Something went wrong please write the place in the message box</Tag>;
 
+	if (cities.length && !loading && !isError) return <Spin />;
+
 	const items = [...cities.data, ...attractions.data].map((item) => {
 		return {
 			value: item.slug,
 			label: item.title ? item.title : item.name,
-			url: item.cover.url,
+			url: item.cover ? item.cover.url : '',
 		};
 	});
 
