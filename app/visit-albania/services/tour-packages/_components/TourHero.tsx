@@ -31,13 +31,14 @@ const TourHero = ({ title, categories, cover, days, subtitle }: Props) => {
 					<li className='list-disc leading-6 ml-4'>{subtitle}</li>
 				</div>
 			</div>
-			<div className='w-full  lg:w-[915px] h-[260px] lg:h-[515px] relative overflow-hidden rounded-3xl shadow'>
+			<div className='w-full  lg:w-[915px] h-[260px] bg-white md:h-[400px] lg:h-[515px] relative overflow-hidden rounded-3xl shadow'>
 				<Image
 					src={cover.url}
 					alt=''
 					width={915}
 					height={515}
 					className='w-full  bg-cover  lg:w-[915px] h-[260px] md:h-[400px] md:w-[800px] lg:h-[515px]'
+					sizes='(max-width: 915px) 100vw, 50vw'
 					priority
 				/>
 			</div>
