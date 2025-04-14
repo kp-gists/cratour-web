@@ -157,6 +157,7 @@ export const fetchPackageDetailsById = async (id: string) => {
 			encodeValuesOnly: true,
 		},
 	);
+	console.log('asd', `tour-packages/${id}?${query}`);
 	return axios
 		.get(`${apiUrl}/tour-packages/${id}?${query}`)
 		.then((res) => res.data.data) // Assuming you get an array and only need the first result
