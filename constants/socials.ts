@@ -2,17 +2,15 @@
 export const socials = [
 	{
 		displayName: 'Facebook',
-		// TODO add correct social link
 
-		url: 'https://www.facebook.com/yourbusiness',
+		url: 'https://www.facebook.com/share/18JbnemcQh/',
 		subtitle: 'Connect with us on Facebook',
 		icon: '/png/facebook.png', // Replace with your icon path or component
 	},
 	{
 		displayName: 'Instagram',
-		// TODO add correct social link
 
-		url: 'https://www.instagram.com/yourbusiness',
+		url: 'https://www.instagram.com/cratour/',
 		subtitle: 'Follow us on Instagram',
 		icon: '/png/instagram.png', // Replace with your icon path or component
 	},
@@ -26,9 +24,8 @@ export const socials = [
 	},
 	{
 		displayName: 'YouTube',
-		// TODO add correct social link
 
-		url: 'https://www.youtube.com/yourbusiness',
+		url: 'https://www.youtube.com/@cratoural',
 		subtitle: 'Watch our videos on YouTube',
 		icon: '/png/youtube.png', // Replace with your icon path or component
 	},
@@ -43,8 +40,7 @@ export const socials = [
 
 	{
 		displayName: 'Pinterest',
-		// TODO add correct social link
-		url: 'https://www.pinterest.com/yourbusiness',
+		url: 'https://www.pinterest.com/cratoural/',
 		subtitle: 'Pin your favorite on Pinterest',
 		icon: '/png/pinterest.png', // Replace with your icon path or component
 	},

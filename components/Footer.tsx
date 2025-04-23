@@ -64,12 +64,12 @@ const Footer = ({}: Props) => {
 
 				<Divider className='bg-gray-400' />
 
-				<div className='flex flex-col md:flex-row justify-between items-start md:items-center gap-6 md:gap-8 w-full'>
+				<div className='flex flex-col lg:flex-row justify-between items-start md:items-center gap-6 md:gap-8 w-full px-1 lg:px-10'>
 					<div>
 						<h2 className='font-sans font-semibold text-lg mb-2'>Our Socials:</h2>
 						<div className='flex-wrap flex gap-3 md:flex-nowrap md:flex-row md:gap-3 justify-center items-center'>
 							{socials.map((s) => (
-								<Link href={s.url} className='flex justify-center items-center gap-2' key={s.url}>
+								<Link href={s.url} target='_blank' className='flex justify-center items-center gap-2' key={s.url}>
 									<Image src={s.icon} width={20} height={20} alt={s.displayName} />
 									<p>{s.displayName}</p>
 								</Link>

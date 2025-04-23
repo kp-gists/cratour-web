@@ -28,7 +28,7 @@ const TourCard = ({ ref, tour }: Props) => {
 						<p>Days: {tour.totalDays}</p>
 						<p>{publishDate}</p>
 					</div>
-					<CategoriesSlider items={tour.categories} />
+					<CategoriesSlider items={tour.hashtags} />
 					<TourDetailsLess age={tour.age} group={tour.groupSize} />
 				</div>
 			</div>

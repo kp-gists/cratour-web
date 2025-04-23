@@ -20,7 +20,7 @@ export const fetchAllCategories = async ({ page = 1, pageSize = 25, sort = 'asc'
 	);
 
 	return axios
-		.get(`${apiUrl}/categories?${query}`)
+		.get(`${apiUrl}/hashtags?${query}`)
 		.then((res) => res.data)
 		.catch((e) => console.log({ e }));
 };
@@ -38,7 +38,7 @@ export const fetchCategory = async (slug: string) => {
 	);
 
 	return axios
-		.get(`${apiUrl}/categories?${query}`)
+		.get(`${apiUrl}/hashtags?${query}`)
 		.then((res) => res.data.data[0])
 		.catch((e) => console.log({ e }));
 };
@@ -47,7 +47,7 @@ export const fetchToursByCategorySlug = async ({ slug, pagination: { page = 1, p
 	const query = QueryString.stringify(
 		{
 			filters: {
-				categories: {
+				hashtags: {
 					slug: { $eq: slug },
 				},
 			},

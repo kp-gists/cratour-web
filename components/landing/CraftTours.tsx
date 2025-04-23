@@ -77,7 +77,7 @@ const CraftTours = () => {
 
 														<div className='w-[260px] h-8 overflow-hidden py-2 px-4'>
 															<Slider {...categoriesSettings}>
-																{tour.categories.map((cat: any) => (
+																{tour.hashtags.map((cat: any) => (
 																	<div key={cat.slug}>
 																		<Tag className='bg-cyan-100'>{cat.title}</Tag>
 																	</div>

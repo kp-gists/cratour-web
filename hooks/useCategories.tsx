@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import { Pagination } from '@/types/common';
-import { fetchAllCategories, fetchToursByCategorySlug } from '@/lib/query/categories';
+import { fetchAllCategories, fetchToursByCategorySlug } from '@/lib/query/hashtags';
 
 export const useGetAllCategories = ({ page, pageSize, sort }: Pagination) => {
 	const {
