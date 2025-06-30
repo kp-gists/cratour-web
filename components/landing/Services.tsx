@@ -23,25 +23,27 @@ const Services = ({ lang = 'english' }: { lang?: LanguageKeys }) => {
 			</p>
 
 			<div className='flex flex-wrap justify-center items-center gap-8 px-3'>
-				{s.map((service) => (
-					<Link
-						href={`/visit-albania/services/${service.slug}`}
-						key={service.id}
-						className=' hover:-translate-y-2 w-full  md:w-[275px] px-3 py-6 border-2 border-dashed  border-cyan-400  rounded-xl flex justify-center items-center flex-col gap-3 '
-					>
-						<Image src={service.icon} width={80} height={80} alt={service.description} />
+				{s
+					.filter((i) => i.hideService !== true)
+					.map((service) => (
+						<Link
+							href={`/visit-albania/services/${service.slug}`}
+							key={service.id}
+							className=' hover:-translate-y-2 w-full  md:w-[275px] px-3 py-6 border-2 border-dashed  border-cyan-400  rounded-xl flex justify-center items-center flex-col gap-3 '
+						>
+							<Image src={service.icon} width={80} height={80} alt={service.description} />
 
-						<RobotoText as='h1' className='text-center w-full text-xl font-bold'>
-							{service.title}
-						</RobotoText>
+							<RobotoText as='h1' className='text-center w-full text-xl font-bold'>
+								{service.title}
+							</RobotoText>
 
-						<p className='text-center h-20'>{service.description}</p>
+							<p className='text-center h-20'>{service.description}</p>
 
-						<div onClick={() => router.push(`/visit-albania/services/${service.slug}`)}>
-							<SatisfyText className='text-cyan-600 hover:underline hover:font-bold text-xl'>{service.cta}</SatisfyText>
-						</div>
-					</Link>
-				))}
+							<div onClick={() => router.push(`/visit-albania/services/${service.slug}`)}>
+								<SatisfyText className='text-cyan-600 hover:underline hover:font-bold text-xl'>{service.cta}</SatisfyText>
+							</div>
+						</Link>
+					))}
 			</div>
 
 			<Link href={`/visit-albania/services`} className='block my-6'>

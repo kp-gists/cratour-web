@@ -8,7 +8,7 @@ import Link from 'next/link';
 
 const Hero = () => {
 	return (
-		<div className='relative w-full h-[80vh] md:h-[500px] overflow-hidden bg-cyan-100'>
+		<div className='relative w-full h-[85vh] md:h-[520px] overflow-show bg-cyan-100'>
 			{/* images absolute */}
 			<Image
 				src={images.leaveLeft}
@@ -40,20 +40,20 @@ const Hero = () => {
 				className='w-[225px] h-[223px] hidden lg:block z-20 absolute right-[350px] -top-14 animate-fadeIn'
 				style={{ animationDelay: '0.7s' }} // Add a delay
 			/>
-			<Image
-				src={images.busull}
+			{/* <Image
+				src={images.cratourIcon}
 				alt='busull'
 				width={170}
 				height={170}
 				className='w-[170px] h-[170px] hidden lg:block absolute z-20 left-[230px] top-[230px] animate-fadeIn'
 				style={{ animationDelay: '0.9s' }} // Add a delay
-			/>
+			/> */}
 			<Image
-				src={images.shell}
+				src={images.cratourIcon}
 				alt='shell'
 				width={126}
 				height={139}
-				className='w-[126px] h-[139px] absolute z-20 bottom-0 right-1/3 md:-bottom-5 md:right-[20%] lg:right-[15%] animate-fadeIn'
+				className='w-[126px] h-[126px] absolute z-20 bottom-4 right-1/3 md:-bottom-5 md:right-[20%] lg:right-[15%] animate-fadeIn'
 				style={{ animationDelay: '1.1s' }} // Add a delay
 			/>
 			<Image

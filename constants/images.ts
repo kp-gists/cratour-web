@@ -104,4 +104,8 @@ export const images = {
 	bStop: '/png/breakfast-stop.png',
 	flyPlane: '/png/flyPlane.png',
 	hourglassBlue: '/png/hourglassBlue.png',
+	conciergeService: '/png/concierge-service.png',
+	cratourIcon: '/logo/cratour-icon.png',
+	cratourLogoAxisX: '/logo/logo-horizontal.png',
+	cratourLogoAxisY: '/logo/logo-vertical.png',
 };

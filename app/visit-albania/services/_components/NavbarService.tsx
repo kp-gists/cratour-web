@@ -21,13 +21,15 @@ const NavbarService = () => {
 			<div className='hidden lg:block p-0 m-0 pt-4 md:pt-6 '>
 				<nav className='mx-auto w-fit h-full bg-white  rounded-full bg-clip-padding backdrop-filter backdrop-blur-md bg-opacity-40 border-2 border-cyan-200 flex flex-row shadow-xl justify-between items-center px-3 md:px-8 py-2 md:py-3  gap-6'>
 					<HomeLink styles='p-2 hover:bg-cyan-200 rounded-full' />
-					{services.english.map((service) => (
-						<Link href={`/visit-albania/services/${service.slug}`} key={service.id}>
-							<SatisfyText as='h3' className={`text-stone-900  ${currentService == service.slug ? ' px-4 py-2 bg-cyan-300 rounded-full' : ' px-4 py-2 '}`}>
-								{service.title}
-							</SatisfyText>
-						</Link>
-					))}
+					{services.english
+						.filter((s) => !s.hideService)
+						.map((service) => (
+							<Link href={`/visit-albania/services/${service.slug}`} key={service.id}>
+								<SatisfyText as='h3' className={`text-stone-900  ${currentService == service.slug ? ' px-4 py-2 bg-cyan-300 rounded-full' : ' px-4 py-2 '}`}>
+									{service.title}
+								</SatisfyText>
+							</Link>
+						))}
 				</nav>
 			</div>
 

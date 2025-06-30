@@ -1,8 +1,26 @@
+import { StaticImageData } from 'next/image';
 import { images } from './images';
 
 // TODO add the localization for each language
+type ServiceType = {
+	id: string;
+	title: string;
+	slug: string;
+	description: string;
+	icon: string | StaticImageData; // në varësi të mënyrës se si i importon ikonat
+	content: string;
+	whyUsTitle: string;
+	whyUsArr: string[];
+	cta: string;
+	cta2: string;
+	hideService?: boolean;
+};
+
+type ServicesByLanguageType = {
+	[key: string]: ServiceType[];
+};
 // !change to correct slug for each translation to be same as english
-export const services = {
+export const services: ServicesByLanguageType = {
 	english: [
 		{
 			id: 'service-1',
@@ -16,6 +34,7 @@ export const services = {
 			whyUsArr: ['Expertly crafted itineraries', 'Knowledgeable local tour guides', 'Flexible options for families, couples, and solo travelers'],
 			cta: '..more tours',
 			cta2: 'Explore More Tours',
+			hideService: false,
 		},
 		{
 			id: 'service-2',
@@ -29,6 +48,7 @@ export const services = {
 			whyUsArr: ['Airport to city transfers', 'Intercity connections', 'Private and group options'],
 			cta: '...more transfers',
 			cta2: 'Discover More Transfers',
+			hideService: false,
 		},
 		{
 			id: 'service-3',
@@ -42,6 +62,7 @@ export const services = {
 			whyUsArr: ['Access to affordable, high-quality medical care', 'Recover in serene and picturesque settings', 'Personalized support throughout your stay'],
 			cta: '..act now!',
 			cta2: 'Act Now for Medical Tourism',
+			hideService: true,
 		},
 		{
 			id: 'service-4',
@@ -55,6 +76,7 @@ export const services = {
 			whyUsArr: ['Access to exclusive deals', 'Personalized recommendations', 'Quick and hassle-free bookings'],
 			cta: '...book now!',
 			cta2: 'Book Your Hotel Now',
+			hideService: true,
 		},
 		{
 			id: 'service-5',
@@ -68,6 +90,32 @@ export const services = {
 			whyUsArr: ['Wide range of vehicle options', 'Affordable rates', 'Easy pick-up and drop-off locations'],
 			cta: '...rent now!',
 			cta2: 'Rent Your Car Today',
+			hideService: false,
+		},
+
+		{
+			id: 'service-6',
+			title: 'Concierge Service',
+			slug: 'concierge-service',
+			description: 'Premium travel support with personalized planning, real-time assistance, and curated experiences across Albania.',
+			icon: images.conciergeService,
+			content:
+				'Our travel concierge service ensures a seamless and stress-free experience throughout your journey in Albania. With deep expertise in the legal, cultural, and social aspects of traveling, we handle everything from planning to execution — so you can just enjoy. From booking activities to real-time VIP support, we’re with you at every step.',
+			whyUsTitle: 'Why Choose Our Travel Concierge:',
+			whyUsArr: [
+				'Drops you at the hotel with arranged transport',
+				'Provides real-time translator assistance when needed',
+				'Books restaurants and handles dietary preferences',
+				'Connects you with reliable local healthcare if needed',
+				'Solves complex or urgent issues on-the-go',
+				'Recommends cultural, historical, and hidden places to visit',
+				'Purchases tickets for local events and attractions',
+				'Ensures safety, legality, and comfort throughout the trip',
+				'24/7 VIP customer support during your stay',
+			],
+			cta: '...start your personalized adventure in Albania!',
+			cta2: 'Book Concierge Service',
+			hideService: false,
 		},
 	],
 	deutsch: [
