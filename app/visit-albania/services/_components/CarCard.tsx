@@ -127,6 +127,8 @@ const CarCard = ({
 						</div>
 					)}
 				</div>
+				{/* TODO add the action buttons */}
+				{/* whatsapp and email form */}
 			</Modal>
 		</div>
 	)
