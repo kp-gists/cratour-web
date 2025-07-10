@@ -1,4 +1,5 @@
-export const langs = ['english', 'deutsch', 'arabic', 'français', 'русский', 'türkçe', 'italiano', 'español', 'polski', 'nederlands'];
+export const langs = ['english', 'deutsch', 'arabic', 'français', 'русский', 'türkçe', 'italiano', 'español', 'polski', 'nederlands']
+export const languageIds = ['en', 'de', 'ar', 'fr', 'ru', 'tr', 'it', 'es', 'pl', 'nl']
 
 export const languages = [
 	{
@@ -52,4 +53,4 @@ export const languages = [
 		slug: 'nederlands',
 		flag: 'https://cdn.ipwhois.io/flags/nl.svg',
 	},
-];
+]

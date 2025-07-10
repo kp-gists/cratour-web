@@ -108,4 +108,5 @@ export const images = {
 	cratourIcon: '/logo/cratour-icon.png',
 	cratourLogoAxisX: '/logo/logo-horizontal.png',
 	cratourLogoAxisY: '/logo/logo-vertical.png',
-};
+	funnelX: '/svg/funnel-x.svg',
+}
