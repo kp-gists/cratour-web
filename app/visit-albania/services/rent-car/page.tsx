@@ -1,6 +1,6 @@
 'use client'
 
-import React from 'react'
+import React, { Suspense } from 'react'
 import Image from 'next/image'
 import { useGetCars } from '@/hooks/useGetCars'
 import { BadgeEuro, Sun, SlidersHorizontal, HeartPulse } from 'lucide-react'
@@ -97,8 +97,11 @@ const RentCarServicePage = () => {
 				<Image src='/webp/rent-car.webp' width={400} height={400} alt='rent a car with cratour' className='md:w-fit md:h-[600px]' />
 			</div>
 
-			{/* Cars Section */}
-			<CarsFilters />
+			<div className='mt-10'>
+				<Suspense fallback={<div>Loading filters...</div>}>
+					<CarsFilters />
+				</Suspense>
+			</div>
 		</div>
 	)
 }
