@@ -3,6 +3,7 @@
 import CarCard from '@/app/visit-albania/services/_components/CarCard'
 import { images } from '@/constants/images'
 import { CarFilters, useGetCars } from '@/hooks/useGetCars'
+import { RentACar } from '@/types/services'
 import { Alert, Button, Card, Col, Row, Select, Spin, Tabs } from 'antd'
 import { SlidersHorizontal } from 'lucide-react'
 import Image from 'next/image'
@@ -24,7 +25,6 @@ const CarType = ['all', 'sedan', 'suv', 'mini-van']
 const CarsFilters = () => {
 	const searchParams = useSearchParams()
 	const router = useRouter()
-	const carsRef = useRef<HTMLDivElement | null>(null)
 
 	const [filters, setFilters] = useState<CarFilters>(() => ({
 		type: (searchParams.get('type') as CarFilters['type']) || undefined,
@@ -59,6 +59,13 @@ const CarsFilters = () => {
 		pageSize: 20,
 		...filters,
 	})
+
+	const items = CarType.map((type) => ({
+		key: type,
+		label: type === 'all' ? 'All Cars' : type.toUpperCase(),
+		// content mund ta vendosësh këtu, nëse ka
+		children: null,
+	}))
 
 	return (
 		<div className='flex flex-col mt-4 md:mt-6'>
@@ -121,11 +128,7 @@ const CarsFilters = () => {
 
 			<div className='px-3 md:px-6 py-2'>
 				{/* Car Type Tabs */}
-				<Tabs defaultActiveKey={filters.type || 'all'} onChange={handleTabChange}>
-					{CarType.map((type) => (
-						<TabPane tab={type === 'all' ? 'All Cars' : type.toUpperCase()} key={type} />
-					))}
-				</Tabs>
+				<Tabs defaultActiveKey={filters.type || 'all'} onChange={handleTabChange} items={items} />
 			</div>
 
 			{/* Loading & Error */}
@@ -136,7 +139,7 @@ const CarsFilters = () => {
 			<div id='list-cars'>
 				<Row gutter={[24, 24]}>
 					{cars &&
-						cars.map((car: any) => (
+						cars.map((car: RentACar) => (
 							<Col key={car.id} xs={24} sm={12} lg={8}>
 								<CarCard {...car} />
 							</Col>

@@ -2,14 +2,10 @@
 
 import React, { Suspense } from 'react'
 import Image from 'next/image'
-import { useGetCars } from '@/hooks/useGetCars'
 import { BadgeEuro, Sun, SlidersHorizontal, HeartPulse } from 'lucide-react'
 import CarsFilters from '@/components/filters/CarsFilters'
-import { Button } from 'antd'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import CarCard from '../_components/CarCard'
-import { RentACar } from '@/types/services'
 
 const carsType = [
 	{ value: 'sedan', label: 'Sedan', icon: '/png/car1.png' },
@@ -45,14 +41,7 @@ const whyUsCarRent = [
 ]
 
 const RentCarServicePage = () => {
-	const { cars, isLoading, isError, error } = useGetCars({
-		page: 1,
-		pageSize: 20,
-		nrPeople: 4,
-	})
-
 	const path = usePathname()
-	console.log('🚀 ~ RentCarServicePage ~ cars:', { cars, isError, error })
 
 	return (
 		<div className='w-full px-4 py-10 max-w-7xl mx-auto'>
