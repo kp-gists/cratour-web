@@ -1,5 +1,5 @@
 import DynamicBreadcrumbs from './_comp/DynamicBreadcrumbs'
-import NavbarService from './_comp/Navbar'
+import WhatToVisitNavbar from './_comp/Navbar'
 
 export default function WhatToDoLayout({
 	children,
@@ -8,7 +8,7 @@ export default function WhatToDoLayout({
 }>) {
 	return (
 		<div className='relative'>
-			<NavbarService />
+			<WhatToVisitNavbar />
 			<div className='p-4 max-w-[1656px] mx-auto'>
 				{/* ✅ Breadcrumbs available on all subpages */}
 				<DynamicBreadcrumbs />

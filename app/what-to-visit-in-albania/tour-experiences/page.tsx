@@ -1,8 +1,15 @@
-import React from 'react';
+import ContactBanner from '@/components/ctas/ContactBanner'
+import UnderConstruction from '@/components/UnderConstruction'
+import React from 'react'
 
 // TODO add the experience login
 const TourExperiencesPage = () => {
-	return <div>TourExperiencesPage</div>;
-};
+	return (
+		<div>
+			<UnderConstruction title={'Tour Experiences Page'} />
+			<ContactBanner />
+		</div>
+	)
+}
 
-export default TourExperiencesPage;
+export default TourExperiencesPage

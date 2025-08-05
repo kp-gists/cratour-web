@@ -1,7 +1,14 @@
-import React from 'react';
+import ContactBanner from '@/components/ctas/ContactBanner'
+import UnderConstruction from '@/components/UnderConstruction'
+import React from 'react'
 
 const WhatToDoPage = () => {
-	return <div>WhatToDoPage</div>;
-};
+	return (
+		<div>
+			<UnderConstruction title={'What To DO Page!'} />
+			<ContactBanner />
+		</div>
+	)
+}
 
-export default WhatToDoPage;
+export default WhatToDoPage

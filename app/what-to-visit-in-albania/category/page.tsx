@@ -1,7 +1,12 @@
-import React from 'react';
+import UnderConstruction from '@/components/UnderConstruction'
+import React from 'react'
 
 const CategoryPage = () => {
-	return <div>CategoyPage</div>;
-};
+	return (
+		<div>
+			<UnderConstruction title='Categories Page' />
+		</div>
+	)
+}
 
-export default CategoryPage;
+export default CategoryPage

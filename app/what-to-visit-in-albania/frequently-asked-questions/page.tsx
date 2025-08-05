@@ -1,7 +1,14 @@
-import React from 'react';
+import ContactBanner from '@/components/ctas/ContactBanner'
+import UnderConstruction from '@/components/UnderConstruction'
+import React from 'react'
 
 const FaqsPage = () => {
-	return <div>FaqPage</div>;
-};
+	return (
+		<div>
+			<UnderConstruction title='FAQ page' />
+			<ContactBanner />
+		</div>
+	)
+}
 
-export default FaqsPage;
+export default FaqsPage
