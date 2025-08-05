@@ -4,6 +4,28 @@ import { dehydrate, QueryClient, HydrationBoundary } from '@tanstack/react-query
 import { getAllCities } from '@/hooks/useCities'
 import ExploreBtn from './_components/ExploreBtn'
 import ContactBanner from '@/components/ctas/ContactBanner'
+import { Metadata } from 'next'
+
+export const metadata: Metadata = {
+	title: 'Cratour | Cities in Albania',
+	description: 'Explore the beautiful cities of Albania, from Tirana to Saranda. Discover rich culture, history, and stunning landscapes.',
+	openGraph: {
+		title: 'Cratour | Cities in Albania',
+		description: 'Explore breathtaking landscapes, rich culture, and historic cities waiting for you.',
+		url: 'https://cratour.al/what-to-visit-in-albania/cities',
+		images: [
+			{
+				url: '/webp/cities-grid.webp',
+				width: 1200,
+				height: 630,
+				alt: 'Map of Albania Cities',
+			},
+		],
+	},
+	alternates: {
+		canonical: 'https://cratour.al/what-to-visit-in-albania/cities',
+	},
+}
 
 export default async function CitiesPage() {
 	const queryClient = new QueryClient()
