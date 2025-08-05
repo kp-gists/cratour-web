@@ -99,7 +99,12 @@ const CarCard = ({
 			</div>
 			<div className='flex justify-between items-center'>
 				<h1 className='text-md md:text-lg font-bold'>{name}</h1>
-				<Button variant='dashed' size='small' onClick={onDrawerOpen}>
+				<Button
+					variant='dashed'
+					size='middle'
+					className='relative text-white bg-gradient-to-r from-cyan-500 to-blue-500 ring-2 ring-offset-0 ring-cyan-400 hover:ring-blue-400 transition'
+					onClick={onDrawerOpen}
+				>
 					Order!
 				</Button>
 			</div>

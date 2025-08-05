@@ -1,14 +1,19 @@
-import NavbarService from './_comp/Navbar';
+import DynamicBreadcrumbs from './_comp/DynamicBreadcrumbs'
+import NavbarService from './_comp/Navbar'
 
-export default function ServiceLayout({
+export default function WhatToDoLayout({
 	children,
 }: Readonly<{
-	children: React.ReactNode;
+	children: React.ReactNode
 }>) {
 	return (
-		<div className=' relative'>
+		<div className='relative'>
 			<NavbarService />
-			<div className=' p-4'>{children}</div>
+			<div className='p-4 max-w-[1656px] mx-auto'>
+				{/* ✅ Breadcrumbs available on all subpages */}
+				<DynamicBreadcrumbs />
+				{children}
+			</div>
 		</div>
-	);
+	)
 }

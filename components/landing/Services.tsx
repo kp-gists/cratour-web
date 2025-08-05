@@ -1,19 +1,19 @@
-'use client';
+'use client'
 
-import { services } from '@/constants/services';
-import Image from 'next/image';
-import React from 'react';
-import RobotoText from '../ui/RobotoText';
-import SatisfyText from '../ui/SatisfyText';
-import Link from 'next/link';
-import { useRouter } from 'next/navigation';
+import { services } from '@/constants/services'
+import Image from 'next/image'
+import React from 'react'
+import RobotoText from '../ui/RobotoText'
+import SatisfyText from '../ui/SatisfyText'
+import Link from 'next/link'
+import { useRouter } from 'next/navigation'
 
-type LanguageKeys = keyof typeof services;
+type LanguageKeys = keyof typeof services
 
 const Services = ({ lang = 'english' }: { lang?: LanguageKeys }) => {
-	const s = services[lang] || services.english;
+	const s = services[lang] || services.english
 
-	const router = useRouter();
+	const router = useRouter()
 
 	return (
 		<div className='w-full h-fit p-4 md:p-10 lg:p-16 bg-cyan-100 flex flex-col justify-center items-center gap-8 md:gap-16'>
@@ -29,7 +29,7 @@ const Services = ({ lang = 'english' }: { lang?: LanguageKeys }) => {
 						<Link
 							href={`/visit-albania/services/${service.slug}`}
 							key={service.id}
-							className=' hover:-translate-y-2 w-full  md:w-[275px] px-3 py-6 border-2 border-dashed  border-cyan-400  rounded-xl flex justify-center items-center flex-col gap-3 '
+							className=' hover:-translate-y-2 w-full  md:w-[275px] px-3 pt-6 pb-2 border-2 border-dashed  border-cyan-400 bg-slate-100 rounded-xl flex justify-center items-center flex-col gap-3 '
 						>
 							<Image src={service.icon} width={80} height={80} alt={service.description} />
 
@@ -37,10 +37,10 @@ const Services = ({ lang = 'english' }: { lang?: LanguageKeys }) => {
 								{service.title}
 							</RobotoText>
 
-							<p className='text-center h-20'>{service.description}</p>
+							<p className='text-center px-1 h-24'>{service.description}</p>
 
-							<div onClick={() => router.push(`/visit-albania/services/${service.slug}`)}>
-								<SatisfyText className='text-cyan-600 hover:underline hover:font-bold text-xl'>{service.cta}</SatisfyText>
+							<div className='h-16' onClick={() => router.push(`/visit-albania/services/${service.slug}`)}>
+								<SatisfyText className='text-cyan-600 hover:underline hover:font-bold text-xl text-end'>{service.cta}</SatisfyText>
 							</div>
 						</Link>
 					))}
@@ -52,7 +52,7 @@ const Services = ({ lang = 'english' }: { lang?: LanguageKeys }) => {
 				</SatisfyText>
 			</Link>
 		</div>
-	);
-};
+	)
+}
 
-export default Services;
+export default Services
