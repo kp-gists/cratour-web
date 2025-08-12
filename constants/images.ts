@@ -24,6 +24,8 @@ export const images = {
 	tourGuide: '/png/tour-guide.png',
 	rentalCar: '/png/rental-car.png',
 	map: '/png/map.png',
+	boi: '/png/boi.png',
+	girl: '/png/girl.png',
 	backpack: '/png/backpack.png',
 	beachBall: '/png/beachBall.png',
 	busull: '/png/busull.png',

@@ -1,28 +1,28 @@
-import { hero } from '@/constants/hero';
-import { images } from '@/constants/images';
-import Image from 'next/image';
-import React from 'react';
-import RubikText from '../ui/RubicText';
-import SatisfyText from '../ui/SatisfyText';
-import Link from 'next/link';
+import { hero } from '@/constants/hero'
+import { images } from '@/constants/images'
+import Image from 'next/image'
+import React from 'react'
+import RubikText from '../ui/RubicText'
+import SatisfyText from '../ui/SatisfyText'
+import Link from 'next/link'
 
 const Hero = () => {
 	return (
-		<div className='relative w-full h-[85vh] md:h-[520px] overflow-show bg-cyan-100'>
+		<div className='relative w-full h-[85vh] md:h-[620px] overflow-show bg-orange-50'>
 			{/* images absolute */}
 			<Image
-				src={images.leaveLeft}
+				src={images.boi}
 				alt='leaf'
 				width={203}
 				height={273}
-				className='w-[100px] h-[100px] md:w-[203px] md:h-[273px] z-20 absolute left-0 top-0 animate-slideInLeft'
+				className='w-[100px] h-[140px] md:w-[203px] md:h-[273px] z-20 absolute left-4 top-4 animate-slideInLeft'
 			/>
 			<Image
-				src={images.leaveRight}
+				src={images.girl}
 				alt='leaf'
 				width={203}
 				height={273}
-				className='w-[100px] h-[100px] md:w-[203px] md:h-[273px] z-20 absolute -right-4 -top-4 animate-slideInRight'
+				className='w-[100px] h-[140px] md:w-[203px] md:h-[273px] z-20 absolute right-4 top-4 animate-slideInRight'
 			/>
 			<Image
 				src={images.poseHero}
@@ -95,13 +95,13 @@ const Hero = () => {
 
 				<Link
 					href={'#craft'}
-					className='block text-lg lowercase bg-white py-1 rounded-lg px-6 ring ring-cyan-400	 leading-tight shadow-xl mt-4 font-bold text-cyan-400'
+					className='block text-lg lowercase bg-white py-1 rounded-lg px-6 ring ring-orange-600	 leading-tight shadow-xl mt-4 font-semibold text-black-400 hover:bg-orange-100 transition duration-200 hover:scale-105'
 				>
 					PLAN NOW!
 				</Link>
 			</div>
 		</div>
-	);
-};
+	)
+}
 
-export default Hero;
+export default Hero
