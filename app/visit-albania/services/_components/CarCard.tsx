@@ -1,13 +1,13 @@
-import { Bounce, ToastContainer, toast } from 'react-toastify'
-import { RentACar } from '@/types/services'
-import { Button, Modal, Form as AntForm, Tooltip, Image as AntdImage, Drawer, Input, DatePicker, InputNumber, Space } from 'antd'
-import { Luggage, User2 } from 'lucide-react'
-import Image from 'next/image'
-import { contacts } from '@/constants/contacts'
+import { Bounce, ToastContainer, toast } from 'react-toastify';
+import { RentACar } from '@/types/services';
+import { Button, Modal, Form as AntForm, Tooltip, Image as AntdImage, Drawer, Input, DatePicker, InputNumber, Space } from 'antd';
+import { Luggage, User2 } from 'lucide-react';
+import Image from 'next/image';
+import { contacts } from '@/constants/contacts';
 
-import React, { useState } from 'react'
-import { createWhatsappHref } from '@/lib/whatsapp'
-import dayjs from 'dayjs'
+import React, { useState } from 'react';
+import { createWhatsappHref } from '@/lib/whatsapp';
+import dayjs from 'dayjs';
 
 const CarCard = ({
 	cover,
@@ -30,22 +30,22 @@ const CarCard = ({
 	nrSmallBags,
 	type,
 }: RentACar) => {
-	const [open, setOpen] = useState(false)
-	const [isOpenDrawer, setIsOpenDrawer] = useState(false)
-	const [form] = AntForm.useForm()
-	const [mode, setMode] = useState<'email' | 'whatsapp'>('email')
-	const [loading, setLoading] = useState(false)
+	const [open, setOpen] = useState(false);
+	const [isOpenDrawer, setIsOpenDrawer] = useState(false);
+	const [form] = AntForm.useForm();
+	const [mode, setMode] = useState<'email' | 'whatsapp'>('email');
+	const [loading, setLoading] = useState(false);
 
-	const onOpen = () => setOpen(true)
-	const onClose = () => setOpen(false)
-	const onDrawerOpen = () => setIsOpenDrawer(true)
+	const onOpen = () => setOpen(true);
+	const onClose = () => setOpen(false);
+	const onDrawerOpen = () => setIsOpenDrawer(true);
 	const onDrawerClose = () => {
-		setIsOpenDrawer(false)
-		form.resetFields()
-	}
+		setIsOpenDrawer(false);
+		form.resetFields();
+	};
 
 	const onFinish = async (values: any) => {
-		setLoading(true)
+		setLoading(true);
 
 		const message = `Pershendetje, I would like to rent the ${name}.
 			- **Pickup Date:** ${values.pickUpDate ? dayjs(values.pickUpDate).format('DD MMM YYYY') : 'Not specified'}
@@ -57,14 +57,14 @@ const CarCard = ({
 			- **Luggage:** ${values.nrLargeBags} large, ${values.nrSmallBags} small
 			- **Notes:** ${values.notes || 'No notes'}
 
-			Please confirm availability and price.`
+			Please confirm availability and price.`;
 
 		if (mode === 'whatsapp') {
-			const href = createWhatsappHref(contacts.whatsapp.telNr, encodeURIComponent(message))
-			window.location.href = href
-			setLoading(false)
-			form.resetFields()
-			return
+			const href = createWhatsappHref(contacts.whatsapp.telNr, encodeURIComponent(message));
+			window.location.href = href;
+			setLoading(false);
+			form.resetFields();
+			return;
 		}
 
 		try {
@@ -79,21 +79,21 @@ const CarCard = ({
 					email: values.email,
 					notes: `<div><p>${message.replace(/\n/g, '</p><p>')}</p></div>`,
 				}),
-			})
+			});
 
-			const result = await response.json()
-			toast.success('Your request has been sent successfully!')
-			onDrawerClose()
+			const result = await response.json();
+			toast.success('Your request has been sent successfully!');
+			onDrawerClose();
 		} catch (err) {
-			toast.error('Something went wrong. Try again!')
-			setLoading(false)
+			toast.error('Something went wrong. Try again!');
+			setLoading(false);
 		} finally {
-			setLoading(false)
+			setLoading(false);
 		}
-	}
+	};
 
 	return (
-		<div className='w-72 h-[300px] flex flex-col gap-2 border border-gray-200 rounded-md hover:border-gray-400 bg-gray-200  bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-30 px-3 md:px-4'>
+		<div className='w-72 h-[300px] flex flex-col gap-2 border border-gray-200 rounded-lg hover:border-cyan-300 hover:border-2 bg-gray-100  bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-30 px-3 md:px-4 shadow-lg hover:shadow-2xl transition-shadow duration-300'>
 			<div className='w-full h-fit flex justify-center items-center'>
 				<Image src={cover.url} width={200} className='bg-cover' height={100} alt={name} />
 			</div>
@@ -276,7 +276,7 @@ const CarCard = ({
 			</Drawer>
 			<ToastContainer transition={Bounce} autoClose={2000} closeOnClick />
 		</div>
-	)
-}
+	);
+};
 
-export default CarCard
+export default CarCard;

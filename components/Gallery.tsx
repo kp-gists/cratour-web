@@ -3,8 +3,7 @@
 import React, { useEffect, useState } from 'react';
 
 import { Carousel, CarouselApi, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
-import Link from 'next/link';
-import Image from 'next/image';
+import { Image } from 'antd';
 
 type Props = {
 	// eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -46,15 +45,7 @@ const Gallery = ({ gallery, title = 'Gallery:' }: Props) => {
 				<CarouselContent>
 					{gallery.map((item) => (
 						<CarouselItem key={item.documentId} className='basis-full md:basis-1/2 lg:basis-1/3'>
-							<Link href={item.url} target='_blank' className='p-1 flex flex-col gap-4 '>
-								<Image
-									src={item.url}
-									width={250}
-									height={185}
-									alt={item.hash}
-									className='rounded-lg w-[300px] md:w-[250px] h-[225px] md:h-[185px] bg-contain'
-								/>
-							</Link>
+							<Image src={item.url} width={250} height={185} alt={item.hash} className='rounded-lg w-[300px] md:w-[250px] h-[225px] md:h-[185px] bg-contain' />
 						</CarouselItem>
 					))}
 				</CarouselContent>

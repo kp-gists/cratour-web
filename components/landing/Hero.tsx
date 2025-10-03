@@ -8,7 +8,7 @@ import Link from 'next/link'
 
 const Hero = () => {
 	return (
-		<div className='relative w-full h-[85vh] md:h-[620px] overflow-show bg-orange-50'>
+		<div className='relative w-full h-[85vh] md:h-[520px] lg:h-[654px] overflow-show bg-orange-50'>
 			{/* images absolute */}
 			<Image
 				src={images.boi}

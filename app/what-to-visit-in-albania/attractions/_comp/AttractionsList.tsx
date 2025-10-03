@@ -52,7 +52,7 @@ const AttractionsList = () => {
 				{attractions.data.map((item: any) => {
 					return (
 						<Link
-							className='flex flex-col lg:flex-row w-full md:justify-start lg:justify-end md:items-start lg:items-end gap-6 border-2 border-dashed border-cyan-400 px-6 py-5 rounded-xl overflow-hidden'
+							className='flex flex-col lg:flex-row w-full md:justify-start lg:justify-end md:items-start lg:items-end gap-6 border-1 shadow-xl hover:shadow-2xl  px-6 py-5 rounded-xl overflow-hidden'
 							href={`/what-to-visit-in-albania/attractions/${item.slug}`}
 							key={item.slug}
 						>

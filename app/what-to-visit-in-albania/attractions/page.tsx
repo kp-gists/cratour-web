@@ -7,6 +7,8 @@ export const metadata: Metadata = {
 	title: 'Attractions | Visit Albania',
 	description: 'What to do in albania, what to visit in albania, explore albania, all attractions in albania',
 };
+
+// TODO better add generic page layout so it has something to show
 const AttractionsPage = () => {
 	return <AttractionsList />;
 };

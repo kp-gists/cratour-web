@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Category } from '@/types/tour';
-import Image from 'next/image';
+import { Image } from 'antd';
 import Link from 'next/link';
 import React from 'react';
 
@@ -37,9 +37,8 @@ const TourHero = ({ title, categories, cover, days, subtitle }: Props) => {
 					alt=''
 					width={915}
 					height={515}
-					className='w-full  bg-cover  lg:w-[915px] h-[260px] md:h-[400px] md:w-[800px] lg:h-[515px]'
-					sizes='(max-width: 915px) 100vw, 50vw'
-					priority
+					className='w-full   !h-full object-cover object-center'
+					// sizes='(max-width: 915px) 100vw, 50vw'
 				/>
 			</div>
 
